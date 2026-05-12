@@ -12,7 +12,10 @@
     "test:rewrite": "node src/lib/rewriteWorkbench.test.mjs",
     "test:journal": "node src/lib/errorJournal.test.mjs",
     "test:daily-plan": "node src/lib/dailyPlan.test.mjs",
-    "test:rationale": "node src/lib/learnerFriendlyRationale.test.mjs"
+    "test:rationale": "node src/lib/learnerFriendlyRationale.test.mjs",
+    "test:distractors": "node src/lib/distractorQuality.test.mjs",
+    "test:review-support": "node src/lib/reviewSupport.test.mjs",
+    "test:demo-seed": "node src/lib/demoSeedQuestions.test.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.4",

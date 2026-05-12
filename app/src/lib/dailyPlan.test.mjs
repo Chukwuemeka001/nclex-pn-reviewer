@@ -62,7 +62,16 @@ function testBuildDailyPlanUsesJournalAndWeakAreas() {
 function testBuildDailyPlanHandlesEmptyJournal() {
   const plan = buildDailyPlan({ journalEntries: [], weakAreas: [], preferences: defaultDailyPlanPreferences() });
   assert.equal(plan.warnings.length > 0, true);
-  assert.ok(plan.blocks.some((block) => block.type === "diagnostic"));
+  assert.ok(plan.blocks.some((block) => block.type === "guided_start"));
+  assert.ok(plan.blocks.some((block) => block.task.includes("Start with 8-15 mixed PN questions")));
+}
+
+function testDailyPlanExplainsWhoChoosesAndDoesNotDemandSelfExplanation() {
+  const plan = buildDailyPlan({ journalEntries, weakAreas: [], preferences: defaultDailyPlanPreferences() });
+  assert.ok(plan.coachingNote.includes("The app chooses the order"));
+  assert.ok(plan.coachingNote.includes("You are not alone"));
+  assert.equal(plan.blocks.some((block) => /write|explain/i.test(block.task)), false);
+  assert.ok(plan.blocks.some((block) => block.task.includes("Read the rationale")));
 }
 
 function run() {
@@ -70,6 +79,7 @@ function run() {
   testSafetyDrillFocusesDelegationForScopeWeakness();
   testBuildDailyPlanUsesJournalAndWeakAreas();
   testBuildDailyPlanHandlesEmptyJournal();
+  testDailyPlanExplainsWhoChoosesAndDoesNotDemandSelfExplanation();
   console.log("dailyPlan tests passed");
 }
 

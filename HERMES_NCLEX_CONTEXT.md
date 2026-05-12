@@ -1,6 +1,6 @@
 # NCLEX-PN Hermes Session Context
 
-Last updated: 2026-05-12 09:54 EDT
+Last updated: 2026-05-12 10:58 EDT
 Repo: /Users/emeka/Documents/Codex/2026-05-02/hey-codex-browser-plugin-browser-use
 Branch: main
 
@@ -61,6 +61,8 @@ React/Vite app in `app/` with:
 - Error Journal
 - Daily Plan
 - Student-friendly rationale guard
+- Distractor plausibility guard
+- Model-assisted rewrite audit/source registry review panels
 
 ### Content/review pipeline
 
@@ -155,17 +157,25 @@ Purpose:
 Route:
 - /daily-plan
 
-### Student-friendly rationale guard
+### Student-friendly rationale and distractor guards
 
 Files:
 - app/src/lib/learnerFriendlyRationale.js
 - app/src/lib/learnerFriendlyRationale.test.mjs
+- app/src/lib/distractorQuality.js
+- app/src/lib/distractorQuality.test.mjs
+- app/src/lib/demoSeedQuestions.test.mjs
 - integrated into app/src/pages/AdminReview.jsx
 
 Purpose:
 - Flags rationales that are too short, too jargon-heavy, too long-winded, or missing why-wrong teaching.
-- Provides a copyable plain-language rewrite prompt.
-- Keeps this lightweight; it is a reviewer aid, not an auto-approval gate yet.
+- Flags cartoonishly unsafe/generated-feeling distractors, e.g. giving medication/laxatives without orders.
+- Provides copyable plain-language rewrite prompt and distractor rewrite guidance.
+- Keeps this lightweight; reviewer aid, not an auto-approval gate yet.
+
+User feedback captured:
+- Constipation demo question's "administer laxative without order" distractor felt too fake/obvious for NCLEX. Replaced it with more plausible wrong options and added a regression test against cartoon distractors.
+- Daily Plan was unclear about who chooses the order and sounded like the learner had to explain what they do not know. Revised copy to say the app chooses the order and learner just answers, flags confusion, and reads coach notes.
 
 ### Error Journal MVP
 
@@ -201,6 +211,9 @@ npm run test:rewrite
 npm run test:journal
 npm run test:daily-plan
 npm run test:rationale
+npm run test:distractors
+npm run test:review-support
+npm run test:demo-seed
 npm run build
 npm run dev
 npm run review-api
@@ -224,13 +237,16 @@ Completed:
 14. Public attribution exception for safe OER/public-source attribution.
 15. Error Journal JSON import/export backup.
 16. Student-friendly rationale guard in AdminReview.
+17. Distractor plausibility guard for generated-feeling answer options.
+18. AdminReview model-assisted rewrite audit panel and source registry lookup panel.
+19. Daily Plan copy clarified: app chooses order; learner is coached, not asked to explain what they do not know.
 
 Next best steps:
-1. Add AdminReview display for modelAssistedRewrite audit metadata and source registry lookup.
-2. Generate/apply first 10 model-assisted rewrites, then have Emeka review only those 10.
-3. Measure rubric score improvement before spending paid model budget at larger scale.
-4. Get 50 excellent, clinically reviewed PN questions through the pipeline.
-5. Add beta disclaimer/non-affiliation text before any public tester sees it.
+1. Generate/apply first 10 model-assisted rewrites, then have Emeka review only those 10.
+2. Measure rubric score improvement before spending paid model budget at larger scale.
+3. Get 50 excellent, clinically reviewed PN questions through the pipeline.
+4. Add beta disclaimer/non-affiliation text before any public tester sees it.
+5. Replace sourceRegistrySnapshot with an automated generated frontend snapshot if source registry grows.
 6. Consider database/auth only after local workflow proves useful.
 
 ## Brutal truth

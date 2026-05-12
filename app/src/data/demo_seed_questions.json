@@ -59,9 +59,9 @@
     "choices": [
       "Encourage walking as tolerated.",
       "Offer fluids within the prescribed fluid plan.",
-      "Administer a laxative without an order.",
+      "Use a stimulant laxative every day until bowel movements are regular.",
       "Encourage fiber-containing foods if not contraindicated.",
-      "Give a stool softener from unit stock."
+      "Reduce fluid intake if stools are hard."
     ],
     "correctAnswerIndexes": [0, 1, 3],
     "correctAnswerText": [
@@ -69,10 +69,10 @@
       "Offer fluids within the prescribed fluid plan.",
       "Encourage fiber-containing foods if not contraindicated."
     ],
-    "rationale": "Mobility, appropriate fluids, and fiber are independent nursing measures. Medication administration requires an order.",
+    "rationale": "Walking as tolerated, fluids within the prescribed plan, and fiber-containing foods help prevent constipation without jumping straight to medication. The safest teaching starts with routine bowel habits and non-medication measures unless the provider has ordered something else.",
     "whyWrong": [
-      "A laxative requires a provider order.",
-      "A stool softener also requires an order."
+      "Daily stimulant laxative use can cause dependence or cramping and should not be the routine first teaching point without provider guidance.",
+      "Hard stool usually means the client needs enough fluid if allowed, not less fluid. Always follow fluid restrictions if present."
     ],
     "tagging": {
       "examProgram": { "id": "nclex-pn", "label": "NCLEX-PN" },

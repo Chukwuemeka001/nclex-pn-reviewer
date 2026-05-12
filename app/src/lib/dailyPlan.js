@@ -96,18 +96,18 @@ export function buildDailyPlan({ journalEntries = [], weakAreas = [], preference
   const topReason = active[0]?.reason || weakAreas[0]?.label || "prioritization";
   const drill = safetyDrillForWeakArea(topReason);
   const warnings = [];
-  if (active.length === 0 && weakAreas.length === 0) warnings.push("No error journal or weak-area data yet. Start with a short diagnostic set.");
+  if (active.length === 0 && weakAreas.length === 0) warnings.push("No misses saved yet. Start with a small guided practice set so the app can learn what to coach first.");
   if (prefs.anxietyLevel >= 4) warnings.push("High anxiety selected: keep today small, timed, and review-focused.");
 
   const blocks = [];
   if (active.length === 0) {
-    blocks.push({ type: "diagnostic", minutes: Math.min(15, prefs.dailyMinutes), task: "Complete a short mixed PN diagnostic set and save misses to the Error Journal." });
+    blocks.push({ type: "guided_start", minutes: Math.min(15, prefs.dailyMinutes), task: "Start with 8-15 mixed PN questions. The app uses your missed/flagged answers to decide what to coach next." });
   } else {
-    blocks.push({ type: "error_journal", minutes: Math.min(15, prefs.dailyMinutes), task: `Review ${Math.min(3, active.length)} active Error Journal item(s) and write the safest first action in your own words.` });
+    blocks.push({ type: "error_journal", minutes: Math.min(15, prefs.dailyMinutes), task: `Review ${Math.min(3, active.length)} active Error Journal item(s). Read the rationale, then compare it to the safest first action.` });
   }
   blocks.push({ type: "qbank_practice", minutes: Math.max(10, Math.round(prefs.dailyMinutes * 0.45)), task: `Do ${questionMinimum}-${questionMaximum} targeted questions from ${prefs.questionSource.replaceAll("_", " ")}. Focus: ${focusAreas.slice(0, 3).join(", ") || "mixed PN fundamentals"}.` });
   blocks.push({ type: "safety_drill", minutes: 8, task: drill.title, steps: drill.steps });
-  blocks.push({ type: "rationale_review", minutes: 7, task: `Use rationale style: ${prefs.rationaleStyle.replaceAll("_", " ")}. Explain why wrong answers are wrong.` });
+  blocks.push({ type: "rationale_review", minutes: 7, task: `Read the rationale and check: what cue mattered, why the correct answer was safest, and why the other options were less safe or incomplete.` });
 
   return {
     generatedAt: now,
@@ -115,6 +115,7 @@ export function buildDailyPlan({ journalEntries = [], weakAreas = [], preference
     examCountdownDays,
     focusAreas,
     questionTarget: { minimum: questionMinimum, maximum: questionMaximum },
+    coachingNote: "The app chooses the order from your missed questions, weak areas, time, and anxiety level. You are not alone: just answer questions, flag what confused you, and read the coach notes.",
     warnings,
     blocks,
   };

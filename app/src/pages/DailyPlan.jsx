@@ -23,7 +23,7 @@ export default function DailyPlan({ journalEntries, lastResult, onPractice, onJo
         <div>
           <p className="eyebrow">PN daily trainer</p>
           <h1>Today’s Study Plan</h1>
-          <p>Small enough to do after work. Driven by misses, weak areas, and PN safety priorities.</p>
+          <p>Small enough to do after work. The app chooses what comes first based on misses, weak areas, time, and PN safety priorities.</p>
         </div>
         <div className="button-row">
           <button className="secondary-btn" onClick={onJournal}><ClipboardList size={18} /> Error Journal</button>
@@ -32,6 +32,9 @@ export default function DailyPlan({ journalEntries, lastResult, onPractice, onJo
       </div>
 
       {plan.warnings.map((warning) => <div className="notice" key={warning}>{warning}</div>)}
+      <div className="notice">
+        <strong>Your coach for today:</strong> {plan.coachingNote}
+      </div>
 
       <div className="editor-card">
         <h2>Plan settings</h2>

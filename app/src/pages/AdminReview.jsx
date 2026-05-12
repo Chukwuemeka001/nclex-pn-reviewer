@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Check, CheckSquare, Eye, EyeOff, RefreshCw, Save, Send, X } from "lucide-react";
 import { NCLEX_QUALITY_RUBRIC, emptyQualityRubric, scoreQualityRubric } from "../lib/nclexQualityRubric.js";
 import { assessLearnerFriendlyRationale, buildLearnerFriendlyRewritePrompt } from "../lib/learnerFriendlyRationale.js";
+import { assessDistractorPlausibility, distractorRewriteGuidance } from "../lib/distractorQuality.js";
+import { findSourceRegistryEntriesForItem, summarizeModelAssistedRewrite } from "../lib/reviewSupport.js";
+import { SOURCE_REGISTRY_SNAPSHOT } from "../lib/sourceRegistrySnapshot.js";
 
 export const REVIEW_API_BASE = import.meta.env.VITE_REVIEW_API_BASE || "/api/review";
 
@@ -303,6 +306,9 @@ export default function AdminReview() {
   const warnings = working.draftWarnings || working.transformationWarnings || [];
   const qualityScore = scoreQualityRubric(meta.qualityRubric);
   const learnerFriendly = assessLearnerFriendlyRationale({ rationale: working.newRationale, whyWrong: working.whyWrong });
+  const distractorQuality = assessDistractorPlausibility({ stem: working.newStem, choices: working.newAnswerChoices, correctAnswerIndexes: working.correctAnswerIndexes });
+  const rewriteSummary = summarizeModelAssistedRewrite(selected);
+  const sourceRegistryMatches = findSourceRegistryEntriesForItem(working, SOURCE_REGISTRY_SNAPSHOT);
 
   return (
     <section className="page admin-page">
@@ -452,6 +458,13 @@ export default function AdminReview() {
             <div className="section-title"><h2>Draft Question Review</h2><span>{working.itemType}</span></div>
             <label className="field"><span>Stem</span><textarea value={working.newStem || ""} onChange={(e) => updateWorking(["newStem"], e.target.value)} /></label>
             <label className="field"><span>Answer choices</span><TextListEditor values={working.newAnswerChoices || []} onChange={(v) => updateWorking(["newAnswerChoices"], v)} /></label>
+            <div className={`notice ${distractorQuality.passed ? "approved-banner" : "warning-box"}`}>
+              <strong>Distractor plausibility check</strong>
+              <p>{distractorQuality.passed ? "Distractors do not look cartoonishly unsafe. Still verify they are clinically plausible." : "One or more distractors may feel generated or too obviously wrong."}</p>
+              {distractorQuality.issues.length > 0 && <ul>{distractorQuality.issues.map((issue) => <li key={issue}>{issue}</li>)}</ul>}
+              {distractorQuality.flaggedChoices.length > 0 && <ul>{distractorQuality.flaggedChoices.map((choice) => <li key={`${choice.index}-${choice.choice}`}>Choice {choice.index + 1}: {choice.choice}</li>)}</ul>}
+              {!distractorQuality.passed && <details><summary>Rewrite guidance</summary><ul>{distractorRewriteGuidance().map((tip) => <li key={tip}>{tip}</li>)}</ul></details>}
+            </div>
             <label className="field"><span>Correct answer indexes, comma separated</span><input value={(working.correctAnswerIndexes || []).join(",")} onChange={(e) => updateWorking(["correctAnswerIndexes"], e.target.value.split(",").map((x) => Number(x.trim())).filter((x) => Number.isInteger(x)))} /></label>
             <label className="field"><span>Rationale</span><textarea value={working.newRationale || ""} onChange={(e) => updateWorking(["newRationale"], e.target.value)} /></label>
             <div className={`notice ${learnerFriendly.passed ? "approved-banner" : "warning-box"}`}>
@@ -512,6 +525,42 @@ export default function AdminReview() {
               <label className="field"><span>Skill tags</span><MultiTagSelect values={working.tagging?.skillTags} options={tagIndex.skill || []} onChange={(v) => updateWorking(["tagging", "skillTags"], v)} /></label>
               <label className="field"><span>Body system tags</span><MultiTagSelect values={working.tagging?.bodySystemTags} options={tagIndex.bodySystem || []} onChange={(v) => updateWorking(["tagging", "bodySystemTags"], v)} /></label>
             </div>
+          </div>
+
+          <div className="editor-card">
+            <div className="section-title">
+              <h2>Model-Assisted Rewrite Audit</h2>
+              <span>{rewriteSummary.hasRewrite ? "applied" : "none"}</span>
+            </div>
+            <p>{rewriteSummary.displayText}</p>
+            {rewriteSummary.hasRewrite && (
+              <div className="trace-box">
+                <p><strong>Fields applied:</strong> {rewriteSummary.fieldsApplied.join(", ") || "not recorded"}</p>
+                <p><strong>Source safety:</strong> {rewriteSummary.sourceSafetyStatement}</p>
+              </div>
+            )}
+          </div>
+
+          <div className="editor-card">
+            <div className="section-title">
+              <h2>Source Registry Lookup</h2>
+              <span>{sourceRegistryMatches.length || 0} linked</span>
+            </div>
+            {sourceRegistryMatches.length === 0 ? (
+              <p>No public attribution or concept source is linked to this draft yet.</p>
+            ) : (
+              sourceRegistryMatches.map((entry) => (
+                <div className="trace-box" key={entry.sourceId}>
+                  <p><strong>{entry.sourceId}</strong> — {entry.title}</p>
+                  <p><strong>Status:</strong> {entry.found ? "registered" : "missing from registry"}</p>
+                  {entry.license && <p><strong>License:</strong> {entry.license}</p>}
+                  {entry.allowedUse?.length > 0 && <p><strong>Allowed:</strong> {entry.allowedUse.join(", ")}</p>}
+                  {entry.prohibitedUse?.length > 0 && <p><strong>Never:</strong> {entry.prohibitedUse.join(", ")}</p>}
+                  {entry.attributionRequired && <p><strong>Attribution required before public export.</strong></p>}
+                  {entry.issues?.length > 0 && <p>{entry.issues.join(" ")}</p>}
+                </div>
+              ))
+            )}
           </div>
 
           <div className="editor-card">
