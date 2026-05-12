@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import {
   buildImprovementLoop,
+  buildModelAssistedRewriteBatch,
+  buildModelRewriteRequest,
   buildRewritePlan,
   scoreQuestionCandidate,
   selectImprovementCandidates,
@@ -75,11 +77,43 @@ function testBuildImprovementLoopRescoresProposedRevision() {
   assert.ok(loop.summary.selectedCount === 1);
 }
 
+function testModelRewriteRequestTargetsOnlyWeakFieldsAndKeepsSafetyRules() {
+  const loop = buildImprovementLoop([sampleCandidate({
+    id: "weak-model-1",
+    stem: "What is heart failure?",
+    choices: ["A disease.", "A food.", "A color.", "A number."],
+    rationale: "Heart failure affects the heart.",
+    whyWrong: [],
+    tagging: {},
+  })], { limit: 1 });
+  const request = buildModelRewriteRequest(loop.items[0]);
+  assert.equal(request.id, "weak-model-1");
+  assert.ok(request.allowedRewriteFields.includes("stem"));
+  assert.ok(request.allowedRewriteFields.includes("distractors"));
+  assert.ok(request.allowedRewriteFields.includes("rationale"));
+  assert.ok(request.lockedFields.includes("correctAnswerIndexes"));
+  assert.ok(request.systemPrompt.includes("Do not copy, imitate, paraphrase, or derive from UWorld"));
+  assert.ok(request.userPrompt.includes("Return JSON only"));
+  assert.equal(request.input.provenanceIncluded, false);
+}
+
+function testModelAssistedBatchAddsRequestsWithoutCallingPaidModel() {
+  const loop = buildImprovementLoop([sampleCandidate({ id: "batch-1" })], { limit: 1 });
+  const batch = buildModelAssistedRewriteBatch(loop, { provider: "anthropic", model: "claude-test" });
+  assert.equal(batch.mode, "model_assisted_rewrite_request_pack_no_api_call");
+  assert.equal(batch.provider, "anthropic");
+  assert.equal(batch.model, "claude-test");
+  assert.equal(batch.requests.length, 1);
+  assert.equal(batch.requests[0].id, "batch-1");
+}
+
 function run() {
   testScoresStrongCandidateAsPublishReady();
   testWeakQuestionGetsTargetedRewritePlan();
   testSelectsTenCandidatesWithApprovedFirst();
   testBuildImprovementLoopRescoresProposedRevision();
+  testModelRewriteRequestTargetsOnlyWeakFieldsAndKeepsSafetyRules();
+  testModelAssistedBatchAddsRequestsWithoutCallingPaidModel();
   console.log("nclex_improvement_loop tests passed");
 }
 

@@ -136,6 +136,21 @@ The loop:
 - creates rewrite instructions for stem, distractors, rationale, why-wrong explanations, metadata, clinical review, or source-safety review
 - records a projected rescore after targeted revision
 
+Model-assisted request-pack mode:
+
+```bash
+node qbank_pipeline/scripts/nclex_improvement_loop.mjs --limit=10 --model-assisted --provider=anthropic --model=claude-sonnet-4
+```
+
+This writes:
+
+```text
+qbank_pipeline/improvement_reviews/nclex_improvement_loop_10_model_assisted.json
+qbank_pipeline/improvement_reviews/nclex_improvement_loop_10_model_assisted_summary.json
+```
+
+Model-assisted mode does not call a paid model API. It creates a private request pack with per-question prompts, allowed rewrite fields, locked fields, weak criteria, and source-safety rules. Use it to send only targeted weak-field rewrite tasks to a model, then manually review any returned rewrites before copying them into approved questions and re-running the rubric/sanitizer.
+
 The improvement review output is private working content and is ignored by git. It may include draft question text and must not be treated as a public export. The loop is a first-pass triage tool, not a substitute for human PN clinical review.
 
 ## Guardrails

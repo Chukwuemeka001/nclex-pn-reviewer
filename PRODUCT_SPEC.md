@@ -23,6 +23,12 @@ Not the first target:
 
 ## Market Positioning
 
+Core positioning after competitor review:
+- Do not compete as a UWorld clone or giant qbank replacement.
+- Compete as a cheap/free PN-focused daily trainer, error journal, and remediation coach.
+- Best wedge: "Use any qbank; this app turns your missed areas into a PN-safe daily plan."
+- Public strategy can be free/low-cost for goodwill, testimonials, portfolio proof, and job/business publicity.
+
 Allowed language:
 - NCLEX-style practice.
 - PN exam prep.

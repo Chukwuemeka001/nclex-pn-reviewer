@@ -241,6 +241,92 @@ function projectedRescore(scored, plan) {
   return scoreQualityRubric(projectedRubric);
 }
 
+function currentFieldsForRewrite(item, fields) {
+  const original = item.originalQuestion || {};
+  const current = {};
+  if (fields.includes("stem")) current.stem = original.stem;
+  if (fields.includes("distractors")) current.choices = original.choices;
+  if (fields.includes("rationale")) {
+    current.rationale = original.rationale;
+    current.whyWrong = original.whyWrong;
+  }
+  if (fields.includes("metadata")) current.tagging = original.tagging;
+  return current;
+}
+
+export function buildModelRewriteRequest(item, options = {}) {
+  const rewriteFields = item.rewritePlan?.rewriteFields || [];
+  const lockedFields = ["id", "itemType", "correctAnswerIndexes"];
+  if (!rewriteFields.includes("distractors")) lockedFields.push("choices");
+  if (!rewriteFields.includes("stem")) lockedFields.push("stem");
+  if (!rewriteFields.includes("rationale")) lockedFields.push("rationale", "whyWrong");
+  if (!rewriteFields.includes("metadata")) lockedFields.push("tagging");
+
+  const model = options.model || "claude-3-5-sonnet-or-better";
+  const systemPrompt = [
+    "You are assisting with NCLEX-PN question improvement for original educational content.",
+    "Rewrite only the requested weak fields. Do not regenerate the full question unless every field is explicitly allowed.",
+    "Do not copy, imitate, paraphrase, or derive from UWorld, Archer, Kaplan, Bootcamp, Saunders, NCSBN sample items, or any proprietary qbank.",
+    "Keep the question PN/LPN scope-safe, clinically conservative, and suitable for human nurse/educator review.",
+    "Do not claim clinical final approval. Flag uncertainty instead of inventing facts.",
+  ].join("\n");
+  const userPrompt = [
+    `Model target: ${model}`,
+    "Return JSON only. Do not include markdown.",
+    "Allowed rewrite fields are listed in allowedRewriteFields. Locked fields must not be changed.",
+    "For distractors, keep wrong options plausible but clearly less safe, lower priority, or incomplete.",
+    "For rationales, explain the nursing principle and why each wrong answer is wrong.",
+    "Output schema:",
+    JSON.stringify({
+      id: "same id",
+      rewrittenFields: {
+        stem: "only if allowed",
+        choices: ["only if distractors allowed"],
+        rationale: "only if allowed",
+        whyWrong: ["only if rationale allowed"],
+        tagging: { note: "only if metadata allowed" },
+      },
+      reviewerWarnings: ["clinical or PN-scope uncertainties"],
+      changeSummary: ["brief targeted changes"],
+      sourceSafetyStatement: "Original rewrite; not based on proprietary qbanks or copied item structures.",
+    }, null, 2),
+  ].join("\n");
+
+  return {
+    id: item.id,
+    mode: "targeted_model_rewrite_request",
+    allowedRewriteFields: rewriteFields,
+    lockedFields: [...new Set(lockedFields)],
+    systemPrompt,
+    userPrompt,
+    input: {
+      provenanceIncluded: false,
+      initialScore: item.initialScore,
+      weakestCriteria: item.rewritePlan?.weakestCriteria || [],
+      instructions: item.rewritePlan?.instructions || [],
+      currentFields: currentFieldsForRewrite(item, rewriteFields),
+      correctAnswerIndexes: item.originalQuestion?.correctAnswerIndexes || [],
+      itemType: item.itemType,
+    },
+  };
+}
+
+export function buildModelAssistedRewriteBatch(loop, options = {}) {
+  const provider = options.provider || "manual_or_external_model";
+  const model = options.model || "claude-3-5-sonnet-or-better";
+  const items = loop.items || [];
+  return {
+    generatedAt: new Date().toISOString(),
+    mode: "model_assisted_rewrite_request_pack_no_api_call",
+    provider,
+    model,
+    note: "Request pack only: no paid model API call was made. Review outputs manually before merging into approved questions.",
+    requests: items
+      .filter((item) => item.rewritePlan?.rewriteFields?.length)
+      .map((item) => buildModelRewriteRequest(item, { model })),
+  };
+}
+
 export function selectImprovementCandidates(candidates, limit = 10) {
   return [...candidates]
     .filter((candidate) => candidate.id && candidate.stem && candidate.choices?.length)
@@ -360,19 +446,36 @@ async function writeJson(filePath, value) {
 async function main() {
   const args = new Set(process.argv.slice(2));
   const limitArg = process.argv.find((arg) => arg.startsWith("--limit="));
+  const providerArg = process.argv.find((arg) => arg.startsWith("--provider="));
+  const modelArg = process.argv.find((arg) => arg.startsWith("--model="));
   const limit = limitArg ? Number(limitArg.split("=")[1]) : 10;
+  const modelAssisted = args.has("--model-assisted");
   const candidates = await loadRealCandidates();
   const loop = buildImprovementLoop(candidates, { limit });
+  if (modelAssisted) {
+    loop.mode = "heuristic_first_pass_with_model_assisted_rewrite_requests";
+    loop.modelAssistedRewriteBatch = buildModelAssistedRewriteBatch(loop, {
+      provider: providerArg ? providerArg.split("=")[1] : undefined,
+      model: modelArg ? modelArg.split("=")[1] : undefined,
+    });
+  }
   const unsafeHits = scanUnsafe(loop);
   if (unsafeHits.length) {
     throw new Error(`Improvement loop output contains unsafe/private patterns: ${JSON.stringify(unsafeHits.slice(0, 10))}`);
   }
   const outputDir = defaultOutputDir;
-  const filePath = path.join(outputDir, `nclex_improvement_loop_${limit}.json`);
-  const summaryPath = path.join(outputDir, `nclex_improvement_loop_${limit}_summary.json`);
+  const suffix = modelAssisted ? `${limit}_model_assisted` : `${limit}`;
+  const filePath = path.join(outputDir, `nclex_improvement_loop_${suffix}.json`);
+  const summaryPath = path.join(outputDir, `nclex_improvement_loop_${suffix}_summary.json`);
   await writeJson(filePath, loop);
-  await writeJson(summaryPath, { generatedAt: loop.generatedAt, mode: loop.mode, summary: loop.summary, output: filePath });
-  console.log(JSON.stringify({ ok: true, output: filePath, summary: loop.summary }, null, 2));
+  await writeJson(summaryPath, {
+    generatedAt: loop.generatedAt,
+    mode: loop.mode,
+    summary: loop.summary,
+    modelAssistedRewriteRequestCount: loop.modelAssistedRewriteBatch?.requests?.length || 0,
+    output: filePath,
+  });
+  console.log(JSON.stringify({ ok: true, output: filePath, summary: loop.summary, modelAssistedRewriteRequestCount: loop.modelAssistedRewriteBatch?.requests?.length || 0 }, null, 2));
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
