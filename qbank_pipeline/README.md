@@ -112,6 +112,32 @@ node qbank_pipeline/scripts/sanitize_approved_export.test.mjs
 
 Do not commit `qbank_pipeline/public_question_exports/` unless the exported pack has been explicitly approved for publication.
 
+## NCLEX Improvement Loop
+
+After sanitizer and rubric gates exist, run the first 10-question improvement loop before scaling to 50:
+
+```bash
+node qbank_pipeline/scripts/nclex_improvement_loop.test.mjs
+node qbank_pipeline/scripts/nclex_improvement_loop.mjs --limit=10
+```
+
+Default output:
+
+```text
+qbank_pipeline/improvement_reviews/nclex_improvement_loop_10.json
+qbank_pipeline/improvement_reviews/nclex_improvement_loop_10_summary.json
+```
+
+The loop:
+
+- selects approved questions first, then low-risk generated candidates
+- scores each candidate with the NCLEX quality rubric
+- identifies weak criteria and maps them to targeted rewrite fields
+- creates rewrite instructions for stem, distractors, rationale, why-wrong explanations, metadata, clinical review, or source-safety review
+- records a projected rescore after targeted revision
+
+The improvement review output is private working content and is ignored by git. It may include draft question text and must not be treated as a public export. The loop is a first-pass triage tool, not a substitute for human PN clinical review.
+
 ## Guardrails
 
 - Do not publish `source_raw/`.
