@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "review-api": "node server/reviewApi.mjs",
-    "test:rubric": "node src/lib/nclexQualityRubric.test.mjs"
+    "test:rubric": "node src/lib/nclexQualityRubric.test.mjs",
+    "test:rewrite": "node src/lib/rewriteWorkbench.test.mjs",
+    "test:journal": "node src/lib/errorJournal.test.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.4",

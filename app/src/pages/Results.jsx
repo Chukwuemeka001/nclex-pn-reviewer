@@ -1,4 +1,4 @@
-import { BarChart3, BookOpen, RotateCcw } from "lucide-react";
+import { BarChart3, BookOpen, RotateCcw, NotebookPen } from "lucide-react";
 import { performanceByTags, recommendedNextSet, weakestAreas } from "../lib/tagAnalytics";
 
 function StatTable({ title, rows }) {
@@ -12,7 +12,7 @@ function StatTable({ title, rows }) {
   );
 }
 
-export default function Results({ result, onReview, onPractice }) {
+export default function Results({ result, onReview, onPractice, onSaveJournal }) {
   const performance = performanceByTags(result.scored);
   const weak = weakestAreas(performance);
   return (
@@ -24,6 +24,7 @@ export default function Results({ result, onReview, onPractice }) {
         </div>
         <div className="button-row">
           <button className="secondary-btn" onClick={onReview}><BookOpen size={18} /> Review</button>
+          <button className="secondary-btn" onClick={onSaveJournal}><NotebookPen size={18} /> Save misses</button>
           <button className="primary-btn" onClick={onPractice}><RotateCcw size={18} /> New set</button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { BookOpen, BarChart3, ClipboardList, Target, RotateCcw, ShieldCheck } from "lucide-react";
+import { BookOpen, BarChart3, ClipboardList, Target, RotateCcw, ShieldCheck, Wand2, NotebookPen } from "lucide-react";
 import { loadQuestions } from "./lib/questionLoader";
 import Dashboard from "./pages/Dashboard";
 import PracticeSetup from "./pages/PracticeSetup";
@@ -8,6 +8,9 @@ import Results from "./pages/Results";
 import Review from "./pages/Review";
 import WeaknessDashboard from "./pages/WeaknessDashboard";
 import AdminReview from "./pages/AdminReview";
+import RewriteWorkbench from "./pages/RewriteWorkbench";
+import ErrorJournal from "./pages/ErrorJournal";
+import { buildErrorJournalEntries, loadErrorJournal, mergeJournalEntries, saveErrorJournal } from "./lib/errorJournal.js";
 
 const defaultSetup = {
   mode: "Tutor Practice",
@@ -33,7 +36,9 @@ const pathToRoute = {
   "/results": "results",
   "/review": "review",
   "/weakness": "weakness",
+  "/journal": "journal",
   "/admin": "admin",
+  "/rewrite": "rewrite",
 };
 
 const routeToPath = Object.fromEntries(Object.entries(pathToRoute).map(([path, route]) => [route, path]));
@@ -49,6 +54,7 @@ export default function App() {
   const [session, setSession] = useState(null);
   const [lastResult, setLastResult] = useState(null);
   const [flaggedIds, setFlaggedIds] = useState(new Set());
+  const [journalEntries, setJournalEntriesState] = useState(() => loadErrorJournal());
 
   function setRoute(nextRoute) {
     setRouteState(nextRoute);
@@ -77,9 +83,25 @@ export default function App() {
     { id: "dashboard", label: "Dashboard", icon: BarChart3 },
     { id: "setup", label: "Practice", icon: ClipboardList },
     { id: "weakness", label: "Weak Areas", icon: Target },
+    { id: "journal", label: "Error Journal", icon: NotebookPen },
     { id: "review", label: "Review", icon: BookOpen },
     { id: "admin", label: "Admin", icon: ShieldCheck },
+    { id: "rewrite", label: "Rewrite Lab", icon: Wand2 },
   ], []);
+
+  function setJournalEntries(updater) {
+    setJournalEntriesState((current) => {
+      const next = typeof updater === "function" ? updater(current) : updater;
+      saveErrorJournal(next);
+      return next;
+    });
+  }
+
+  function saveMissesToJournal(result) {
+    const incoming = buildErrorJournalEntries(result);
+    setJournalEntries((current) => mergeJournalEntries(current, incoming));
+    setRoute("journal");
+  }
 
   function startQuiz(nextSession) {
     setSession(nextSession);
@@ -176,13 +198,15 @@ export default function App() {
           </section>
         )}
         {route === "results" && lastResult && (
-          <Results result={lastResult} onReview={() => setRoute("review")} onPractice={() => setRoute("setup")} />
+          <Results result={lastResult} onReview={() => setRoute("review")} onPractice={() => setRoute("setup")} onSaveJournal={() => saveMissesToJournal(lastResult)} />
         )}
         {route === "review" && (
           <Review result={lastResult} flaggedIds={flaggedIds} onPractice={() => setRoute("setup")} />
         )}
         {route === "weakness" && <WeaknessDashboard result={lastResult} onPractice={() => setRoute("setup")} />}
+        {route === "journal" && <ErrorJournal entries={journalEntries} setEntries={setJournalEntries} onPractice={() => setRoute("setup")} />}
         {route === "admin" && <AdminReview />}
+        {route === "rewrite" && <RewriteWorkbench />}
       </main>
     </div>
   );
