@@ -2,6 +2,7 @@ import http from "node:http";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { normalizeQualityRubric, scoreQualityRubric, validateQualityRubric } from "../src/lib/nclexQualityRubric.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "../..");
@@ -131,6 +132,8 @@ function normalizeApprovedQuestion(item, meta) {
       contentVersion: meta.contentVersion || "1.0.0",
       similarityOverride: Boolean(meta.similarityOverride),
       similarityOverrideNote: meta.similarityOverrideNote || "",
+      qualityRubric: normalizeQualityRubric(meta.qualityRubric),
+      qualityScore: scoreQualityRubric(meta.qualityRubric),
     },
     createdAt: item.createdAt || now,
     updatedAt: now,
@@ -165,6 +168,7 @@ function approvalIssues(item, audit, meta) {
   if (!Array.isArray(item.correctAnswerIndexes) || item.correctAnswerIndexes.length < 1) issues.push("Correct answer is missing.");
   if (!rationaleFromItem(item).trim()) issues.push("Rationale is missing.");
   issues.push(...validateTagging(item.tagging));
+  issues.push(...validateQualityRubric(meta.qualityRubric));
   const unresolved = blockingWarnings(item, meta.resolvedWarnings || []);
   if (unresolved.length) issues.push("Unresolved transformation warnings remain.");
   return issues;

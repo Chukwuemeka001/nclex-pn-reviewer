@@ -517,6 +517,92 @@ p { line-height: 1.5; }
   margin: 0 0 10px;
   font-size: 16px;
 }
+.helper-text {
+  margin: 4px 0 0;
+  color: #617486;
+  font-size: 13px;
+}
+.quality-rubric {
+  display: grid;
+  gap: 14px;
+}
+.quality-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  align-items: center;
+  border: 1px solid #d8e1e8;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f8fbfd;
+}
+.quality-summary strong {
+  font-size: 26px;
+}
+.quality-summary span {
+  font-weight: 800;
+  color: #34495a;
+  text-transform: capitalize;
+}
+.quality-summary small {
+  grid-column: 1 / -1;
+  color: #7a5200;
+}
+.quality-summary.publish_ready {
+  border-color: #b8ddd6;
+  background: #effaf8;
+}
+.quality-summary.revise_before_publish {
+  border-color: #f8d477;
+  background: #fff8e5;
+}
+.quality-summary.reject_or_rewrite {
+  border-color: #f1b8b2;
+  background: #fff4f2;
+}
+.rubric-grid {
+  display: grid;
+  gap: 10px;
+}
+.rubric-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(180px, 0.6fr) minmax(240px, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #d8e1e8;
+  border-radius: 8px;
+  background: #fbfdff;
+}
+.rubric-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #18212b;
+}
+.rubric-row p {
+  margin: 5px 0 0;
+  color: #617486;
+  font-size: 13px;
+}
+.rubric-row select,
+.rubric-row textarea {
+  width: 100%;
+  border: 1px solid #c7d4df;
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: white;
+}
+.rubric-row textarea {
+  min-height: 76px;
+}
+.critical-pill {
+  border-radius: 999px;
+  background: #ffe7e5;
+  color: #b42318;
+  padding: 3px 7px;
+  font-size: 11px;
+  font-weight: 800;
+}
 .preview-stem {
   font-weight: 750;
   color: #18212b;
@@ -553,7 +639,7 @@ p { line-height: 1.5; }
   .main-panel { padding: 16px; }
   .metrics-grid, .setup-grid, .analytics-grid { grid-template-columns: 1fr; }
   .admin-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .admin-layout, .panel-grid, .tag-grid, .batch-controls, .batch-review-layout { grid-template-columns: 1fr; }
+  .admin-layout, .panel-grid, .tag-grid, .batch-controls, .batch-review-layout, .rubric-row { grid-template-columns: 1fr; }
   .queue-panel { position: static; max-height: 380px; }
   .fast-preview { position: static; }
   .field.wide { grid-column: auto; }

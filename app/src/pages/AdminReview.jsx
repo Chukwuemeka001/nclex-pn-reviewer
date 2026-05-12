@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Check, CheckSquare, Eye, EyeOff, RefreshCw, Save, Send, X } from "lucide-react";
+import { NCLEX_QUALITY_RUBRIC, emptyQualityRubric, scoreQualityRubric } from "../lib/nclexQualityRubric.js";
 
 export const REVIEW_API_BASE = import.meta.env.VITE_REVIEW_API_BASE || "/api/review";
 
@@ -13,6 +14,7 @@ function emptyMeta() {
     similarityOverrideNote: "",
     contentVersion: "1.0.0",
     resolvedWarnings: [],
+    qualityRubric: emptyQualityRubric(),
   };
 }
 
@@ -83,6 +85,52 @@ function TextListEditor({ values = [], onChange, placeholder }) {
       placeholder={placeholder}
       onChange={(event) => onChange(event.target.value.split("\n").filter(Boolean))}
     />
+  );
+}
+
+function QualityRubricEditor({ rubric, onChange }) {
+  const score = scoreQualityRubric(rubric);
+  function updateCriterion(id, patch) {
+    onChange({
+      ...rubric,
+      [id]: { ...(rubric[id] || { score: "", note: "" }), ...patch },
+    });
+  }
+
+  return (
+    <div className="quality-rubric">
+      <div className={`quality-summary ${score.level}`}>
+        <strong>{score.totalScore}/{score.maxScore}</strong>
+        <span>{score.percent}% · {score.level.replaceAll("_", " ")}</span>
+        {score.blockers.length > 0 && <small>{score.blockers.slice(0, 3).join(" | ")}</small>}
+      </div>
+      <div className="rubric-grid">
+        {NCLEX_QUALITY_RUBRIC.map((criterion) => {
+          const entry = rubric[criterion.id] || { score: "", note: "" };
+          return (
+            <div className="rubric-row" key={criterion.id}>
+              <div>
+                <label htmlFor={`rubric-${criterion.id}`}><strong>{criterion.label}</strong>{criterion.critical ? <span className="critical-pill">Critical</span> : null}</label>
+                <p>{criterion.prompt}</p>
+              </div>
+              <select
+                id={`rubric-${criterion.id}`}
+                value={entry.score}
+                onChange={(event) => updateCriterion(criterion.id, { score: event.target.value === "" ? "" : Number(event.target.value) })}
+              >
+                <option value="">Score</option>
+                {[0, 1, 2, 3, 4].map((value) => <option value={value} key={value}>{value} - {criterion.anchors[value]}</option>)}
+              </select>
+              <textarea
+                value={entry.note || ""}
+                onChange={(event) => updateCriterion(criterion.id, { note: event.target.value })}
+                placeholder="Reviewer note: why this score is justified."
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -252,6 +300,7 @@ export default function AdminReview() {
   const audit = selected.audit || {};
   const blueprint = selected.blueprint || {};
   const warnings = working.draftWarnings || working.transformationWarnings || [];
+  const qualityScore = scoreQualityRubric(meta.qualityRubric);
 
   return (
     <section className="page admin-page">
@@ -430,6 +479,17 @@ export default function AdminReview() {
           </div>
 
           <div className="editor-card">
+            <div className="section-title">
+              <div>
+                <h2>NCLEX-Style Quality Rubric</h2>
+                <p className="helper-text">Approval now requires at least 32/40, notes for every criterion, and 3+ on all critical safety criteria.</p>
+              </div>
+              <span>{qualityScore.totalScore}/{qualityScore.maxScore}</span>
+            </div>
+            <QualityRubricEditor rubric={meta.qualityRubric} onChange={(qualityRubric) => setMeta({ ...meta, qualityRubric })} />
+          </div>
+
+          <div className="editor-card">
             <h2>Tag Editor</h2>
             <label className="field"><span>Tag review status</span><select value={meta.tagReviewStatus} onChange={(e) => setMeta({ ...meta, tagReviewStatus: e.target.value })}><option>needs_review</option><option>reviewed_passed</option><option>reviewed_failed</option></select></label>
             <div className="tag-grid">
@@ -476,7 +536,7 @@ export default function AdminReview() {
               <button className="secondary-btn" onClick={save}><Save size={18} /> Save edits</button>
               <button className="secondary-btn" onClick={rewrite}><Send size={18} /> Send back</button>
               <button className="danger-btn" onClick={reject}><X size={18} /> Reject</button>
-              <button className="primary-btn" onClick={approve}><Check size={18} /> Approve</button>
+              <button className="primary-btn" disabled={qualityScore.blockers.length > 0} onClick={approve}><Check size={18} /> Approve</button>
             </div>
           </div>
         </div>
