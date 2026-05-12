@@ -1,6 +1,6 @@
 # NCLEX-PN Hermes Session Context
 
-Last updated: 2026-05-12 13:03 EDT
+Last updated: 2026-05-12 14:52 EDT
 Repo: /Users/emeka/Documents/Codex/2026-05-02/hey-codex-browser-plugin-browser-use
 Branch: main
 
@@ -63,6 +63,7 @@ React/Vite app in `app/` with:
 - Student-friendly rationale guard
 - Distractor plausibility guard
 - Model-assisted rewrite audit/source registry review panels
+- External nurse reviewer orientation portal
 
 ### Content/review pipeline
 
@@ -216,6 +217,7 @@ npm run test:distractors
 npm run test:review-support
 npm run test:demo-seed
 npm run test:admin-filters
+npm run test:external-reviewer
 npm run build
 npm run dev
 npm run review-api
@@ -245,6 +247,16 @@ Completed:
 20. First 10 Hermes model-assisted rewrites applied through Review API for human review.
 21. AdminReview queue can filter/search drafts and show model-assisted rewrites only.
 22. Private raw qbank reference bank generated from existing extracted raw files and kept git-ignored.
+23. External nurse reviewer portal for Alexis/second reviewers with first-10 IDs, 0-4 rubric, PASS/FIX/REJECT note template, and private NCLEX result-report case-study guidance.
+
+External reviewer files:
+- app/src/pages/ExternalReviewerGuide.jsx, route `/reviewer`
+- app/src/lib/externalReviewerRubric.js
+- app/src/lib/externalReviewerRubric.test.mjs
+- docs/external-reviewer-orientation.md
+
+External reviewer safety rule:
+- Alexis's NCLEX result report/email can be used only as a private case study to map broad weakness categories. Do not upload, commit, quote, or publish raw result-report text or identifiers. Convert to aggregate learner-needs/product implications only.
 
 First 10 review status:
 - IDs are listed in docs/first10-review-instructions.md.
@@ -261,13 +273,15 @@ Private qbank reference bank:
 - Do not publish or commit raw/source-derived questions; use private reference only for analysis and transformation planning.
 
 Next best steps:
-1. Emeka reviews the first 10 model-assisted questions in AdminReview using docs/first10-review-instructions.md.
-2. Apply PASS/FIX/REJECT feedback to the 10 before scaling.
-3. If at least 7/10 pass or need only minor fixes, scale to a 50-question clinically reviewed batch.
-4. If many feel generated/unsafe, improve rewrite prompts and distractor/rationale guards before spending paid model budget.
-5. Add beta disclaimer/non-affiliation text before any public tester sees it.
-6. Replace sourceRegistrySnapshot with an automated generated frontend snapshot if source registry grows.
-7. Consider database/auth only after local workflow proves useful.
+1. Alexis opens `/reviewer`, reads the orientation, then reviews only the first 10 IDs in AdminReview.
+2. Emeka separately reviews the same 10 using the same PASS/FIX/REJECT and 0-4 rubric.
+3. Compare Emeka vs Alexis scoring disagreements to calibrate the rubric before scaling.
+4. Use Alexis's NCLEX result report only privately to map broad weakness categories and product implications.
+5. If at least 7/10 pass or need only minor fixes from both reviewers, scale to a 50-question clinically reviewed batch.
+6. If many feel generated/unsafe, improve rewrite prompts and distractor/rationale guards before spending paid model budget.
+7. Add beta disclaimer/non-affiliation text before any public tester sees it.
+8. Replace sourceRegistrySnapshot with an automated generated frontend snapshot if source registry grows.
+9. Consider database/auth only after local workflow proves useful.
 
 ## Brutal truth
 

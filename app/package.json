@@ -16,7 +16,8 @@
     "test:distractors": "node src/lib/distractorQuality.test.mjs",
     "test:review-support": "node src/lib/reviewSupport.test.mjs",
     "test:demo-seed": "node src/lib/demoSeedQuestions.test.mjs",
-    "test:admin-filters": "node src/lib/adminReviewFilters.test.mjs"
+    "test:admin-filters": "node src/lib/adminReviewFilters.test.mjs",
+    "test:external-reviewer": "node src/lib/externalReviewerRubric.test.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.4",

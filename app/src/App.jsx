@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { BookOpen, BarChart3, ClipboardList, Target, RotateCcw, ShieldCheck, Wand2, NotebookPen, CalendarDays } from "lucide-react";
+import { BookOpen, BarChart3, ClipboardList, Target, RotateCcw, ShieldCheck, Wand2, NotebookPen, CalendarDays, UserCheck } from "lucide-react";
 import { loadQuestions } from "./lib/questionLoader";
 import Dashboard from "./pages/Dashboard";
 import PracticeSetup from "./pages/PracticeSetup";
@@ -11,6 +11,7 @@ import AdminReview from "./pages/AdminReview";
 import RewriteWorkbench from "./pages/RewriteWorkbench";
 import ErrorJournal from "./pages/ErrorJournal";
 import DailyPlan from "./pages/DailyPlan";
+import ExternalReviewerGuide from "./pages/ExternalReviewerGuide";
 import { buildErrorJournalEntries, loadErrorJournal, mergeJournalEntries, saveErrorJournal } from "./lib/errorJournal.js";
 
 const defaultSetup = {
@@ -40,6 +41,7 @@ const pathToRoute = {
   "/weakness": "weakness",
   "/journal": "journal",
   "/admin": "admin",
+  "/reviewer": "reviewer",
   "/rewrite": "rewrite",
 };
 
@@ -89,6 +91,7 @@ export default function App() {
     { id: "journal", label: "Error Journal", icon: NotebookPen },
     { id: "review", label: "Review", icon: BookOpen },
     { id: "admin", label: "Admin", icon: ShieldCheck },
+    { id: "reviewer", label: "Reviewer", icon: UserCheck },
     { id: "rewrite", label: "Rewrite Lab", icon: Wand2 },
   ], []);
 
@@ -210,6 +213,7 @@ export default function App() {
         {route === "weakness" && <WeaknessDashboard result={lastResult} onPractice={() => setRoute("setup")} />}
         {route === "journal" && <ErrorJournal entries={journalEntries} setEntries={setJournalEntries} onPractice={() => setRoute("setup")} />}
         {route === "admin" && <AdminReview />}
+        {route === "reviewer" && <ExternalReviewerGuide onAdmin={() => setRoute("admin")} />}
         {route === "rewrite" && <RewriteWorkbench />}
       </main>
     </div>
