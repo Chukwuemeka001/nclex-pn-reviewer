@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { CheckCircle2, RotateCcw } from "lucide-react";
-import { buildRemediationPlan, summarizeErrorJournal } from "../lib/errorJournal.js";
+import { buildRemediationPlan, exportErrorJournalBackup, importErrorJournalBackup, mergeJournalEntries, summarizeErrorJournal } from "../lib/errorJournal.js";
 
 const reasonLabels = {
   unknown_miss_reason: "Unsorted miss",
@@ -13,6 +14,8 @@ const reasonLabels = {
 };
 
 export default function ErrorJournal({ entries, setEntries, onPractice }) {
+  const [backupText, setBackupText] = useState("");
+  const [backupMessage, setBackupMessage] = useState("");
   const summary = summarizeErrorJournal(entries);
   const plan = buildRemediationPlan(entries);
 
@@ -22,6 +25,20 @@ export default function ErrorJournal({ entries, setEntries, onPractice }) {
 
   function clearReviewed() {
     setEntries((current) => current.filter((entry) => entry.status !== "reviewed"));
+  }
+
+  function exportBackup() {
+    const backup = exportErrorJournalBackup(entries);
+    const text = JSON.stringify(backup, null, 2);
+    setBackupText(text);
+    navigator.clipboard?.writeText(text);
+    setBackupMessage("Backup JSON generated and copied if clipboard permission is available.");
+  }
+
+  function importBackup() {
+    const result = importErrorJournalBackup(backupText);
+    if (result.entries.length > 0) setEntries((current) => mergeJournalEntries(current, result.entries));
+    setBackupMessage(`Imported ${result.entries.length} item(s). ${result.issues.length ? `Issues: ${result.issues.join(" ")}` : "No issues."}`);
   }
 
   return (
@@ -34,6 +51,7 @@ export default function ErrorJournal({ entries, setEntries, onPractice }) {
         </div>
         <div className="button-row">
           <button className="secondary-btn" onClick={clearReviewed}>Clear reviewed</button>
+          <button className="secondary-btn" onClick={exportBackup}>Export backup</button>
           <button className="primary-btn" onClick={onPractice}><RotateCcw size={18} /> Practice</button>
         </div>
       </div>
@@ -51,6 +69,14 @@ export default function ErrorJournal({ entries, setEntries, onPractice }) {
             {plan.map((item, index) => <li key={`${item.questionId}-${index}`}><strong>{item.minutes} min</strong> {item.task}</li>)}
           </ol>
         )}
+      </div>
+
+      <div className="editor-card">
+        <h2>Local backup / import</h2>
+        <p className="helper-text">Prototype storage is browser-local. Export this JSON before clearing browser data or switching machines.</p>
+        <label className="field"><span>Backup JSON</span><textarea value={backupText} onChange={(event) => setBackupText(event.target.value)} placeholder="Export creates a backup here. Paste backup JSON here to import." /></label>
+        <div className="button-row"><button className="secondary-btn" onClick={importBackup}>Import backup</button></div>
+        {backupMessage && <div className="notice">{backupMessage}</div>}
       </div>
 
       <div className="review-list">

@@ -116,6 +116,16 @@ function publicIdFor(item, fallbackIndex) {
   return `public-q-${String(fallbackIndex + 1).padStart(4, "0")}`;
 }
 
+function normalizePublicAttributions(item) {
+  if (!Array.isArray(item.publicAttributions)) return [];
+  return item.publicAttributions.map((entry) => ({
+    sourceId: String(entry.sourceId || "").replace(/[^a-z0-9-]/g, ""),
+    title: entry.title,
+    license: entry.license,
+    attributionText: entry.attributionText,
+  })).filter((entry) => entry.sourceId && entry.attributionText);
+}
+
 function normalizeQuestion(item, fallbackIndex) {
   const clean = sanitizeValue(item);
   const id = publicIdFor(clean, fallbackIndex);
@@ -133,6 +143,7 @@ function normalizeQuestion(item, fallbackIndex) {
     tagging: clean.tagging || {},
     difficulty: clean.difficulty || clean.difficultyEstimate || "medium",
     estimatedTimeSeconds: clean.estimatedTimeSeconds || 75,
+    publicAttributions: normalizePublicAttributions(item),
     review: clean.review || {
       status: clean.reviewStatus || "reviewed_approved",
       clinicalReviewStatus: "reviewed_passed",
@@ -156,7 +167,7 @@ function scanUnsafe(value, trail = "$", hits = []) {
   }
   if (isPlainObject(value)) {
     for (const [key, child] of Object.entries(value)) {
-      if (PRIVATE_KEYS.has(key) || /^source/i.test(key) || /audit/i.test(key)) {
+      if ((PRIVATE_KEYS.has(key) || /^source/i.test(key) || /audit/i.test(key)) && !(trail.includes("publicAttributions") && key === "sourceId")) {
         hits.push({ path: `${trail}.${key}`, reason: "private-key" });
       }
       scanUnsafe(child, `${trail}.${key}`, hits);

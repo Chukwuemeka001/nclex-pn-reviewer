@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { BookOpen, BarChart3, ClipboardList, Target, RotateCcw, ShieldCheck, Wand2, NotebookPen } from "lucide-react";
+import { BookOpen, BarChart3, ClipboardList, Target, RotateCcw, ShieldCheck, Wand2, NotebookPen, CalendarDays } from "lucide-react";
 import { loadQuestions } from "./lib/questionLoader";
 import Dashboard from "./pages/Dashboard";
 import PracticeSetup from "./pages/PracticeSetup";
@@ -10,6 +10,7 @@ import WeaknessDashboard from "./pages/WeaknessDashboard";
 import AdminReview from "./pages/AdminReview";
 import RewriteWorkbench from "./pages/RewriteWorkbench";
 import ErrorJournal from "./pages/ErrorJournal";
+import DailyPlan from "./pages/DailyPlan";
 import { buildErrorJournalEntries, loadErrorJournal, mergeJournalEntries, saveErrorJournal } from "./lib/errorJournal.js";
 
 const defaultSetup = {
@@ -31,6 +32,7 @@ const defaultSetup = {
 
 const pathToRoute = {
   "/": "dashboard",
+  "/daily-plan": "dailyPlan",
   "/setup": "setup",
   "/quiz": "quiz",
   "/results": "results",
@@ -81,6 +83,7 @@ export default function App() {
 
   const nav = useMemo(() => [
     { id: "dashboard", label: "Dashboard", icon: BarChart3 },
+    { id: "dailyPlan", label: "Daily Plan", icon: CalendarDays },
     { id: "setup", label: "Practice", icon: ClipboardList },
     { id: "weakness", label: "Weak Areas", icon: Target },
     { id: "journal", label: "Error Journal", icon: NotebookPen },
@@ -166,6 +169,7 @@ export default function App() {
           <div className="notice error-banner">Question loading failed: {bank.error}</div>
         )}
         {route === "dashboard" && <Dashboard bank={bank} lastResult={lastResult} onStart={() => setRoute("setup")} />}
+        {route === "dailyPlan" && <DailyPlan journalEntries={journalEntries} lastResult={lastResult} onPractice={() => setRoute("setup")} onJournal={() => setRoute("journal")} />}
         {route === "setup" && (
           <PracticeSetup
             questions={bank.questions}

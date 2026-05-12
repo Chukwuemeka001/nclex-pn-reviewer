@@ -47,6 +47,15 @@ async function runTests() {
 
   await writeJson(path.join(inputDir, "approved.json"), [
     baseApprovedQuestion({
+      publicAttributions: [
+        {
+          sourceId: "open-rn-nursing-fundamentals-2e",
+          title: "Open RN Nursing Fundamentals 2e",
+          license: "CC BY 4.0 where indicated",
+          attributionText: "Open RN Nursing Fundamentals 2e, WisTech Open.",
+        },
+      ],
+      privateSourceConceptRefs: ["do-not-export"],
       sourceQuestionId: "private-source-id",
       sourceTracePrivate: { url: "https://private-source.example/question" },
       audit: { sourceUrl: "https://private-source.example/audit" },
@@ -66,6 +75,9 @@ async function runTests() {
   const item = exported[0];
   assert.equal(item.id, "safe-q1");
   assert.equal(item.review.status, "reviewed_approved");
+  assert.equal(item.publicAttributions.length, 1);
+  assert.equal(item.publicAttributions[0].sourceId, "open-rn-nursing-fundamentals-2e");
+  assert.equal(item.privateSourceConceptRefs, undefined);
   assert.equal(item.sourceQuestionId, undefined);
   assert.equal(item.sourceTracePrivate, undefined);
   assert.equal(item.audit, undefined);

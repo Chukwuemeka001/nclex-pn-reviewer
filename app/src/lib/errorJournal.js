@@ -98,6 +98,43 @@ export function buildRemediationPlan(entries = [], limit = 5) {
   return tasks.slice(0, limit * 2);
 }
 
+export function exportErrorJournalBackup(entries = [], options = {}) {
+  return {
+    schemaVersion: 1,
+    exportedAt: options.exportedAt || new Date().toISOString(),
+    app: "nclex-pn-daily-trainer",
+    storageWarning: "Prototype backup from local browser storage. Not a medical record.",
+    entries: entries.map((entry) => ({ ...entry })),
+  };
+}
+
+export function importErrorJournalBackup(value) {
+  const issues = [];
+  let parsed;
+  try {
+    parsed = typeof value === "string" ? JSON.parse(value) : value;
+  } catch (error) {
+    return { entries: [], issues: [`Invalid JSON: ${error.message}`] };
+  }
+  const rawEntries = Array.isArray(parsed) ? parsed : parsed?.entries;
+  if (!Array.isArray(rawEntries)) return { entries: [], issues: ["Backup must contain an entries array."] };
+  const entries = [];
+  for (const [index, entry] of rawEntries.entries()) {
+    if (!entry?.questionId) {
+      issues.push(`Entry ${index} missing questionId.`);
+      continue;
+    }
+    entries.push({
+      ...entry,
+      reason: entry.reason || "unknown_miss_reason",
+      status: entry.status || "needs_remediation",
+      attempts: Number(entry.attempts || 1),
+      updatedAt: entry.updatedAt || new Date().toISOString(),
+    });
+  }
+  return { entries, issues };
+}
+
 export function loadErrorJournal(storage = globalThis.localStorage) {
   if (!storage) return [];
   try {

@@ -10,7 +10,9 @@
     "review-api": "node server/reviewApi.mjs",
     "test:rubric": "node src/lib/nclexQualityRubric.test.mjs",
     "test:rewrite": "node src/lib/rewriteWorkbench.test.mjs",
-    "test:journal": "node src/lib/errorJournal.test.mjs"
+    "test:journal": "node src/lib/errorJournal.test.mjs",
+    "test:daily-plan": "node src/lib/dailyPlan.test.mjs",
+    "test:rationale": "node src/lib/learnerFriendlyRationale.test.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.4",

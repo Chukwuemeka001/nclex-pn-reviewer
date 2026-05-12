@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import {
   applyModelRewrite,
   buildReviewerChecklist,
+  buildApplyRewritePayload,
   normalizeRewriteRequest,
   summarizeRewriteBatch,
 } from "./rewriteWorkbench.js";
@@ -62,11 +63,33 @@ function testSummarizeRewriteBatchCountsRequestsAndWeakCriteria() {
   assert.equal(summary.weakCriteriaCounts.cognitiveLevel, 2);
 }
 
+function testBuildApplyRewritePayloadRequiresReviewerNoteAndSafetyStatement() {
+  const applied = applyModelRewrite(sampleRequest, {
+    rewrittenFields: {
+      stem: "A practical nurse cares for a client with dyspnea. Which action is the priority?",
+      rationale: "The priority is to address breathing first and then document after the client is stable.",
+    },
+    changeSummary: ["Made stem priority-focused."],
+    sourceSafetyStatement: "Original rewrite; no proprietary source copied.",
+  });
+  const payload = buildApplyRewritePayload(sampleRequest, applied, {
+    reviewerName: "Emeka",
+    reviewerNote: "Clinically review before approval.",
+  });
+  assert.equal(payload.id, "q1");
+  assert.deepEqual(Object.keys(payload.rewrittenFields).sort(), ["rationale", "stem"]);
+  assert.deepEqual(payload.allowedRewriteFields, ["stem", "rationale"]);
+  assert.equal(payload.reviewStatus, "needs_human_review");
+  assert.ok(payload.reviewerNote.includes("Clinically"));
+  assert.ok(payload.sourceSafetyStatement.includes("Original"));
+}
+
 function run() {
   testNormalizeRewriteRequestKeepsOnlyReviewRelevantFields();
   testApplyModelRewriteOnlyChangesAllowedFields();
   testReviewerChecklistRequiresHumanClinicalAndSourceReview();
   testSummarizeRewriteBatchCountsRequestsAndWeakCriteria();
+  testBuildApplyRewritePayloadRequiresReviewerNoteAndSafetyStatement();
   console.log("rewriteWorkbench tests passed");
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { AlertTriangle, Check, CheckSquare, Eye, EyeOff, RefreshCw, Save, Send, X } from "lucide-react";
 import { NCLEX_QUALITY_RUBRIC, emptyQualityRubric, scoreQualityRubric } from "../lib/nclexQualityRubric.js";
+import { assessLearnerFriendlyRationale, buildLearnerFriendlyRewritePrompt } from "../lib/learnerFriendlyRationale.js";
 
 export const REVIEW_API_BASE = import.meta.env.VITE_REVIEW_API_BASE || "/api/review";
 
@@ -301,6 +302,7 @@ export default function AdminReview() {
   const blueprint = selected.blueprint || {};
   const warnings = working.draftWarnings || working.transformationWarnings || [];
   const qualityScore = scoreQualityRubric(meta.qualityRubric);
+  const learnerFriendly = assessLearnerFriendlyRationale({ rationale: working.newRationale, whyWrong: working.whyWrong });
 
   return (
     <section className="page admin-page">
@@ -452,6 +454,12 @@ export default function AdminReview() {
             <label className="field"><span>Answer choices</span><TextListEditor values={working.newAnswerChoices || []} onChange={(v) => updateWorking(["newAnswerChoices"], v)} /></label>
             <label className="field"><span>Correct answer indexes, comma separated</span><input value={(working.correctAnswerIndexes || []).join(",")} onChange={(e) => updateWorking(["correctAnswerIndexes"], e.target.value.split(",").map((x) => Number(x.trim())).filter((x) => Number.isInteger(x)))} /></label>
             <label className="field"><span>Rationale</span><textarea value={working.newRationale || ""} onChange={(e) => updateWorking(["newRationale"], e.target.value)} /></label>
+            <div className={`notice ${learnerFriendly.passed ? "approved-banner" : "warning-box"}`}>
+              <strong>Student-friendly rationale check: {learnerFriendly.score}/4</strong>
+              <p>{learnerFriendly.passed ? "Readable enough for PN/LPN/RPN learners. Still verify clinical accuracy." : "Needs clearer, easier teaching language before approval."}</p>
+              {learnerFriendly.issues.length > 0 && <ul>{learnerFriendly.issues.map((issue) => <li key={issue}>{issue}</li>)}</ul>}
+              <button className="secondary-btn" type="button" onClick={() => navigator.clipboard?.writeText(buildLearnerFriendlyRewritePrompt({ stem: working.newStem, rationale: working.newRationale, whyWrong: working.whyWrong }))}>Copy plain-language rewrite prompt</button>
+            </div>
             <label className="field"><span>Why-wrong explanations</span><TextListEditor values={working.whyWrong || []} onChange={(v) => updateWorking(["whyWrong"], v)} /></label>
           </div>
 

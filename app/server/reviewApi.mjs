@@ -272,6 +272,84 @@ async function upsertWorking(item) {
   await writeJson(files.working, next);
 }
 
+const REWRITE_FIELD_MAP = {
+  stem: "newStem",
+  rationale: "newRationale",
+  choices: "newAnswerChoices",
+  distractors: "newAnswerChoices",
+  whyWrong: "whyWrong",
+  difficulty: "difficulty",
+  estimatedTimeSeconds: "estimatedTimeSeconds",
+  tagging: "tagging",
+};
+
+function canonicalRewriteField(field) {
+  if (field === "choices") return "distractors";
+  return field;
+}
+
+function validateApplyRewriteBody(body = {}) {
+  const issues = [];
+  const allowed = new Set((body.allowedRewriteFields || []).map(canonicalRewriteField));
+  const rewritten = body.rewrittenFields || {};
+  if (!body.reviewerName?.trim()) issues.push("reviewerName is required.");
+  if (!body.reviewerNote?.trim()) issues.push("reviewerNote is required before applying a rewrite.");
+  if (!body.sourceSafetyStatement?.trim()) issues.push("sourceSafetyStatement is required before applying a rewrite.");
+  if (!Object.keys(rewritten).length) issues.push("No rewrittenFields were provided.");
+  for (const field of Object.keys(rewritten)) {
+    const canonical = canonicalRewriteField(field);
+    if (!allowed.has(canonical)) issues.push(`Field ${field} is not in allowedRewriteFields.`);
+    if (!REWRITE_FIELD_MAP[canonical] && !REWRITE_FIELD_MAP[field]) issues.push(`Field ${field} is not supported for rewrite application.`);
+  }
+  for (const locked of body.lockedFields || []) {
+    if (Object.prototype.hasOwnProperty.call(rewritten, locked)) issues.push(`Locked field ${locked} cannot be rewritten.`);
+  }
+  return issues;
+}
+
+function applyRewriteToItem(item, body = {}) {
+  const rewritten = body.rewrittenFields || {};
+  const next = { ...item };
+  for (const [field, value] of Object.entries(rewritten)) {
+    const canonical = canonicalRewriteField(field);
+    const itemField = REWRITE_FIELD_MAP[canonical] || REWRITE_FIELD_MAP[field];
+    next[itemField] = value;
+  }
+  const now = new Date().toISOString();
+  next.reviewStatus = "needs_human_review";
+  next.modelAssistedRewrite = {
+    appliedAt: now,
+    appliedBy: body.reviewerName,
+    reviewerNote: body.reviewerNote,
+    sourceSafetyStatement: body.sourceSafetyStatement,
+    changeSummary: body.changeSummary || [],
+    reviewerWarnings: body.reviewerWarnings || [],
+    allowedRewriteFields: body.allowedRewriteFields || [],
+    lockedFields: body.lockedFields || [],
+    rewrittenFieldNames: Object.keys(rewritten),
+  };
+  next.updatedAt = now;
+  return next;
+}
+
+async function applyRewriteItem(id, body) {
+  const state = await loadState();
+  const entry = state.items.find((candidate) => idFromDraft(candidate.item) === id);
+  if (!entry) return { status: 404, body: { error: "Item not found" } };
+  const issues = validateApplyRewriteBody(body);
+  if (issues.length) return { status: 400, body: { error: "Rewrite apply blocked", issues } };
+  const item = applyRewriteToItem(entry.item, body);
+  await upsertWorking(item);
+  await appendEvent({
+    type: "rewrite_applied",
+    id,
+    reviewerName: body.reviewerName || "",
+    reviewerNote: body.reviewerNote || "",
+    rewrittenFieldNames: Object.keys(body.rewrittenFields || {}),
+  });
+  return { body: { ok: true, item } };
+}
+
 async function approveItem(id, body) {
   const state = await loadState();
   const entry = state.items.find((candidate) => idFromDraft(candidate.item) === id);
@@ -422,6 +500,7 @@ async function handleRequest(req, res) {
           "POST /api/review/items/:id/approve",
           "POST /api/review/items/:id/reject",
           "POST /api/review/items/:id/rewrite",
+          "POST /api/review/items/:id/apply-rewrite",
         ],
       });
     }
@@ -445,6 +524,11 @@ async function handleRequest(req, res) {
     const rejectMatch = url.pathname.match(/^\/api\/review\/items\/([^/]+)\/reject$/);
     if (req.method === "POST" && rejectMatch) {
       const result = await rejectItem(decodeURIComponent(rejectMatch[1]), body);
+      return json(res, result.body, result.status || 200);
+    }
+    const applyRewriteMatch = url.pathname.match(/^\/api\/review\/items\/([^/]+)\/apply-rewrite$/);
+    if (req.method === "POST" && applyRewriteMatch) {
+      const result = await applyRewriteItem(decodeURIComponent(applyRewriteMatch[1]), body);
       return json(res, result.body, result.status || 200);
     }
     if (req.method === "POST" && url.pathname.match(/^\/api\/review\/items\/([^/]+)\/rewrite$/)) {

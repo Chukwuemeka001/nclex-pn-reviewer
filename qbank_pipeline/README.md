@@ -13,6 +13,36 @@ This pipeline is for private analysis and concept-blueprint generation only. Raw
 - `approved_questions/`: only low-risk, reviewed questions are exported here.
 - `rejected_questions/`: reserved for rejected drafts and review notes.
 
+## Source Registry
+
+Before using official, free, open, or public-health material to guide concepts or remediation, register it:
+
+```bash
+node qbank_pipeline/scripts/source_registry.test.mjs
+node qbank_pipeline/scripts/source_registry.mjs --validate
+```
+
+Registry file:
+
+```text
+qbank_pipeline/source_registry.json
+```
+
+Each source entry tracks URL, source type, license, allowed use, prohibited use, attribution requirements, checked date, status, and notes.
+
+Safe use examples:
+
+- NCSBN/NCLEX pages: framework/reference/link only.
+- Open RN/WisTech: concept and remediation source with attribution and media/license checks.
+- MedlinePlus/CDC: plain-language/public-health reference where page-specific usage permits.
+
+Hard rejections:
+
+- leaked NCLEX material
+- brain dumps or recall dumps
+- paid qbank PDFs/screenshots
+- UWorld/Archer/Kaplan/ATI/HESI/Saunders/Bootcamp/SimpleNursing-derived content
+
 ## Browser Extraction
 
 Extraction must run inside the Codex Browser plugin Node REPL because it needs the active browser `tab`.

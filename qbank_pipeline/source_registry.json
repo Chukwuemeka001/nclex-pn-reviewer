@@ -1,0 +1,159 @@
+[
+  {
+    "sourceId": "ncsbn-2026-pn-test-plan",
+    "title": "2026 NCLEX-PN Test Plan",
+    "url": "https://www.nclex.com/files/2026_PN_Test%20Plan-F.pdf",
+    "sourceType": "official_framework",
+    "license": "NCSBN official publication; reference/link only unless permission states otherwise",
+    "allowedUse": [
+      "framework_reference",
+      "client_needs_taxonomy_alignment",
+      "clinical_judgment_framework_alignment",
+      "link_out_to_official_source"
+    ],
+    "prohibitedUse": [
+      "copying_large_tables_or_pages_into_product",
+      "claiming_ncsbn_affiliation",
+      "copying_sample_questions_or_exam_assets"
+    ],
+    "attributionRequired": false,
+    "attributionText": "",
+    "checkedAt": "2026-05-12",
+    "status": "framework_reference_only",
+    "notes": "Use for taxonomy and blueprint alignment only. Link to official NCSBN/NCLEX source. Do not ingest as qbank content."
+  },
+  {
+    "sourceId": "nclex-cat-scoring-page",
+    "title": "NCLEX Computerized Adaptive Testing Explanation",
+    "url": "https://www.nclex.com/computerized-adaptive-testing.page",
+    "sourceType": "official_framework",
+    "license": "NCLEX/NCSBN public webpage; reference/link only unless permission states otherwise",
+    "allowedUse": [
+      "scoring_concept_reference",
+      "cat_style_disclaimer_guidance",
+      "link_out_to_official_source"
+    ],
+    "prohibitedUse": [
+      "claiming_official_cat_replication",
+      "copying_official_wording_wholesale",
+      "claiming_ncsbn_affiliation"
+    ],
+    "attributionRequired": false,
+    "attributionText": "",
+    "checkedAt": "2026-05-12",
+    "status": "framework_reference_only",
+    "notes": "Use only to explain at a high level why the app is CAT-inspired, not an official exam algorithm."
+  },
+  {
+    "sourceId": "nclex-clinical-judgment-model",
+    "title": "NCLEX Clinical Judgment Measurement Model",
+    "url": "https://www.nclex.com/clinical-judgment-measurement-model.page",
+    "sourceType": "official_framework",
+    "license": "NCLEX/NCSBN public webpage; reference/link only unless permission states otherwise",
+    "allowedUse": [
+      "clinical_judgment_framework_alignment",
+      "rubric_design_reference",
+      "link_out_to_official_source"
+    ],
+    "prohibitedUse": [
+      "copying_official_graphics_or_cards_without_permission",
+      "claiming_ncsbn_affiliation",
+      "copying_sample_items"
+    ],
+    "attributionRequired": false,
+    "attributionText": "",
+    "checkedAt": "2026-05-12",
+    "status": "framework_reference_only",
+    "notes": "Use to align app categories and remediation tasks with clinical judgment steps."
+  },
+  {
+    "sourceId": "open-rn-nursing-fundamentals-2e",
+    "title": "Open RN Nursing Fundamentals 2e",
+    "url": "https://wtcs.pressbooks.pub/nursingfundamentals/",
+    "sourceType": "open_educational_resource",
+    "license": "Creative Commons Attribution where indicated; verify page/media exceptions",
+    "allowedUse": [
+      "concept_reference",
+      "remediation_summary",
+      "original_question_inspiration",
+      "attributed_learning_content"
+    ],
+    "prohibitedUse": [
+      "copying_third_party_media_without_license_check",
+      "omitting_required_attribution",
+      "copying_long_sections_into_product_without_review"
+    ],
+    "attributionRequired": true,
+    "attributionText": "Open RN Nursing Fundamentals 2e, WisTech Open, Creative Commons Attribution where indicated.",
+    "checkedAt": "2026-05-12",
+    "status": "approved_reference",
+    "notes": "Strong source for fundamentals remediation and original question concept generation with attribution."
+  },
+  {
+    "sourceId": "open-rn-nursing-pharmacology",
+    "title": "Open RN Nursing Pharmacology",
+    "url": "https://wtcs.pressbooks.pub/pharmacology/",
+    "sourceType": "open_educational_resource",
+    "license": "Creative Commons Attribution where indicated; verify page/media exceptions",
+    "allowedUse": [
+      "concept_reference",
+      "pharmacology_remediation",
+      "original_question_inspiration",
+      "attributed_learning_content"
+    ],
+    "prohibitedUse": [
+      "copying_third_party_media_without_license_check",
+      "omitting_required_attribution",
+      "using_without_current_clinical_review"
+    ],
+    "attributionRequired": true,
+    "attributionText": "Open RN Nursing Pharmacology, WisTech Open, Creative Commons Attribution where indicated.",
+    "checkedAt": "2026-05-12",
+    "status": "approved_reference",
+    "notes": "Use for medication-class concepts and nursing considerations; clinical reviewer must verify currency."
+  },
+  {
+    "sourceId": "medlineplus-health-topics",
+    "title": "MedlinePlus Health Topics",
+    "url": "https://medlineplus.gov/healthtopics.html",
+    "sourceType": "public_health_reference",
+    "license": "Many federal-government-produced areas are public domain; verify page-specific restrictions and third-party content",
+    "allowedUse": [
+      "plain_language_reference",
+      "patient_education_remediation",
+      "concept_reference"
+    ],
+    "prohibitedUse": [
+      "copying_copyrighted_adam_or_ashp_content",
+      "copying_images_without_rights_check",
+      "assuming_all_pages_are_public_domain"
+    ],
+    "attributionRequired": true,
+    "attributionText": "MedlinePlus, U.S. National Library of Medicine, where permitted by page-specific usage terms.",
+    "checkedAt": "2026-05-12",
+    "status": "approved_reference",
+    "notes": "Useful for plain-language remediation; always check specific page usage/copyright notes."
+  },
+  {
+    "sourceId": "cdc-public-health-guidance",
+    "title": "CDC Public Health Guidance",
+    "url": "https://www.cdc.gov/",
+    "sourceType": "public_health_reference",
+    "license": "U.S. federal public health reference; verify page-specific third-party media/content restrictions",
+    "allowedUse": [
+      "infection_control_reference",
+      "public_health_remediation",
+      "concept_reference"
+    ],
+    "prohibitedUse": [
+      "copying_third_party_media_without_rights_check",
+      "using_outdated_guidance_without_review",
+      "claiming_cdc_affiliation"
+    ],
+    "attributionRequired": true,
+    "attributionText": "Centers for Disease Control and Prevention, where permitted by page-specific terms.",
+    "checkedAt": "2026-05-12",
+    "status": "approved_reference",
+    "notes": "Useful for infection control and public health remediation; clinical reviewer must check currency."
+  }
+]

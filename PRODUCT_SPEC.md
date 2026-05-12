@@ -4,12 +4,13 @@ Status: Week 1 working spec. This is intentionally strict so the project does no
 
 ## One-Sentence Product
 
-A PN-focused NCLEX-style study app that helps practical nursing students drill weak areas with clean original questions, nurse-tutor rationales, and lightweight adaptive practice.
+A PN-focused NCLEX-style daily trainer that helps Canadian RPN and US LPN students drill weak areas with clean original questions, simple nurse-tutor rationales, an error journal, and a daily remediation plan.
 
 ## Target User
 
 Primary initial user:
-- Practical nursing / RPN / LPN students preparing for NCLEX-PN-style exams.
+- Practical nursing / RPN / LPN students in Canada and the US preparing for NCLEX-PN-style exams.
+- Canadian PN/RPN and US LPN prep stay together for now because the practical-nursing fundamentals, safety priorities, and test-taking logic are highly similar; split country-specific details only when needed.
 - Students who need simple practice, rationales, safety/prioritization drills, and weak-area repetition.
 
 Initial niche wedge:
@@ -149,6 +150,8 @@ A good question should:
 - Avoid ambiguous stems unless ambiguity is clinically intentional.
 - Include plausible distractors.
 - Have a rationale that teaches clinical reasoning, not just fact recall.
+- Use easy nursing language: what the learner should notice, what the PN/LPN/RPN should do first, why it is safest, and why the wrong options are less safe/urgent/complete.
+- Avoid heavy medical jargon unless the exam truly requires it; if jargon is required, explain it in plain language.
 - Include NCLEX-style tagging.
 - Use safe, current nursing practice.
 

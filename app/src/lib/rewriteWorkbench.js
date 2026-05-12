@@ -54,6 +54,33 @@ export function applyModelRewrite(request, modelOutput = {}) {
   };
 }
 
+export function buildApplyRewritePayload(request, appliedRewrite, reviewer = {}) {
+  const normalized = normalizeRewriteRequest(request);
+  const proposed = appliedRewrite?.proposed || {};
+  const current = normalized.currentFields || {};
+  const rewrittenFields = {};
+
+  for (const field of normalized.allowedRewriteFields) {
+    const sourceField = field === "distractors" ? "choices" : field;
+    if (Object.prototype.hasOwnProperty.call(proposed, sourceField) && JSON.stringify(proposed[sourceField]) !== JSON.stringify(current[sourceField])) {
+      rewrittenFields[sourceField] = proposed[sourceField];
+    }
+  }
+
+  return {
+    id: normalized.id,
+    rewrittenFields,
+    allowedRewriteFields: normalized.allowedRewriteFields,
+    lockedFields: normalized.lockedFields,
+    reviewerName: reviewer.reviewerName || "",
+    reviewerNote: reviewer.reviewerNote || "",
+    sourceSafetyStatement: appliedRewrite?.sourceSafetyStatement || reviewer.sourceSafetyStatement || "",
+    changeSummary: appliedRewrite?.changeSummary || [],
+    reviewerWarnings: appliedRewrite?.reviewerWarnings || [],
+    reviewStatus: "needs_human_review",
+  };
+}
+
 export function buildReviewerChecklist(request = {}) {
   const normalized = normalizeRewriteRequest(request);
   const fields = normalized.allowedRewriteFields.join(", ") || "none";

@@ -1,6 +1,6 @@
 # NCLEX-PN Hermes Session Context
 
-Last updated: 2026-05-12 07:44 EDT
+Last updated: 2026-05-12 09:54 EDT
 Repo: /Users/emeka/Documents/Codex/2026-05-02/hey-codex-browser-plugin-browser-use
 Branch: main
 
@@ -18,7 +18,7 @@ Do not build a UWorld clone.
 
 The real wedge is:
 
-NCLEX-PN Daily Trainer: cheap/free PN-focused study workflow that turns every missed/flagged question into an error journal entry, remediation plan, and daily practice focus.
+NCLEX-PN Daily Trainer: cheap/free PN-focused study workflow for Canadian RPN and US LPN students that turns every missed/flagged question into an error journal entry, remediation plan, and daily practice focus.
 
 Early positioning:
 
@@ -32,6 +32,7 @@ Use any qbank; bring your missed areas here; this app turns them into a PN-safe 
 - NCLEX_FREE_SAFE_SOURCE_STRATEGY.md
 - NCLEX_QUESTION_QUALITY_RUBRIC.md
 - HERMES_NCLEX_CONTEXT.md
+- BRAND_OPTIONS.md
 
 ## Content safety rule
 
@@ -42,6 +43,7 @@ Safe use:
 - Open RN / WisTech OER as licensed nursing knowledge with attribution.
 - MedlinePlus/CDC/NIH/NLM public-domain/federal health info where license allows.
 - State competency frameworks as alignment references, not official claims.
+- User approved Open RN/RN-level nursing materials as concept/remediation references when they are license-safe and transformed into PN-appropriate language/scope.
 
 ## Built so far
 
@@ -57,6 +59,8 @@ React/Vite app in `app/` with:
 - Admin review console
 - Rewrite Lab
 - Error Journal
+- Daily Plan
+- Student-friendly rationale guard
 
 ### Content/review pipeline
 
@@ -131,10 +135,37 @@ Purpose:
 - Paste model JSON response.
 - Apply only allowed fields.
 - Block unauthorized/locked-field changes.
+- Apply accepted rewrite to the private AdminReview working item through `POST /api/review/items/:id/apply-rewrite`.
 - Keep human clinical/source-safety review mandatory.
 
 Route:
 - /rewrite
+
+### Daily Plan
+
+Files:
+- app/src/lib/dailyPlan.js
+- app/src/lib/dailyPlan.test.mjs
+- app/src/pages/DailyPlan.jsx
+
+Purpose:
+- Combines Error Journal, weak areas, exam date, daily minutes, anxiety level, and qbank source preference.
+- Produces a small daily plan with question target, remediation, PN safety/delegation drill, and rationale review.
+
+Route:
+- /daily-plan
+
+### Student-friendly rationale guard
+
+Files:
+- app/src/lib/learnerFriendlyRationale.js
+- app/src/lib/learnerFriendlyRationale.test.mjs
+- integrated into app/src/pages/AdminReview.jsx
+
+Purpose:
+- Flags rationales that are too short, too jargon-heavy, too long-winded, or missing why-wrong teaching.
+- Provides a copyable plain-language rewrite prompt.
+- Keeps this lightweight; it is a reviewer aid, not an auto-approval gate yet.
 
 ### Error Journal MVP
 
@@ -146,6 +177,7 @@ Files:
 Purpose:
 - Save incorrect/flagged questions from Results.
 - Store locally in browser localStorage for now.
+- Export/import JSON backups while still pre-database.
 - Tag why missed: prioritization, content gap, misread, anxiety, delegation/scope, etc.
 - Build daily remediation tasks from tags/reasons.
 - Mark reviewed or review later.
@@ -157,6 +189,8 @@ Route:
 
 From repo root:
 
+node qbank_pipeline/scripts/source_registry.test.mjs
+node qbank_pipeline/scripts/source_registry.mjs --validate
 node qbank_pipeline/scripts/nclex_improvement_loop.test.mjs
 node qbank_pipeline/scripts/sanitize_approved_export.test.mjs
 
@@ -165,6 +199,8 @@ From app/:
 npm run test:rubric
 npm run test:rewrite
 npm run test:journal
+npm run test:daily-plan
+npm run test:rationale
 npm run build
 npm run dev
 npm run review-api
@@ -182,14 +218,20 @@ Completed:
 8. Rewrite Lab UI/workflow.
 9. Error Journal MVP.
 10. Local durable context file.
+11. Source registry for safe/open/free source tracking.
+12. Daily Plan screen.
+13. Rewrite Lab accepted changes can apply back into AdminReview/review API.
+14. Public attribution exception for safe OER/public-source attribution.
+15. Error Journal JSON import/export backup.
+16. Student-friendly rationale guard in AdminReview.
 
 Next best steps:
-1. Add source registry for safe/open/free source tracking.
-2. Add a daily plan screen that combines Error Journal + weak areas + test date/minutes.
-3. Add reviewer workflow that imports accepted Rewrite Lab changes back into AdminReview/review API instead of manual copy/paste.
-4. Add attribution/licensing fields for Open RN/MedlinePlus/CDC-derived concepts.
-5. Improve local persistence or add a small database before beta.
-6. Get 50 excellent, clinically reviewed PN questions through the pipeline.
+1. Add AdminReview display for modelAssistedRewrite audit metadata and source registry lookup.
+2. Generate/apply first 10 model-assisted rewrites, then have Emeka review only those 10.
+3. Measure rubric score improvement before spending paid model budget at larger scale.
+4. Get 50 excellent, clinically reviewed PN questions through the pipeline.
+5. Add beta disclaimer/non-affiliation text before any public tester sees it.
+6. Consider database/auth only after local workflow proves useful.
 
 ## Brutal truth
 

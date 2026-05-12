@@ -2,12 +2,14 @@ import { useMemo, useState } from "react";
 import { Clipboard, ShieldCheck, Wand2 } from "lucide-react";
 import {
   applyModelRewrite,
+  buildApplyRewritePayload,
   buildReviewerChecklist,
   normalizeRewriteRequest,
   summarizeRewriteBatch,
 } from "../lib/rewriteWorkbench.js";
 
 const samplePath = "qbank_pipeline/improvement_reviews/nclex_improvement_loop_10_model_assisted.json";
+const REVIEW_API_BASE = import.meta.env.VITE_REVIEW_API_BASE || "/api/review";
 
 function safeJsonParse(value, fallback = null) {
   try {
@@ -26,6 +28,9 @@ export default function RewriteWorkbench() {
   const [batchText, setBatchText] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [modelText, setModelText] = useState("");
+  const [reviewerName, setReviewerName] = useState("Emeka");
+  const [reviewerNote, setReviewerNote] = useState("Model-assisted rewrite applied; requires clinical/source-safety review before approval.");
+  const [apiMessage, setApiMessage] = useState("");
 
   const parsedBatch = useMemo(() => safeJsonParse(batchText, { requests: [] }), [batchText]);
   const hasBatchError = Boolean(parsedBatch?.error);
@@ -36,6 +41,26 @@ export default function RewriteWorkbench() {
   const modelParsed = useMemo(() => safeJsonParse(modelText, {}), [modelText]);
   const applied = selected && !modelParsed?.error ? applyModelRewrite(selected, modelParsed) : null;
   const checklist = selected ? buildReviewerChecklist(selected) : [];
+
+  async function applyToReviewApi() {
+    if (!selected || !applied) return;
+    const payload = buildApplyRewritePayload(selected, applied, { reviewerName, reviewerNote });
+    if (!payload.reviewerName.trim() || !payload.reviewerNote.trim() || !payload.sourceSafetyStatement.trim()) {
+      setApiMessage("Blocked: reviewer name, reviewer note, and source safety statement are required.");
+      return;
+    }
+    const response = await fetch(`${REVIEW_API_BASE}/items/${encodeURIComponent(payload.id)}/apply-rewrite`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const body = await response.json();
+    if (!response.ok) {
+      setApiMessage(`Rewrite apply blocked: ${body.issues?.join(" ") || body.error || "Request failed"}`);
+      return;
+    }
+    setApiMessage(`Rewrite applied to review working item ${payload.id}. Open Admin Review and re-score before approval.`);
+  }
 
   return (
     <section className="page rewrite-page">
@@ -127,6 +152,16 @@ export default function RewriteWorkbench() {
                 </div>
                 <h3>Reviewer checklist</h3>
                 <ul>{checklist.map((item) => <li key={item}>{item}</li>)}</ul>
+                <div className="editor-card nested-card">
+                  <h3>5. Apply to Admin Review working item</h3>
+                  <div className="tag-grid">
+                    <label className="field"><span>Reviewer name</span><input value={reviewerName} onChange={(event) => setReviewerName(event.target.value)} /></label>
+                    <label className="field"><span>Reviewer note</span><input value={reviewerNote} onChange={(event) => setReviewerNote(event.target.value)} /></label>
+                  </div>
+                  <p className="helper-text">This saves the accepted rewrite as a private working edit and sets reviewStatus back to needs_human_review. It does not approve the question.</p>
+                  <button className="primary-btn" onClick={applyToReviewApi} disabled={applied.blockedChanges.length > 0}>Apply to Admin Review</button>
+                  {apiMessage && <div className="notice">{apiMessage}</div>}
+                </div>
               </div>
             )}
           </div>

@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import {
   buildErrorJournalEntries,
   buildRemediationPlan,
+  exportErrorJournalBackup,
+  importErrorJournalBackup,
   mergeJournalEntries,
   summarizeErrorJournal,
 } from "./errorJournal.js";
@@ -62,11 +64,25 @@ function testSummarizeErrorJournalGroupsByReasonAndStatus() {
   assert.equal(summary.byStatus.reviewed, 1);
 }
 
+function testExportImportBackupRoundTripValidatesEntries() {
+  const entries = [{ questionId: "q1", stem: "Stem", reason: "content_gap", status: "needs_remediation", updatedAt: "now" }];
+  const backup = exportErrorJournalBackup(entries, { exportedAt: "2026-05-12T00:00:00.000Z" });
+  assert.equal(backup.schemaVersion, 1);
+  assert.equal(backup.entries.length, 1);
+  const imported = importErrorJournalBackup(JSON.stringify(backup));
+  assert.equal(imported.entries[0].questionId, "q1");
+  assert.equal(imported.issues.length, 0);
+  const bad = importErrorJournalBackup('{"entries":[{"stem":"missing id"}]}');
+  assert.equal(bad.entries.length, 0);
+  assert.equal(bad.issues.length > 0, true);
+}
+
 function run() {
   testBuildErrorJournalEntriesCapturesIncorrectAndFlagged();
   testMergeJournalEntriesUpdatesExistingAttemptCount();
   testBuildRemediationPlanCreatesDailyTasksFromWeakReasonsAndTags();
   testSummarizeErrorJournalGroupsByReasonAndStatus();
+  testExportImportBackupRoundTripValidatesEntries();
   console.log("errorJournal tests passed");
 }
 
