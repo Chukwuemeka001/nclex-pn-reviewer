@@ -42,6 +42,7 @@ qbank_pipeline/pipeline_run_summary.json
 qbank_pipeline/tag_index.json
 qbank_pipeline/public_question_exports/
 qbank_pipeline/improvement_reviews/
+qbank_pipeline/private_reference_bank/
 
 # Extracted/derived local experiment folders and one-off legacy extraction scripts
 rise-extraction/

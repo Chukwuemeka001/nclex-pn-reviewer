@@ -1,6 +1,6 @@
 # NCLEX-PN Hermes Session Context
 
-Last updated: 2026-05-12 10:58 EDT
+Last updated: 2026-05-12 13:03 EDT
 Repo: /Users/emeka/Documents/Codex/2026-05-02/hey-codex-browser-plugin-browser-use
 Branch: main
 
@@ -75,6 +75,7 @@ Important private/generated folders are git-ignored:
 - approved_questions/
 - public_question_exports/
 - improvement_reviews/
+- private_reference_bank/
 
 ### Sanitized export
 
@@ -214,6 +215,7 @@ npm run test:rationale
 npm run test:distractors
 npm run test:review-support
 npm run test:demo-seed
+npm run test:admin-filters
 npm run build
 npm run dev
 npm run review-api
@@ -240,14 +242,32 @@ Completed:
 17. Distractor plausibility guard for generated-feeling answer options.
 18. AdminReview model-assisted rewrite audit panel and source registry lookup panel.
 19. Daily Plan copy clarified: app chooses order; learner is coached, not asked to explain what they do not know.
+20. First 10 Hermes model-assisted rewrites applied through Review API for human review.
+21. AdminReview queue can filter/search drafts and show model-assisted rewrites only.
+22. Private raw qbank reference bank generated from existing extracted raw files and kept git-ignored.
+
+First 10 review status:
+- IDs are listed in docs/first10-review-instructions.md.
+- Generated request pack: qbank_pipeline/improvement_reviews/nclex_improvement_loop_10_model_assisted.json (ignored/private).
+- Hermes rewrite outputs: qbank_pipeline/improvement_reviews/hermes_first10_rewrites.json (ignored/private).
+- Apply report: qbank_pipeline/improvement_reviews/hermes_first10_apply_report.json (ignored/private), 10/10 applied.
+- Rescore report: qbank_pipeline/improvement_reviews/hermes_first10_rescore_report.json (ignored/private). Average heuristic score moved 32.7 -> 33.6. Publish-ready after apply is intentionally 0/10 because model-assisted changes force human review/source-safety review before approval.
+
+Private qbank reference bank:
+- qbank_pipeline/private_reference_bank/grouped_raw_qbank_private.json (ignored/private)
+- qbank_pipeline/private_reference_bank/grouped_raw_qbank_private.md (ignored/private)
+- qbank_pipeline/private_reference_bank/grouped_raw_qbank_summary.json (ignored/private)
+- Existing extracted raw files grouped exactly by extracted group/title: 5 raw files, 236 raw question rows, 127 unique fingerprints, 109 duplicate extraction rows, 4 groups.
+- Do not publish or commit raw/source-derived questions; use private reference only for analysis and transformation planning.
 
 Next best steps:
-1. Generate/apply first 10 model-assisted rewrites, then have Emeka review only those 10.
-2. Measure rubric score improvement before spending paid model budget at larger scale.
-3. Get 50 excellent, clinically reviewed PN questions through the pipeline.
-4. Add beta disclaimer/non-affiliation text before any public tester sees it.
-5. Replace sourceRegistrySnapshot with an automated generated frontend snapshot if source registry grows.
-6. Consider database/auth only after local workflow proves useful.
+1. Emeka reviews the first 10 model-assisted questions in AdminReview using docs/first10-review-instructions.md.
+2. Apply PASS/FIX/REJECT feedback to the 10 before scaling.
+3. If at least 7/10 pass or need only minor fixes, scale to a 50-question clinically reviewed batch.
+4. If many feel generated/unsafe, improve rewrite prompts and distractor/rationale guards before spending paid model budget.
+5. Add beta disclaimer/non-affiliation text before any public tester sees it.
+6. Replace sourceRegistrySnapshot with an automated generated frontend snapshot if source registry grows.
+7. Consider database/auth only after local workflow proves useful.
 
 ## Brutal truth
 

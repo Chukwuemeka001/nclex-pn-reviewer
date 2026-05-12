@@ -5,6 +5,7 @@ import { assessLearnerFriendlyRationale, buildLearnerFriendlyRewritePrompt } fro
 import { assessDistractorPlausibility, distractorRewriteGuidance } from "../lib/distractorQuality.js";
 import { findSourceRegistryEntriesForItem, summarizeModelAssistedRewrite } from "../lib/reviewSupport.js";
 import { SOURCE_REGISTRY_SNAPSHOT } from "../lib/sourceRegistrySnapshot.js";
+import { filterReviewEntries } from "../lib/adminReviewFilters.js";
 
 export const REVIEW_API_BASE = import.meta.env.VITE_REVIEW_API_BASE || "/api/review";
 
@@ -148,6 +149,8 @@ export default function AdminReview() {
   const [filter, setFilter] = useState("pending");
   const [selectedBatchIds, setSelectedBatchIds] = useState([]);
   const [fastPreviewId, setFastPreviewId] = useState("");
+  const [queueSearch, setQueueSearch] = useState("");
+  const [modelAssistedOnly, setModelAssistedOnly] = useState(false);
   const [batchMeta, setBatchMeta] = useState({
     reviewerName: "",
     batchReviewNote: "",
@@ -175,13 +178,16 @@ export default function AdminReview() {
   const selected = useMemo(() => state?.items.find((entry) => itemId(entry.item) === selectedId), [state, selectedId]);
   const visibleItems = useMemo(() => {
     const items = state?.items || [];
-    if (filter === "all") return items;
-    if (filter === "high") return items.filter((entry) => entry.audit?.primaryRiskLabel === "high_similarity_risk");
-    if (filter === "clinical") return items.filter((entry) => entry.audit?.riskLabels?.includes("clinical_review_required"));
-    if (filter === "tag") return items.filter((entry) => entry.item.reviewStatus === "needs_tag_review");
-    if (filter === "ready") return items.filter((entry) => entry.fastReview?.ready);
-    return items.filter((entry) => entry.status !== "approved" && entry.status !== "rejected");
-  }, [state, filter]);
+    const base = (() => {
+      if (filter === "all") return items;
+      if (filter === "high") return items.filter((entry) => entry.audit?.primaryRiskLabel === "high_similarity_risk");
+      if (filter === "clinical") return items.filter((entry) => entry.audit?.riskLabels?.includes("clinical_review_required"));
+      if (filter === "tag") return items.filter((entry) => entry.item.reviewStatus === "needs_tag_review");
+      if (filter === "ready") return items.filter((entry) => entry.fastReview?.ready);
+      return items.filter((entry) => entry.status !== "approved" && entry.status !== "rejected");
+    })();
+    return filterReviewEntries(base, { query: queueSearch, modelAssistedOnly });
+  }, [state, filter, queueSearch, modelAssistedOnly]);
   const readyItems = useMemo(() => (state?.items || []).filter((entry) => entry.fastReview?.ready), [state]);
   const fastPreview = useMemo(() => {
     const id = fastPreviewId || selectedBatchIds[0] || readyItems[0] && itemId(readyItems[0].item);
@@ -444,6 +450,15 @@ export default function AdminReview() {
           <div className="queue-filters">
             {["pending", "ready", "high", "clinical", "tag", "all"].map((item) => <button key={item} className={filter === item ? "chip active" : "chip"} onClick={() => setFilter(item)}>{item}</button>)}
           </div>
+          <label className="field">
+            <span>Find draft</span>
+            <input value={queueSearch} onChange={(event) => setQueueSearch(event.target.value)} placeholder="Paste ID, q001, vertigo, low vision..." />
+          </label>
+          <label className="checkbox-row">
+            <input type="checkbox" checked={modelAssistedOnly} onChange={(event) => setModelAssistedOnly(event.target.checked)} />
+            <span>Show model-assisted rewrites only</span>
+          </label>
+          <small>{visibleItems.length} visible drafts</small>
           {visibleItems.map((entry) => (
             <button key={itemId(entry.item)} className={selectedId === itemId(entry.item) ? "queue-item active" : "queue-item"} onClick={() => selectEntry(entry)}>
               <strong>{entry.item.newQuestionId}</strong>
