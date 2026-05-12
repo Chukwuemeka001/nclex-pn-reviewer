@@ -3,10 +3,33 @@
 Audience: Alexis or any second nurse reviewer who has not been part of the build.
 
 App route:
-- http://127.0.0.1:5173/reviewer
+- Local: http://127.0.0.1:5173/reviewer
+- Public mobile pilot: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer
 
 Admin review route:
 - http://127.0.0.1:5173/admin
+
+## Public mobile pilot flow
+
+Live URL:
+- https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer
+
+Capture repo:
+- https://github.com/Chukwuemeka001/nclex-pn-reviewer
+
+Submission flow:
+1. Reviewer fills scores/notes on phone.
+2. Draft autosaves in phone localStorage.
+3. `Submit to GitHub Issues` opens a prefilled issue.
+4. Reviewer taps `Submit new issue` in GitHub.
+5. Hermes can later pull issues from the capture repo and convert them into review actions.
+
+Fallback:
+- If GitHub login is a blocker, reviewer taps `Copy all saved drafts` and sends the JSON to Emeka.
+
+Privacy:
+- The public pilot contains only the first-10 calibration items and no raw private qbank extraction files.
+- Do not enter raw NCLEX result-report/email text into the public site.
 
 ## Purpose
 

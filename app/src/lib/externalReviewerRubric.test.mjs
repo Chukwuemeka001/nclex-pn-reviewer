@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import {
   EXTERNAL_REVIEW_CRITERIA,
   FIRST_TEN_REVIEW_IDS,
+  buildGitHubIssueUrl,
+  buildReviewIssueBody,
   buildReviewerNoteTemplate,
   scoreExternalReview,
   summarizeReviewerDecision,
@@ -58,12 +60,27 @@ function testSummaryExplainsDecisionBands() {
   assert.equal(summarizeReviewerDecision("REJECT"), "Do not salvage unless there is a strong reason; rebuild or discard.");
 }
 
+function testGitHubIssueCaptureUrlIsPrefilledAndPrivateSafe() {
+  const item = { id: "q1", stem: "A client needs help. What should the PN do first?", answerChoices: ["Assess", "Ignore"], correctAnswerText: "Assess", rationale: "Assessment first." };
+  const response = { reviewerName: "Alexis", decision: "FIX", issueType: "rationale", severity: "important", notes: "Needs better why-wrong teaching.", suggestedFix: "Explain why Ignore is unsafe.", scores: { stemRealism: 3, distractors: 2, rationaleTeaching: 2, pnScope: 4, clinicalSafety: 4, studentExperience: 3 } };
+  const body = buildReviewIssueBody(item, response);
+  assert.ok(body.includes("Question ID: q1"));
+  assert.ok(body.includes("Reviewer: Alexis"));
+  assert.ok(body.includes("Privacy/safety acknowledgement"));
+  const url = buildGitHubIssueUrl({ repo: "Chukwuemeka001/nclex-pn-reviewer", item, response });
+  assert.ok(url.startsWith("https://github.com/Chukwuemeka001/nclex-pn-reviewer/issues/new?"));
+  const parsed = new URL(url);
+  assert.ok(parsed.searchParams.get("title").includes("[Review] q1"));
+  assert.ok(parsed.searchParams.get("body").includes("Needs better why-wrong teaching."));
+}
+
 function run() {
   testRubricHasClearColdReviewerCriteria();
   testReviewerScoreRequiresCriticalSafetyPass();
   testReviewerScoreCanPassStrongQuestion();
   testTemplateIncludesExpectedStructureAndIds();
   testSummaryExplainsDecisionBands();
+  testGitHubIssueCaptureUrlIsPrefilledAndPrivateSafe();
   console.log("externalReviewerRubric tests passed");
 }
 

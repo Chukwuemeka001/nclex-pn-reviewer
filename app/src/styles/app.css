@@ -156,7 +156,7 @@ p { line-height: 1.5; }
 }
 .field.wide { grid-column: span 3; }
 .field span, .toggle { font-weight: 700; color: #34495a; }
-.field select, .field input {
+.field select, .field input, .field textarea {
   width: 100%;
   min-height: 42px;
   border: 1px solid #c7d4df;
@@ -165,6 +165,7 @@ p { line-height: 1.5; }
   background: white;
 }
 .field select[multiple] { min-height: 108px; }
+.field textarea { min-height: 120px; resize: vertical; }
 .toggle {
   min-height: 42px;
   display: flex;
@@ -759,6 +760,37 @@ p { line-height: 1.5; }
 .warning-box {
   border-color: #f8d477 !important;
   background: #fff8e5 !important;
+}
+.review-id-list.compact {
+  max-height: 520px;
+  overflow: auto;
+}
+.question-review-card {
+  border-color: #b8ddd6;
+}
+.answer-key-panel {
+  margin-top: 14px;
+  border: 1px solid #d8e1e8;
+  border-radius: 10px;
+  background: #f8fbfd;
+  padding: 14px;
+}
+.answer-key-panel p {
+  margin-top: 6px;
+}
+.external-rubric-grid.single-column {
+  grid-template-columns: 1fr;
+}
+.external-rubric-card details {
+  margin-top: 10px;
+}
+.external-rubric-card summary {
+  cursor: pointer;
+  font-weight: 800;
+  color: #0f766e;
+}
+.mobile-review-layout {
+  grid-template-columns: 380px minmax(0, 1fr);
 }
 
 @media (max-width: 920px) {

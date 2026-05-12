@@ -1,0 +1,332 @@
+[
+  {
+    "id": "assistive_devices_first20_q008_variant_c",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is reinforcing teaching for an adult who has been fitted with a rigid leg brace after a musculoskeletal injury. Which instruction is most important to help prevent skin breakdown?",
+    "answerChoices": [
+      "numb toes after strap tightening",
+      "asks a clarifying question about brace skin-integrity care",
+      "uses the device slowly after teaching",
+      "requests written instructions for home"
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "numb toes after strap tightening"
+    ],
+    "rationale": "The finding may signal a safety problem or complication and should be reported or assessed before routine care continues.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for brace skin-integrity care.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for brace skin-integrity care.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for brace skin-integrity care."
+    ],
+    "tags": {
+      "clientNeeds": "Safe and Effective Care Environment",
+      "subcategory": "Safety and Infection Control",
+      "integratedProcess": "Teaching/Learning",
+      "clinicalJudgment": "Take Action",
+      "difficulty": "Medium"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q001_variant_a",
+    "itemType": "multiple_choice",
+    "stem": "An older adult with severe vision loss has eaten very little breakfast and most food remains untouched on one side of the plate. Which action should the practical nurse take first?",
+    "answerChoices": [
+      "Orient the tray using clock positions and ask whether the client can locate each food item.",
+      "Remove the untouched food and document that the client refused part of the meal.",
+      "Ask dietary services to send only finger foods for future meals.",
+      "Tell the client to feel across the plate with a hand to find the remaining food."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "food untouched on one side of the plate"
+    ],
+    "rationale": "Food left on one side of the plate may mean the client cannot locate the food, not that the client is refusing to eat. The first nursing action is to make the tray easier to understand by using clock positions and checking whether the client can find the food. This supports safety, nutrition, and independence.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation."
+    ],
+    "tags": {
+      "clientNeeds": "Safe and Effective Care Environment",
+      "subcategory": "Safety and Infection Control",
+      "integratedProcess": "Teaching/Learning",
+      "clinicalJudgment": "Take Action",
+      "difficulty": "Medium"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q001_variant_b",
+    "itemType": "multiple_choice",
+    "stem": "older adult with severe vision loss contacts the clinic after teaching. Which report suggests a possible complication?",
+    "answerChoices": [
+      "The client reports that food is often left untouched on one side of the plate.",
+      "The client asks the nurse to repeat how the tray is arranged.",
+      "The client uses clock-position directions slowly during the meal.",
+      "The client requests large-print instructions for family members."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "food untouched on one side of the plate"
+    ],
+    "rationale": "Food repeatedly left untouched on one side may show that the client is not locating all food on the tray, which can affect nutrition and safety. The nurse should follow up by reassessing meal setup and reinforcing tray orientation. Asking questions, using instructions slowly, or requesting large-print information can be expected parts of learning.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation."
+    ],
+    "tags": {
+      "clientNeeds": "Safe and Effective Care Environment",
+      "subcategory": "Safety and Infection Control",
+      "integratedProcess": "Teaching/Learning",
+      "clinicalJudgment": "Take Action",
+      "difficulty": "Medium"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q001_variant_c",
+    "itemType": "multiple_choice",
+    "stem": "An older adult with severe vision loss has food untouched on one side of the plate. Which response by the practical nurse best supports safe independent eating?",
+    "answerChoices": [
+      "Orient the meal tray by describing each item according to its hour position.",
+      "Tell the client to feel across the plate to identify foods.",
+      "Move items around during the meal without explaining the change.",
+      "Ask family to feed the client because vision is limited."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Orient the meal tray by describing each item according to its hour position."
+    ],
+    "rationale": "Hour-position meal orientation promotes independence and reduces spills because the client can locate each food item predictably. The other options delay assessment, increase risk, or reduce safe independent use.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation."
+    ],
+    "tags": {
+      "clientNeeds": "Physiological Integrity",
+      "subcategory": "Basic Care and Comfort",
+      "integratedProcess": "Clinical Judgment",
+      "clinicalJudgment": "Recognize Cues",
+      "difficulty": "Medium-High"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q002_variant_a",
+    "itemType": "multiple_choice",
+    "stem": "A client reports sudden spinning dizziness while preparing for discharge. Which instruction should the practical nurse give first to reduce the risk for injury?",
+    "answerChoices": [
+      "Have the client sit or lie down and call for help before walking.",
+      "Encourage brisk walking to shorten the dizzy spell.",
+      "Leave the client standing while looking for discharge papers.",
+      "Offer fluids and then allow unassisted ambulation."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Have the client sit or lie down and call for help before walking."
+    ],
+    "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety."
+    ],
+    "tags": {
+      "clientNeeds": "Safe and Effective Care Environment",
+      "subcategory": "Safety and Infection Control",
+      "integratedProcess": "Teaching/Learning",
+      "clinicalJudgment": "Prioritize Hypotheses",
+      "difficulty": "Medium"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q002_variant_b",
+    "itemType": "multiple_choice",
+    "stem": "An adult with spinning dizziness reaches for the wall when standing. Which response by the practical nurse is safest?",
+    "answerChoices": [
+      "Have the client sit or lie down and call for help before walking.",
+      "Leave the client standing while looking for discharge papers.",
+      "Offer fluids and then allow unassisted ambulation.",
+      "Dim the lights and ask the client to walk slowly to the lobby."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Have the client sit or lie down and call for help before walking."
+    ],
+    "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety."
+    ],
+    "tags": {
+      "clientNeeds": "Safe and Effective Care Environment",
+      "subcategory": "Safety and Infection Control",
+      "integratedProcess": "Clinical Judgment",
+      "clinicalJudgment": "Prioritize Hypotheses",
+      "difficulty": "Medium-High"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q002_variant_c",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is caring for adult reporting spinning dizziness in the urgent care discharge area. Which action has the highest priority?",
+    "answerChoices": [
+      "Have the client sit or lie down and call for help before walking.",
+      "Walk beside the client slowly to the lobby and reassess dizziness there.",
+      "Finish the discharge teaching first because the client is already leaving.",
+      "Offer fluids while the client remains standing at the counter."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Have the client sit or lie down and call for help before walking."
+    ],
+    "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety."
+    ],
+    "tags": {
+      "clientNeeds": "Safe and Effective Care Environment",
+      "subcategory": "Safety and Infection Control",
+      "integratedProcess": "Clinical Judgment",
+      "clinicalJudgment": "Prioritize Hypotheses",
+      "difficulty": "Medium"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q003_variant_a",
+    "itemType": "multiple_choice",
+    "stem": "A client learning to use a lower-limb prosthesis says, \"I am worried I will not manage this safely at home.\" Which response by the practical nurse is most therapeutic?",
+    "answerChoices": [
+      "Let's review the steps together and identify when you should call for help.",
+      "That is not something you should be worried about.",
+      "You need to be more independent with this equipment.",
+      "Wear the prosthesis longer when soreness develops to toughen the skin."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Let's review the steps together and identify when you should call for help."
+    ],
+    "rationale": "The best response accepts the client's concern and turns it into a practical safety plan. Reviewing the steps together helps the client practice, ask questions, and know when to call for help. This supports confidence without dismissing the client's fear.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care."
+    ],
+    "tags": {
+      "clientNeeds": "Physiological Integrity",
+      "subcategory": "Reduction of Risk Potential",
+      "integratedProcess": "Nursing Process",
+      "clinicalJudgment": "Recognize Cues",
+      "difficulty": "Medium"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q003_variant_b",
+    "itemType": "multiple_choice",
+    "stem": "The nurse is reviewing instructions with a client learning to use a lower-limb prosthesis. Which statement indicates that teaching about prosthesis and residual-limb care should be reinforced?",
+    "answerChoices": [
+      "I should keep wearing it if a red area is painful but not bleeding.",
+      "I will check my skin every time I remove the prosthesis.",
+      "I will report redness that does not fade after I remove the prosthesis.",
+      "I will keep the residual limb clean and dry before applying the prosthesis."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "I should keep wearing it if a red area is painful but not bleeding."
+    ],
+    "rationale": "A painful red area can be an early sign of pressure injury even if the skin is not bleeding. The client should remove the prosthesis and report persistent redness or pain instead of continuing to wear it. The other statements show safer prosthesis and residual-limb care.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care."
+    ],
+    "tags": {
+      "clientNeeds": "Safe and Effective Care Environment",
+      "subcategory": "Safety and Infection Control",
+      "integratedProcess": "Teaching/Learning",
+      "clinicalJudgment": "Recognize Cues",
+      "difficulty": "Medium"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  },
+  {
+    "id": "assistive_devices_first20_q003_variant_c",
+    "itemType": "multiple_choice",
+    "stem": "A client is learning home care for a lower-limb prosthesis and residual limb. Which instruction should the practical nurse reinforce as the priority for preventing skin injury?",
+    "answerChoices": [
+      "Inspect the residual limb after removing the prosthesis and report persistent redness or skin breakdown.",
+      "Massage an open area before reapplying the prosthesis.",
+      "Skip sock changes when the socket feels loose.",
+      "Apply a heating pad to the residual limb before each fitting."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Inspect the residual limb after removing the prosthesis and report persistent redness or skin breakdown."
+    ],
+    "rationale": "Skin inspection detects pressure injury early; persistent redness or breakdown can worsen if the prosthesis is reapplied without follow-up. The other options delay assessment, increase risk, or reduce safe independent use.",
+    "whyWrong": [
+      "",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
+      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care."
+    ],
+    "tags": {
+      "clientNeeds": "Safe and Effective Care Environment",
+      "subcategory": "Safety and Infection Control",
+      "integratedProcess": "Teaching/Learning",
+      "clinicalJudgment": "Take Action",
+      "difficulty": "Medium"
+    },
+    "reviewStatus": "calibration_review_only",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+  }
+]

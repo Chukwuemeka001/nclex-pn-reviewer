@@ -105,21 +105,68 @@ export function summarizeReviewerDecision(decision) {
   return "Choose PASS, FIX, or REJECT.";
 }
 
-export function buildReviewerNoteTemplate(id = "[paste question id]") {
+export function buildReviewerNoteTemplate(id = "[paste question id]", response = {}) {
+  const scores = response.scores || {};
   return `ID: ${id}
-Reviewer: Alexis
-Decision: PASS / FIX / REJECT
+Reviewer: ${response.reviewerName || "Alexis"}
+Decision: ${response.decision || "PASS / FIX / REJECT"}
 Scores:
-- Stem realism and clarity: _/4
-- Distractor plausibility: _/4
-- Rationale teaching quality: _/4
-- PN/RPN/LPN scope fit: _/4
-- Clinical safety and accuracy: _/4
-- Student experience after a long shift: _/4
-Issue type: stem / distractors / rationale / clinical safety / PN scope / too generated / unclear / source concern / other
-Alexis notes:
-Suggested fix, if any:
-Severity: minor / important / critical`;
+- Stem realism and clarity: ${scores.stemRealism ?? "_"}/4
+- Distractor plausibility: ${scores.distractors ?? "_"}/4
+- Rationale teaching quality: ${scores.rationaleTeaching ?? "_"}/4
+- PN/RPN/LPN scope fit: ${scores.pnScope ?? "_"}/4
+- Clinical safety and accuracy: ${scores.clinicalSafety ?? "_"}/4
+- Student experience after a long shift: ${scores.studentExperience ?? "_"}/4
+Issue type: ${response.issueType || "stem / distractors / rationale / clinical safety / PN scope / too generated / unclear / source concern / other"}
+Alexis notes: ${response.notes || ""}
+Suggested fix, if any: ${response.suggestedFix || ""}
+Severity: ${response.severity || "minor / important / critical"}`;
+}
+
+export function buildReviewIssueBody(item = {}, response = {}, scoreResult = scoreExternalReview(response.scores || {})) {
+  return [
+    "## External nurse review",
+    "",
+    `Question ID: ${item.id || response.id || "unknown"}`,
+    `Reviewer: ${response.reviewerName || "Alexis"}`,
+    `Decision: ${response.decision || scoreResult.decision}`,
+    `Computed score: ${scoreResult.total}/${scoreResult.max} (${scoreResult.percent}%)`,
+    scoreResult.blockers.length ? `Blockers: ${scoreResult.blockers.join("; ")}` : "Blockers: none",
+    "",
+    "## Scores",
+    ...EXTERNAL_REVIEW_CRITERIA.map((criterion) => `- ${criterion.label}: ${Number(response.scores?.[criterion.id] ?? 0)}/4`),
+    "",
+    "## Issue details",
+    `Issue type: ${response.issueType || "none provided"}`,
+    `Severity: ${response.severity || "not selected"}`,
+    "",
+    "## Reviewer notes",
+    response.notes || "No notes provided.",
+    "",
+    "## Suggested fix",
+    response.suggestedFix || "No suggested fix provided.",
+    "",
+    "## Reviewed item snapshot",
+    `Stem: ${item.stem || ""}`,
+    "",
+    "Choices:",
+    ...(item.answerChoices || []).map((choice, index) => `${String.fromCharCode(65 + index)}. ${choice}`),
+    "",
+    `Correct answer: ${item.correctAnswerText || (item.correctAnswerIndexes || []).join(", ")}`,
+    "",
+    `Rationale: ${item.rationale || ""}`,
+    "",
+    "## Privacy/safety acknowledgement",
+    "This review does not include raw NCLEX result-report text, screenshots, email text, or personal identifiers.",
+  ].join("\n");
+}
+
+export function buildGitHubIssueUrl({ repo = "Chukwuemeka001/nclex-pn-reviewer", item = {}, response = {}, scoreResult } = {}) {
+  const computed = scoreResult || scoreExternalReview(response.scores || {});
+  const title = `[Review] ${item.id || response.id || "question"} — ${response.decision || computed.decision}`;
+  const body = buildReviewIssueBody(item, response, computed);
+  const params = new URLSearchParams({ title, body, labels: "external-review" });
+  return `https://github.com/${repo}/issues/new?${params.toString()}`;
 }
 
 export const NCLEX_RESULT_REPORT_CASE_STUDY_GUIDANCE = [

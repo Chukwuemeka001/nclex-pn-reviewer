@@ -48,6 +48,8 @@ const pathToRoute = {
 const routeToPath = Object.fromEntries(Object.entries(pathToRoute).map(([path, route]) => [route, path]));
 
 function initialRoute() {
+  const hashPath = window.location.hash?.replace(/^#/, "");
+  if (hashPath && pathToRoute[hashPath]) return pathToRoute[hashPath];
   return pathToRoute[window.location.pathname] || "dashboard";
 }
 
@@ -63,13 +65,18 @@ export default function App() {
   function setRoute(nextRoute) {
     setRouteState(nextRoute);
     const nextPath = routeToPath[nextRoute] || "/";
-    if (window.location.pathname !== nextPath) window.history.pushState({}, "", nextPath);
+    const basePath = import.meta.env.BASE_URL && import.meta.env.BASE_URL !== "/" ? import.meta.env.BASE_URL.replace(/\/$/, "") : "";
+    if (window.location.hash?.replace(/^#/, "") !== nextPath) window.history.pushState({}, "", `${basePath || ""}/#${nextPath}`);
   }
 
   useEffect(() => {
     const onPopState = () => setRouteState(initialRoute());
     window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
+    window.addEventListener("hashchange", onPopState);
+    return () => {
+      window.removeEventListener("popstate", onPopState);
+      window.removeEventListener("hashchange", onPopState);
+    };
   }, []);
 
   useEffect(() => {

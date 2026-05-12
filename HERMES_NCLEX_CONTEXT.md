@@ -1,6 +1,6 @@
 # NCLEX-PN Hermes Session Context
 
-Last updated: 2026-05-12 14:52 EDT
+Last updated: 2026-05-12 19:09 EDT
 Repo: /Users/emeka/Documents/Codex/2026-05-02/hey-codex-browser-plugin-browser-use
 Branch: main
 
@@ -250,10 +250,17 @@ Completed:
 23. External nurse reviewer portal for Alexis/second reviewers with first-10 IDs, 0-4 rubric, PASS/FIX/REJECT note template, and private NCLEX result-report case-study guidance.
 
 External reviewer files:
-- app/src/pages/ExternalReviewerGuide.jsx, route `/reviewer`
+- app/src/pages/ExternalReviewerGuide.jsx, route `/reviewer` and public hash route `/#/reviewer`
+- app/src/data/external_review_first10.json (sanitized/public pilot first-10 snapshot; no raw source/private qbank files)
 - app/src/lib/externalReviewerRubric.js
 - app/src/lib/externalReviewerRubric.test.mjs
 - docs/external-reviewer-orientation.md
+
+Public mobile reviewer pilot:
+- Live URL: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer
+- Capture repo: https://github.com/Chukwuemeka001/nclex-pn-reviewer
+- Capture method: reviewer fills mobile form, drafts autosave in phone localStorage, `Submit to GitHub Issues` opens a prefilled issue in the capture repo. Pull submitted issues later for Hermes review application.
+- Fallback if GitHub login blocks Alexis: she taps `Copy all saved drafts` and sends JSON to Emeka.
 
 External reviewer safety rule:
 - Alexis's NCLEX result report/email can be used only as a private case study to map broad weakness categories. Do not upload, commit, quote, or publish raw result-report text or identifiers. Convert to aggregate learner-needs/product implications only.
