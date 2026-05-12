@@ -69,11 +69,48 @@ Drafts are not approved automatically. A reviewer must update items in `clinical
 "reviewStatus": "reviewed_approved"
 ```
 
-Only items that are both reviewed and `low_similarity_risk` are exported:
+Only items that are both reviewed and `low_similarity_risk` are exported to the private approved folder:
 
 ```bash
 node qbank_pipeline/scripts/full_qbank_pipeline.mjs export-approved
 ```
+
+## Sanitized Public Export
+
+Before any approved question content is copied into an app bundle, beta seed, or public-safe pack, run the sanitizer:
+
+```bash
+node qbank_pipeline/scripts/sanitize_approved_export.mjs
+```
+
+Default input:
+
+```text
+qbank_pipeline/approved_questions
+```
+
+Default output:
+
+```text
+qbank_pipeline/public_question_exports
+```
+
+The sanitizer:
+
+- recursively reads approved-question JSON files
+- keeps only `reviewed_approved` items
+- normalizes them into the public question schema
+- strips private/source/audit keys such as `sourceQuestionId`, `sourceTracePrivate`, `sourceGroup`, `audit`, `sourceBlueprintId`, and `similarityAuditId`
+- scans the final export for source-identifying text, URLs, and unsafe private keys
+- fails hard if anything unsafe remains
+
+Test it with:
+
+```bash
+node qbank_pipeline/scripts/sanitize_approved_export.test.mjs
+```
+
+Do not commit `qbank_pipeline/public_question_exports/` unless the exported pack has been explicitly approved for publication.
 
 ## Guardrails
 
