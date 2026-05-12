@@ -1,0 +1,11 @@
+{
+  "createdAt": "2026-05-11T00:00:00.000Z",
+  "note": "Copy to qbank_manifest.json or generate from the browser lesson page. Private extraction manifest; do not publish.",
+  "quizzes": [
+    {
+      "title": "Assistive Devices Test",
+      "slug": "assistive-devices-test",
+      "url": "https://rise.articulate.com/share/REPLACE_WITH_RISE_SHARE_ID"
+    }
+  ]
+}

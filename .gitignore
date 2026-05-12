@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+app/node_modules/
+
+# Build outputs
+/dist/
+app/dist/
+build/
+coverage/
+
+# OS/editor noise
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Secrets and local config
+.env
+.env.*
+*.local
+*.secret.*
+secrets/
+
+# Private/proprietary qbank extraction artifacts
+# Raw source material must never be committed.
+qbank_pipeline/source_raw/
+qbank_pipeline/**/source_raw/
+
+# Generated qbank artifacts are private review/audit work products until explicitly cleared.
+qbank_pipeline/blueprints/
+qbank_pipeline/original_drafts/
+qbank_pipeline/similarity_audits/
+qbank_pipeline/clinical_review_queue/
+qbank_pipeline/approved_questions/
+qbank_pipeline/rejected_questions/
+qbank_pipeline/review_logs/
+qbank_pipeline/validation_reports/
+qbank_pipeline/batch_reports/
+qbank_pipeline/manifests/qbank_groups.json
+qbank_pipeline/pipeline_run_summary.json
+qbank_pipeline/tag_index.json
+
+# Extracted/derived local experiment folders and one-off legacy extraction scripts
+rise-extraction/
+audit_assistive_devices_similarity.mjs
+rise_extractor_usage.md
+rise_qbank_extractor.mjs
+transform_assistive_devices_first20.mjs
+validate_rise_extraction.mjs
