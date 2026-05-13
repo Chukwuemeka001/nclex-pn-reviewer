@@ -1,9 +1,10 @@
 # NCLEX-PN Reviewer Portal
 
-Mobile-first external reviewer portal for calibration review.
+Mobile-first external/founder reviewer portal for calibration review.
 
 Live reviewer links:
 
+- Emeka: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=emeka
 - Alexis: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=alexis
 - Ihechi: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=ihechi
 
