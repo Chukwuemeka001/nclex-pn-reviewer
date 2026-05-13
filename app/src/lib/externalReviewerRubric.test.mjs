@@ -4,7 +4,9 @@ import {
   FIRST_TEN_REVIEW_IDS,
   buildGitHubIssueUrl,
   buildReviewIssueBody,
+  REVIEWER_PROFILES,
   buildReviewerNoteTemplate,
+  getReviewerProfile,
   scoreExternalReview,
   summarizeReviewerDecision,
 } from "./externalReviewerRubric.js";
@@ -70,17 +72,43 @@ function testGitHubIssueCaptureUrlIsPrefilledAndPrivateSafe() {
   const url = buildGitHubIssueUrl({ repo: "Chukwuemeka001/nclex-pn-reviewer", item, response });
   assert.ok(url.startsWith("https://github.com/Chukwuemeka001/nclex-pn-reviewer/issues/new?"));
   const parsed = new URL(url);
-  assert.ok(parsed.searchParams.get("title").includes("[Review] q1"));
+  assert.ok(parsed.searchParams.get("title").includes("[Review][Alexis] q1"));
   assert.ok(parsed.searchParams.get("body").includes("Needs better why-wrong teaching."));
 }
 
+function testReviewerProfilesCoverAlexisAndIhechi() {
+  assert.equal(REVIEWER_PROFILES.alexis.name, "Alexis");
+  assert.equal(REVIEWER_PROFILES.ihechi.name, "Ihechi");
+  assert.match(REVIEWER_PROFILES.ihechi.role, /non-clinical/i);
+  assert.ok(REVIEWER_PROFILES.ihechi.primaryLens.some((lens) => /AI-generated|source-safety|clarity/i.test(lens)));
+  assert.equal(getReviewerProfile("ihechi").name, "Ihechi");
+  assert.equal(getReviewerProfile("unknown").name, "Alexis");
+}
+
+function testIhechiIssueCaptureIncludesRoleLensAndCopyrightAttestation() {
+  const item = { id: "q2", stem: "Which statement needs follow-up?", answerChoices: ["A", "B"], correctAnswerText: "B", rationale: "Because B is unsafe." };
+  const response = { reviewerName: "Ihechi", reviewerKey: "ihechi", reviewerRole: REVIEWER_PROFILES.ihechi.role, decision: "FIX", issueType: "too generated, source concern", severity: "important", notes: "The rationale sounds AI generated and the stem may be too similar to a prep-bank pattern.", suggestedFix: "Rewrite with a fresh clinical setup and cite an OER concept source.", scores: { stemRealism: 2, distractors: 3, rationaleTeaching: 2, pnScope: 3, clinicalSafety: 3, studentExperience: 3 } };
+  const body = buildReviewIssueBody(item, response);
+  assert.ok(body.includes("Reviewer: Ihechi"));
+  assert.ok(body.includes("Reviewer role: Non-clinical clarity/source-safety reviewer"));
+  assert.ok(body.includes("Role lens"));
+  assert.ok(body.includes("Copyright/source-safety acknowledgement"));
+  assert.ok(body.includes("I did not paste unpublished questions into public AI/search tools"));
+  const url = buildGitHubIssueUrl({ repo: "Chukwuemeka001/nclex-pn-reviewer", item, response });
+  const parsed = new URL(url);
+  assert.ok(parsed.searchParams.get("title").includes("[Ihechi]"));
+  assert.ok(parsed.searchParams.get("body").includes("too similar to a prep-bank pattern"));
+}
+
 function run() {
+  testReviewerProfilesCoverAlexisAndIhechi();
   testRubricHasClearColdReviewerCriteria();
   testReviewerScoreRequiresCriticalSafetyPass();
   testReviewerScoreCanPassStrongQuestion();
   testTemplateIncludesExpectedStructureAndIds();
   testSummaryExplainsDecisionBands();
   testGitHubIssueCaptureUrlIsPrefilledAndPrivateSafe();
+  testIhechiIssueCaptureIncludesRoleLensAndCopyrightAttestation();
   console.log("externalReviewerRubric tests passed");
 }
 

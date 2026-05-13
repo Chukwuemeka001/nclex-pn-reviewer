@@ -1,6 +1,6 @@
 # NCLEX-PN Hermes Session Context
 
-Last updated: 2026-05-12 19:09 EDT
+Last updated: 2026-05-13 17:15 EDT
 Repo: /Users/emeka/Documents/Codex/2026-05-02/hey-codex-browser-plugin-browser-use
 Branch: main
 
@@ -252,15 +252,21 @@ Completed:
 External reviewer files:
 - app/src/pages/ExternalReviewerGuide.jsx, route `/reviewer` and public hash route `/#/reviewer`
 - app/src/data/external_review_first10.json (sanitized/public pilot first-10 snapshot; no raw source/private qbank files)
+- app/src/data/reviewer_instruction_research.json
+- app/src/data/source_safety_guidance.json
 - app/src/lib/externalReviewerRubric.js
 - app/src/lib/externalReviewerRubric.test.mjs
 - docs/external-reviewer-orientation.md
 
 Public mobile reviewer pilot:
 - Live URL: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer
+- Alexis link: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=alexis
+- Ihechi link: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=ihechi
 - Capture repo: https://github.com/Chukwuemeka001/nclex-pn-reviewer
 - Capture method: reviewer fills mobile form, drafts autosave in phone localStorage, `Submit to GitHub Issues` opens a prefilled issue in the capture repo. Pull submitted issues later for Hermes review application.
-- Fallback if GitHub login blocks Alexis: she taps `Copy all saved drafts` and sends JSON to Emeka.
+- Fallback if GitHub login blocks a reviewer: they tap `Copy all saved drafts` and send JSON to Emeka.
+- Reviewer profiles: Alexis = clinical/NCLEX-experience reviewer; Ihechi = non-clinical clarity/source-safety reviewer for AI-generated wording, logic, ambiguity, learner clarity, and copyright/source concerns.
+- Instructions include research-derived patterns from Cochrane/NICE/PLOS/ICMJE/NCSBN/MedlinePlus/Waterloo and explicit source-safety rule: no verbatim commercial qbank/free preview/brain dump/recalled NCLEX content; only checked CC BY/OER/public-domain material can be used verbatim with attribution.
 
 External reviewer safety rule:
 - Alexis's NCLEX result report/email can be used only as a private case study to map broad weakness categories. Do not upload, commit, quote, or publish raw result-report text or identifiers. Convert to aggregate learner-needs/product implications only.

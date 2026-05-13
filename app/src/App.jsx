@@ -48,7 +48,7 @@ const pathToRoute = {
 const routeToPath = Object.fromEntries(Object.entries(pathToRoute).map(([path, route]) => [route, path]));
 
 function initialRoute() {
-  const hashPath = window.location.hash?.replace(/^#/, "");
+  const hashPath = window.location.hash?.replace(/^#/, "").split("?")[0];
   if (hashPath && pathToRoute[hashPath]) return pathToRoute[hashPath];
   return pathToRoute[window.location.pathname] || "dashboard";
 }

@@ -1,3 +1,43 @@
+export const REVIEWER_PROFILES = {
+  alexis: {
+    key: "alexis",
+    name: "Alexis",
+    role: "Clinical/NCLEX-experience reviewer",
+    shortLabel: "Alexis — nurse reviewer",
+    publicUrlSuffix: "#/reviewer?reviewer=alexis",
+    headline: "Alexis NCLEX-PN review portal",
+    intro: "You are reviewing from a nurse/recent NCLEX-writer lens. Focus on PN scope, clinical safety, NCLEX feel, prioritization, rationales, and whether this would actually help a tired student prepare.",
+    primaryLens: [
+      "Clinical safety and PN/RPN/LPN scope",
+      "NCLEX-style realism and prioritization",
+      "Whether the rationale teaches like a practical nurse tutor",
+      "Whether the question would help someone who recently struggled with NCLEX preparation",
+    ],
+    notExpected: ["You do not need to rewrite every item.", "You do not need to protect our feelings; reject weak items."],
+  },
+  ihechi: {
+    key: "ihechi",
+    name: "Ihechi",
+    role: "Non-clinical clarity/source-safety reviewer",
+    shortLabel: "Ihechi — clarity/source-safety reviewer",
+    publicUrlSuffix: "#/reviewer?reviewer=ihechi",
+    headline: "Ihechi NCLEX-PN reviewer workspace",
+    intro: "You are reviewing from a sharp science/logic/editorial lens, not as the final clinical authority. We trust you to catch AI-generated wording, weak logic, unclear rationales, suspicious source patterns, and learner-confusing questions.",
+    primaryLens: [
+      "AI-generated or generic wording",
+      "Clarity, logic, and whether a smart learner can follow the rationale",
+      "Source-safety/copyright concerns and suspiciously familiar prep-bank patterns",
+      "Ambiguity: multiple plausible answers, missing facts, or options that cue the answer",
+    ],
+    notExpected: ["You are not expected to make final clinical-safety decisions.", "Use 'uncertain but concerning' when a clinical point feels questionable."],
+  },
+};
+
+export function getReviewerProfile(key = "alexis") {
+  const normalized = String(key || "alexis").toLowerCase().trim();
+  return REVIEWER_PROFILES[normalized] || REVIEWER_PROFILES.alexis;
+}
+
 export const FIRST_TEN_REVIEW_IDS = [
   "assistive_devices_first20_q008_variant_c",
   "assistive_devices_first20_q001_variant_a",
@@ -109,6 +149,7 @@ export function buildReviewerNoteTemplate(id = "[paste question id]", response =
   const scores = response.scores || {};
   return `ID: ${id}
 Reviewer: ${response.reviewerName || "Alexis"}
+Reviewer role: ${response.reviewerRole || getReviewerProfile(response.reviewerKey).role}
 Decision: ${response.decision || "PASS / FIX / REJECT"}
 Scores:
 - Stem realism and clarity: ${scores.stemRealism ?? "_"}/4
@@ -124,14 +165,21 @@ Severity: ${response.severity || "minor / important / critical"}`;
 }
 
 export function buildReviewIssueBody(item = {}, response = {}, scoreResult = scoreExternalReview(response.scores || {})) {
+  const profile = getReviewerProfile(response.reviewerKey || response.reviewerName);
+  const role = response.reviewerRole || profile.role;
+  const lens = response.reviewerLens || profile.primaryLens || [];
   return [
-    "## External nurse review",
+    "## External reviewer response",
     "",
     `Question ID: ${item.id || response.id || "unknown"}`,
     `Reviewer: ${response.reviewerName || "Alexis"}`,
+    `Reviewer role: ${role}`,
     `Decision: ${response.decision || scoreResult.decision}`,
     `Computed score: ${scoreResult.total}/${scoreResult.max} (${scoreResult.percent}%)`,
     scoreResult.blockers.length ? `Blockers: ${scoreResult.blockers.join("; ")}` : "Blockers: none",
+    "",
+    "## Role lens",
+    ...lens.map((item) => `- ${item}`),
     "",
     "## Scores",
     ...EXTERNAL_REVIEW_CRITERIA.map((criterion) => `- ${criterion.label}: ${Number(response.scores?.[criterion.id] ?? 0)}/4`),
@@ -158,12 +206,18 @@ export function buildReviewIssueBody(item = {}, response = {}, scoreResult = sco
     "",
     "## Privacy/safety acknowledgement",
     "This review does not include raw NCLEX result-report text, screenshots, email text, or personal identifiers.",
+    "",
+    "## Copyright/source-safety acknowledgement",
+    "I did not paste unpublished questions into public AI/search tools, search engines, forums, or third-party sites.",
+    "I flagged any question that felt copied, source-derived, or suspiciously similar to NCLEX prep-bank material.",
+    "I understand this pilot uses draft calibration items and is not student-facing public qbank content.",
   ].join("\n");
 }
 
 export function buildGitHubIssueUrl({ repo = "Chukwuemeka001/nclex-pn-reviewer", item = {}, response = {}, scoreResult } = {}) {
   const computed = scoreResult || scoreExternalReview(response.scores || {});
-  const title = `[Review] ${item.id || response.id || "question"} — ${response.decision || computed.decision}`;
+  const reviewer = response.reviewerName || getReviewerProfile(response.reviewerKey).name;
+  const title = `[Review][${reviewer}] ${item.id || response.id || "question"} — ${response.decision || computed.decision}`;
   const body = buildReviewIssueBody(item, response, computed);
   const params = new URLSearchParams({ title, body, labels: "external-review" });
   return `https://github.com/${repo}/issues/new?${params.toString()}`;

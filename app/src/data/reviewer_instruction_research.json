@@ -1,0 +1,37 @@
+[
+  {
+    "source": "Cochrane patient/public peer review",
+    "url": "https://www.cochrane.org/get-involved/peer-review-patients-and-public",
+    "pattern": "Give non-expert reviewers a bounded role, guided feedback, and permission to flag unclear or hard-to-use wording."
+  },
+  {
+    "source": "NICE people and communities involvement",
+    "url": "https://www.nice.org.uk/get-involved/people-and-communities",
+    "pattern": "Treat different reviewer backgrounds as different lenses; provide induction and make uncertainty acceptable."
+  },
+  {
+    "source": "PLOS how to review a manuscript",
+    "url": "https://plos.org/resource/how-to-review-a-manuscript/",
+    "pattern": "Separate major from minor issues; comments should say what is wrong, why it matters, and what would fix it."
+  },
+  {
+    "source": "ICMJE reviewer responsibilities",
+    "url": "https://www.icmje.org/recommendations/browse/roles-and-responsibilities/responsibilities-in-the-submission-and-peer-peview-process.html",
+    "pattern": "Require confidentiality, conflict awareness, prompt review, and constructive honesty; warn against unsafe AI/tool sharing."
+  },
+  {
+    "source": "NCSBN NCLEX test plans",
+    "url": "https://www.nclex.com/test-plans.page",
+    "pattern": "Map practice questions to NCLEX-PN client needs and entry-level practical nursing judgment; use official materials as framework, not copied qbank content."
+  },
+  {
+    "source": "MedlinePlus quality criteria",
+    "url": "https://medlineplus.gov/about/using/criteria/",
+    "pattern": "Prefer transparent, authoritative, science-based sources and flag unsupported clinical claims."
+  },
+  {
+    "source": "University of Waterloo MCQ design",
+    "url": "https://uwaterloo.ca/centre-for-teaching-excellence/catalogs/tip-sheets/designing-multiple-choice-questions",
+    "pattern": "Review stems and options separately; options should be plausible, parallel, and not cue the answer."
+  }
+]

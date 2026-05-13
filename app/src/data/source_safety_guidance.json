@@ -1,0 +1,34 @@
+[
+  {
+    "category": "Potentially verbatim-safe with attribution",
+    "source": "Open RN / WisTech Open nursing textbooks",
+    "url": "https://wtcs.pressbooks.pub/nursingfundamentals/",
+    "licenseNote": "Generally CC BY 4.0 except where otherwise noted. Verify page/activity/media-level exceptions.",
+    "allowedUse": "Can copy/adapt/remix compatible content with attribution, license notice, and modification note.",
+    "recommendedUse": "Primary OER concept source for building original PN-scope questions; verbatim use is possible only after license check."
+  },
+  {
+    "category": "Potentially verbatim-safe after page check",
+    "source": "U.S. federal public-domain health materials such as CDC/FDA/NIH",
+    "url": "https://www.cdc.gov/other/agencymaterials.html",
+    "licenseNote": "Many federal-authored materials are public domain, but pages may contain third-party/contractor content.",
+    "allowedUse": "Use verified public-domain facts/text with attribution; avoid images/tables unless clearly public-domain.",
+    "recommendedUse": "Clinical rationale/reference support, not usually direct NCLEX-style qbank items."
+  },
+  {
+    "category": "Framework only, not verbatim",
+    "source": "NCSBN / NCLEX official materials",
+    "url": "https://www.nclex.com/prepare.page",
+    "licenseNote": "Official materials are copyrighted and exam content is confidential. Terms are restrictive.",
+    "allowedUse": "Use test plans, client-needs taxonomy, item-type descriptions, and clinical judgment model as framework references.",
+    "recommendedUse": "Do not copy sample questions, exam preview content, case screenshots, or PDFs into the app without written permission."
+  },
+  {
+    "category": "Hard no-go",
+    "source": "Commercial qbanks/free previews/brain dumps/recalled questions",
+    "url": "internal-policy",
+    "licenseNote": "Visible/free does not mean reusable; recalled NCLEX content creates exam-security and copyright risk.",
+    "allowedUse": "Market research only; no copying, scraping, close paraphrasing, or importing.",
+    "recommendedUse": "Reject and flag source concern if any item resembles UWorld, Archer, ATI, Kaplan, Saunders, Bootcamp, Quizlet dumps, Reddit/Telegram dumps, or instructor test banks."
+  }
+]
