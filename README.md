@@ -1,9 +1,17 @@
 # NCLEX-PN Reviewer Portal
 
-Mobile-first external nurse reviewer portal for first-10 calibration review.
+Mobile-first external reviewer portal for calibration review.
 
-Live route:
+Live reviewer links:
 
-https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer
+- Alexis: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=alexis
+- Ihechi: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=ihechi
 
-Privacy rule: do not enter raw NCLEX result-report text, screenshots, emails, or personal identifiers into this public review site. Use the site for question review only.
+Capture method:
+
+- Each reviewer submits one prefilled GitHub Issue per question.
+- If GitHub login blocks them, they can copy all saved drafts as JSON.
+
+Privacy/source-safety rule:
+
+Do not enter raw NCLEX result-report text, screenshots, emails, personal identifiers, commercial qbank questions, recalled NCLEX items, or copyrighted prep-bank content into this public review site.
