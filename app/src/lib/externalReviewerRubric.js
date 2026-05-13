@@ -31,6 +31,22 @@ export const REVIEWER_PROFILES = {
     ],
     notExpected: ["You are not expected to make final clinical-safety decisions.", "Use 'uncertain but concerning' when a clinical point feels questionable."],
   },
+  emeka: {
+    key: "emeka",
+    name: "Emeka",
+    role: "Founder clinical/product reviewer",
+    shortLabel: "Emeka — founder approval reviewer",
+    publicUrlSuffix: "#/reviewer?reviewer=emeka",
+    headline: "Emeka founder review workspace",
+    intro: "Use this lane for your own brutally honest founder/clinical/product review. Your job is to decide whether an item belongs in the build plan, needs rewrite, needs source-safety investigation, or should be killed before Alexis/Ihechi feedback is merged.",
+    primaryLens: [
+      "Founder product bar: would this belong in the cheap/free NCLEX-PN trainer we are actually building?",
+      "Clinical/product approval gate: pass, fix, reject, rewrite, or investigate source risk",
+      "Rewrite planning: what exactly should change before another reviewer sees it?",
+      "Business fit: does this help weak PN/RPN/LPN students after work, or is it generic qbank filler?",
+    ],
+    notExpected: ["You do not need to be polite to the question.", "Do not approve because we already spent time on it; sunk-cost items get rejected."],
+  },
 };
 
 export function getReviewerProfile(key = "alexis") {

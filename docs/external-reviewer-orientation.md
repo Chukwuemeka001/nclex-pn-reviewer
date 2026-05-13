@@ -3,6 +3,7 @@
 Audience: Alexis, Ihechi, or any trusted external reviewer who did not build the app with us.
 
 Public mobile reviewer links:
+- Emeka: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=emeka
 - Alexis: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=alexis
 - Ihechi: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=ihechi
 
@@ -41,6 +42,19 @@ Potentially safe sources for concepts, with checks:
 If a reviewer thinks a question feels copied or familiar, they should tag `source concern` even if they cannot prove it.
 
 ## Reviewer roles
+
+### Emeka
+
+Role: founder clinical/product reviewer.
+
+Primary lens:
+- founder product bar;
+- approval gate: pass, fix, reject, rewrite, or investigate source risk;
+- clinical usefulness for PN/RPN/LPN students;
+- what should change before Alexis/Ihechi reviews are merged;
+- business fit: whether this is actually useful or just qbank filler.
+
+Emeka should use his own reviewer lane for his notes instead of mixing them into Alexis/Ihechi. His reviews become the internal founder baseline for comparison.
 
 ### Alexis
 

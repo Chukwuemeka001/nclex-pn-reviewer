@@ -76,13 +76,28 @@ function testGitHubIssueCaptureUrlIsPrefilledAndPrivateSafe() {
   assert.ok(parsed.searchParams.get("body").includes("Needs better why-wrong teaching."));
 }
 
-function testReviewerProfilesCoverAlexisAndIhechi() {
+function testReviewerProfilesCoverAlexisIhechiAndEmeka() {
   assert.equal(REVIEWER_PROFILES.alexis.name, "Alexis");
   assert.equal(REVIEWER_PROFILES.ihechi.name, "Ihechi");
+  assert.equal(REVIEWER_PROFILES.emeka.name, "Emeka");
   assert.match(REVIEWER_PROFILES.ihechi.role, /non-clinical/i);
+  assert.match(REVIEWER_PROFILES.emeka.role, /founder|clinical/i);
   assert.ok(REVIEWER_PROFILES.ihechi.primaryLens.some((lens) => /AI-generated|source-safety|clarity/i.test(lens)));
-  assert.equal(getReviewerProfile("ihechi").name, "Ihechi");
+  assert.ok(REVIEWER_PROFILES.emeka.primaryLens.some((lens) => /product|approval|rewrite/i.test(lens)));
+  assert.equal(getReviewerProfile("emeka").name, "Emeka");
   assert.equal(getReviewerProfile("unknown").name, "Alexis");
+}
+
+function testEmekaIssueCaptureIncludesFounderReviewLane() {
+  const item = { id: "q3", stem: "Which action is safest?", answerChoices: ["A", "B"], correctAnswerText: "A", rationale: "Because A protects safety." };
+  const response = { reviewerName: "Emeka", reviewerKey: "emeka", reviewerRole: "Founder clinical/product reviewer", decision: "REJECT", issueType: "approval gate, rewrite required", severity: "critical", notes: "This should not move forward; rationale is not good enough for our product bar.", suggestedFix: "Rebuild from source-safe OER concept and rerun human review.", scores: { stemRealism: 2, distractors: 2, rationaleTeaching: 1, pnScope: 3, clinicalSafety: 3, studentExperience: 1 } };
+  const body = buildReviewIssueBody(item, response);
+  assert.ok(body.includes("Reviewer: Emeka"));
+  assert.ok(body.includes("Founder clinical/product reviewer"));
+  assert.ok(body.includes("approval gate, rewrite required"));
+  const url = buildGitHubIssueUrl({ repo: "Chukwuemeka001/nclex-pn-reviewer", item, response });
+  const parsed = new URL(url);
+  assert.ok(parsed.searchParams.get("title").includes("[Emeka]"));
 }
 
 function testIhechiIssueCaptureIncludesRoleLensAndCopyrightAttestation() {
@@ -101,7 +116,8 @@ function testIhechiIssueCaptureIncludesRoleLensAndCopyrightAttestation() {
 }
 
 function run() {
-  testReviewerProfilesCoverAlexisAndIhechi();
+  testReviewerProfilesCoverAlexisIhechiAndEmeka();
+  testEmekaIssueCaptureIncludesFounderReviewLane();
   testRubricHasClearColdReviewerCriteria();
   testReviewerScoreRequiresCriticalSafetyPass();
   testReviewerScoreCanPassStrongQuestion();
