@@ -32,6 +32,9 @@ Use any qbank; bring your missed areas here; this app turns them into a PN-safe 
 - NCLEX_FREE_SAFE_SOURCE_STRATEGY.md
 - NCLEX_QUESTION_QUALITY_RUBRIC.md
 - HERMES_NCLEX_CONTEXT.md
+- HERMES_CODEMAP.md — living app/code map for reducing Opus/Sonnet/Hermes token burn.
+- /Users/emeka/Documents/Emeka_Project_Tracker.md — cross-project roadmap and drift rules.
+- /Users/emeka/Documents/Emeka_AI_Engineering_Operating_Model.md — Hermes/Sonnet/Opus workflow and ROI routing rules.
 - BRAND_OPTIONS.md
 
 ## Content safety rule
