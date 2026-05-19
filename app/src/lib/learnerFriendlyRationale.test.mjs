@@ -41,11 +41,21 @@ function testRewritePromptPreservesClinicalFactsAndAsksForPlainLanguage() {
   assert.ok(prompt.includes("JSON"));
 }
 
+function testAssessmentFlagsGenericRationaleWithoutOptionSpecificWhyWrong() {
+  const result = assessLearnerFriendlyRationale({
+    rationale: "This is correct because it is in PN scope and the other options are not the best answer.",
+    whyWrong: ["Not the best answer.", "Not the best answer.", "Not the best answer."],
+  });
+  assert.equal(result.passed, false);
+  assert.ok(result.issues.some((issue) => issue.includes("specific to that option")));
+}
+
 function run() {
   testAssessmentFlagsJargonAndNoWhyWrong();
   testAssessmentAcceptsClearTeachingRationale();
   testChecklistUsesEasyNursingTeachingLanguage();
   testRewritePromptPreservesClinicalFactsAndAsksForPlainLanguage();
+  testAssessmentFlagsGenericRationaleWithoutOptionSpecificWhyWrong();
   console.log("learnerFriendlyRationale tests passed");
 }
 

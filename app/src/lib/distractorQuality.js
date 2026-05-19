@@ -11,6 +11,23 @@ function normalizeChoices(choices = []) {
   return Array.isArray(choices) ? choices.map((choice) => String(choice || "").trim()).filter(Boolean) : [];
 }
 
+function meaningfulTokens(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((token) => token.length >= 4)
+    .filter((token) => !new Set(["client", "nurse", "which", "should", "first", "report", "finding", "action", "take", "what", "with", "that", "this", "care", "after", "before", "because", "would", "could", "offer", "document", "review"]).has(token));
+}
+
+function answerGiveawayScore(stem, choice) {
+  const stemTokens = new Set(meaningfulTokens(stem));
+  const choiceTokens = meaningfulTokens(choice);
+  if (!stemTokens.size || !choiceTokens.length) return 0;
+  const overlap = choiceTokens.filter((token) => stemTokens.has(token));
+  return overlap.length / Math.max(1, choiceTokens.length);
+}
+
 export function assessDistractorPlausibility({ stem = "", choices = [], correctAnswerIndexes = [] } = {}) {
   const normalizedChoices = normalizeChoices(choices);
   const correct = new Set(Array.isArray(correctAnswerIndexes) ? correctAnswerIndexes : []);
@@ -29,6 +46,12 @@ export function assessDistractorPlausibility({ stem = "", choices = [], correctA
   });
 
   const issues = [];
+  const correctChoices = normalizedChoices.filter((_, index) => correct.has(index));
+  const giveawayCorrect = correctChoices.some((choice) => answerGiveawayScore(stem, choice) >= 0.55);
+  const giveawayWrong = normalizedChoices.filter((choice, index) => !correct.has(index) && answerGiveawayScore(stem, choice) >= 0.55);
+  if (giveawayCorrect && giveawayWrong.length === 0) {
+    issues.push("Correct answer may be guessed from wording overlap with the stem. Rewrite options so nursing judgment, not repeated wording, identifies the answer.");
+  }
   if (flaggedChoices.length > 0) {
     issues.push("One or more distractors are too obviously unsafe. Replace with plausible nursing actions that are tempting but less complete, less urgent, or not the safest first step.");
   }
@@ -51,6 +74,7 @@ export function distractorRewriteGuidance() {
   return [
     "Avoid cartoonishly unsafe options such as giving medication without an order unless the item specifically tests that safety rule.",
     "Make wrong options plausible nursing actions that are less urgent, incomplete, or not the safest first step.",
+    "Avoid repeating the exact stem wording only in the correct answer; otherwise learners can guess without nursing knowledge.",
     "For constipation, better distractors include checking diet/fluid restrictions, reviewing prescribed stool softeners, encouraging mobility as tolerated, or assessing bowel pattern before intervention.",
   ];
 }

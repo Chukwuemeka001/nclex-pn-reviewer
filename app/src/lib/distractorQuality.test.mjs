@@ -44,10 +44,27 @@ function testDoesNotFlagCorrectEmergencyActions() {
   assert.equal(result.flaggedChoices.some((choice) => choice.choice === "Start CPR."), false);
 }
 
+function testFlagsCorrectAnswerGiveawayFromStemWording() {
+  const result = assessDistractorPlausibility({
+    stem: "The PN notices repeated food left untouched on one side of the plate. Which finding should be reported?",
+    choices: [
+      "Report food repeatedly left untouched on one side of the tray.",
+      "Offer the client a different meal tray.",
+      "Ask family to bring preferred foods.",
+      "Document that appetite is poor.",
+    ],
+    correctAnswerIndexes: [0],
+  });
+
+  assert.equal(result.passed, false);
+  assert.ok(result.issues.some((issue) => issue.includes("guessed from wording")));
+}
+
 function run() {
   testFlagsCartoonishlyUnsafeOrderViolationDistractor();
   testAcceptsPlausibleButIncorrectNursingDistractors();
   testDoesNotFlagCorrectEmergencyActions();
+  testFlagsCorrectAnswerGiveawayFromStemWording();
   console.log("distractorQuality tests passed");
 }
 

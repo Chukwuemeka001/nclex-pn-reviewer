@@ -16,6 +16,22 @@ const TEACHING_SIGNALS = [
   /client|patient|nurse|PN|practical nurse/i,
 ];
 
+const GENERIC_WHY_WRONG_PATTERNS = [
+  /^not (the )?(best|correct) answer\.?$/i,
+  /^incorrect\.?$/i,
+  /^less appropriate\.?$/i,
+  /^not priority\.?$/i,
+  /^outside scope\.?$/i,
+  /does not (fit|apply|address) (the )?(question|scope|priority)/i,
+];
+
+function isGenericWhyWrong(text) {
+  const value = String(text || "").trim();
+  if (!value) return true;
+  if (value.split(/\s+/).length < 6) return true;
+  return GENERIC_WHY_WRONG_PATTERNS.some((pattern) => pattern.test(value));
+}
+
 export function learnerFriendlyChecklist() {
   return [
     "Start with what the nurse should notice.",
@@ -62,6 +78,9 @@ export function assessLearnerFriendlyRationale({ rationale = "", whyWrong = [] }
   if (wrong.length < 2) {
     issues.push("Add why the wrong answers are less safe, less urgent, or incomplete.");
     score -= 1;
+  } else if (wrong.some(isGenericWhyWrong)) {
+    issues.push("Make each why-wrong explanation specific to that option, not just 'not the best answer' or repeated scope language.");
+    score -= 2;
   }
 
   score = Math.max(0, Math.min(4, score));
