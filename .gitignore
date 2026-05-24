@@ -35,6 +35,7 @@ qbank_pipeline/clinical_review_queue/
 qbank_pipeline/approved_questions/
 qbank_pipeline/rejected_questions/
 qbank_pipeline/review_logs/
+qbank_pipeline/external_review_submissions/
 qbank_pipeline/validation_reports/
 qbank_pipeline/batch_reports/
 qbank_pipeline/manifests/qbank_groups.json

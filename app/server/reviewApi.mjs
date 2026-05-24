@@ -15,6 +15,7 @@ const dirs = {
   approved: path.join(pipelineRoot, "approved_questions"),
   rejected: path.join(pipelineRoot, "rejected_questions"),
   logs: path.join(pipelineRoot, "review_logs"),
+  externalSubmissions: path.join(pipelineRoot, "external_review_submissions"),
 };
 const files = {
   tagIndex: path.join(pipelineRoot, "tag_index.json"),
@@ -22,6 +23,7 @@ const files = {
   rejected: path.join(dirs.rejected, "review_console_rejected_questions.json"),
   events: path.join(dirs.logs, "review_events.json"),
   working: path.join(dirs.logs, "review_working_items.json"),
+  externalSubmissionLog: path.join(dirs.logs, "external_review_submissions.jsonl"),
 };
 
 async function ensureDirs() {
@@ -264,6 +266,50 @@ async function appendEvent(event) {
   await writeJson(files.events, events);
 }
 
+function safeFilePart(value) {
+  return String(value || "unknown").toLowerCase().replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80) || "unknown";
+}
+
+function normalizeExternalSubmissionPayload(body = {}) {
+  if (body.schemaVersion === "external-review-batch.v1") {
+    const submissions = Array.isArray(body.submissions) ? body.submissions : [];
+    if (!submissions.length) throw new Error("Batch contains no review submissions.");
+    return { batch: body, submissions };
+  }
+  if (body.schemaVersion === "external-review-submission.v1" || body.questionId || body.response) {
+    return { batch: null, submissions: [body] };
+  }
+  throw new Error("Unsupported external review payload.");
+}
+
+async function appendExternalSubmissionLog(record) {
+  await fs.mkdir(path.dirname(files.externalSubmissionLog), { recursive: true });
+  await fs.appendFile(files.externalSubmissionLog, `${JSON.stringify(record)}\n`, "utf8");
+}
+
+async function saveExternalReviewSubmission(body = {}) {
+  const { batch, submissions } = normalizeExternalSubmissionPayload(body);
+  const now = new Date().toISOString();
+  const saved = [];
+  await fs.mkdir(dirs.externalSubmissions, { recursive: true });
+  for (const submission of submissions) {
+    const reviewer = submission.reviewer || batch?.reviewer || {};
+    const questionId = submission.questionId || submission.itemSnapshot?.id || "unknown";
+    const record = {
+      ...submission,
+      receivedAt: now,
+      source: "external_reviewer_public_form",
+    };
+    const fileName = `${now.replace(/[:.]/g, "-")}_${safeFilePart(reviewer.key || reviewer.name)}_${safeFilePart(questionId)}.json`;
+    const filePath = path.join(dirs.externalSubmissions, fileName);
+    await writeJson(filePath, record);
+    await appendExternalSubmissionLog({ receivedAt: now, reviewer: reviewer.key || reviewer.name || "unknown", questionId, decision: submission.decision || "", file: filePath });
+    saved.push({ questionId, reviewer: reviewer.key || reviewer.name || "unknown", file: filePath });
+  }
+  await appendEvent({ type: "external_review_submitted", count: saved.length, reviewer: batch?.reviewer?.key || saved[0]?.reviewer || "unknown", saved });
+  return { ok: true, savedCount: saved.length, saved };
+}
+
 async function upsertWorking(item) {
   const working = await readJson(files.working, []);
   const id = idFromDraft(item);
@@ -496,6 +542,7 @@ async function handleRequest(req, res) {
           "GET /health",
           "GET /api/review/state",
           "POST /api/review/save",
+          "POST /api/external-reviews",
           "POST /api/review/batch-approve",
           "POST /api/review/items/:id/approve",
           "POST /api/review/items/:id/reject",
@@ -511,6 +558,10 @@ async function handleRequest(req, res) {
       await upsertWorking(body.item);
       await appendEvent({ type: "saved", id: idFromDraft(body.item), reviewerNote: body.reviewerNote || "" });
       return json(res, { ok: true });
+    }
+    if (req.method === "POST" && url.pathname === "/api/external-reviews") {
+      const saved = await saveExternalReviewSubmission(body);
+      return json(res, saved);
     }
     if (req.method === "POST" && url.pathname === "/api/review/batch-approve") {
       const result = await batchApproveItems(body);

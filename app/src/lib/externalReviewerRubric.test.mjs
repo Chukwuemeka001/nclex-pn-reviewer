@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import {
   EXTERNAL_REVIEW_CRITERIA,
   FIRST_TEN_REVIEW_IDS,
+  buildExternalReviewBatch,
+  buildExternalReviewSubmission,
   buildGitHubIssueUrl,
   buildReviewIssueBody,
   REVIEWER_PROFILES,
@@ -115,6 +117,30 @@ function testIhechiIssueCaptureIncludesRoleLensAndCopyrightAttestation() {
   assert.ok(parsed.searchParams.get("body").includes("too similar to a prep-bank pattern"));
 }
 
+function testExternalReviewSubmissionPayloadIsDatabaseFriendly() {
+  const item = { id: "q4", stem: "Which action is best?", answerChoices: ["Assess", "Delay"], correctAnswerIndexes: [0], correctAnswerText: "Assess", rationale: "Assess first.", whyWrong: ["", "Delay may miss deterioration."], tags: { topic: "safety" } };
+  const response = { reviewerName: "Emeka", reviewerKey: "emeka", reviewerRole: REVIEWER_PROFILES.emeka.role, decision: "FIX", issueType: "rationale", severity: "important", notes: "Useful but not teaching enough.", suggestedFix: "Improve why-wrong.", scores: { stemRealism: 3, distractors: 3, rationaleTeaching: 2, pnScope: 4, clinicalSafety: 4, studentExperience: 2 } };
+  const submission = buildExternalReviewSubmission({ item, response });
+  assert.equal(submission.schemaVersion, "external-review-submission.v1");
+  assert.equal(submission.questionId, "q4");
+  assert.equal(submission.reviewer.key, "emeka");
+  assert.equal(submission.response.notes, "Useful but not teaching enough.");
+  assert.equal(submission.itemSnapshot.stem, item.stem);
+  assert.equal(submission.acknowledgements.calibrationOnlyNotStudentFacing, true);
+}
+
+function testExternalReviewBatchIncludesOnlyCompletedDraftsByDefault() {
+  const items = [{ id: "q1", stem: "A" }, { id: "q2", stem: "B" }];
+  const drafts = {
+    q1: { reviewerName: "Alexis", decision: "PASS", scores: { stemRealism: 4, distractors: 4, rationaleTeaching: 4, pnScope: 4, clinicalSafety: 4, studentExperience: 4 } },
+    q2: { reviewerName: "Alexis", scores: { stemRealism: 0 } },
+  };
+  const batch = buildExternalReviewBatch({ items, drafts, reviewerProfile: REVIEWER_PROFILES.alexis });
+  assert.equal(batch.schemaVersion, "external-review-batch.v1");
+  assert.equal(batch.count, 1);
+  assert.equal(batch.submissions[0].questionId, "q1");
+}
+
 function run() {
   testReviewerProfilesCoverAlexisIhechiAndEmeka();
   testEmekaIssueCaptureIncludesFounderReviewLane();
@@ -125,6 +151,8 @@ function run() {
   testSummaryExplainsDecisionBands();
   testGitHubIssueCaptureUrlIsPrefilledAndPrivateSafe();
   testIhechiIssueCaptureIncludesRoleLensAndCopyrightAttestation();
+  testExternalReviewSubmissionPayloadIsDatabaseFriendly();
+  testExternalReviewBatchIncludesOnlyCompletedDraftsByDefault();
   console.log("externalReviewerRubric tests passed");
 }
 

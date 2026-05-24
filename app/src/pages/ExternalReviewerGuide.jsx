@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ClipboardCheck, ExternalLink, FileText, ShieldCheck, Stethoscope, UserCheck } from "lucide-react";
+import { ClipboardCheck, Database, ExternalLink, FileText, ShieldCheck, Stethoscope, UserCheck } from "lucide-react";
 import reviewItems from "../data/external_review_first10.json";
 import reviewerInstructionResearch from "../data/reviewer_instruction_research.json";
 import sourceSafetyGuidance from "../data/source_safety_guidance.json";
@@ -8,6 +8,8 @@ import {
   FIRST_TEN_REVIEW_IDS,
   NCLEX_RESULT_REPORT_CASE_STUDY_GUIDANCE,
   REVIEWER_PROFILES,
+  buildExternalReviewBatch,
+  buildExternalReviewSubmission,
   buildGitHubIssueUrl,
   buildReviewerNoteTemplate,
   getReviewerProfile,
@@ -17,6 +19,7 @@ import {
 
 const scoreOptions = [0, 1, 2, 3, 4];
 const captureRepo = import.meta.env.VITE_REVIEW_CAPTURE_REPO || "Chukwuemeka001/nclex-pn-reviewer";
+const reviewSubmitEndpoint = import.meta.env.VITE_EXTERNAL_REVIEW_SUBMIT_ENDPOINT || "";
 
 function reviewerKeyFromLocation() {
   const hash = window.location.hash || "";
@@ -79,7 +82,9 @@ export default function ExternalReviewerGuide() {
   const result = useMemo(() => scoreExternalReview(response.scores), [response.scores]);
   const decision = response.decision || result.decision;
   const template = useMemo(() => buildReviewerNoteTemplate(selectedId, { ...response, decision }), [selectedId, response, decision]);
-  const completedCount = FIRST_TEN_REVIEW_IDS.filter((id) => drafts[id]?.submitted || drafts[id]?.decision).length;
+  const completedIds = FIRST_TEN_REVIEW_IDS.filter((id) => drafts[id]?.decision || drafts[id]?.notes || drafts[id]?.submitted);
+  const completedCount = completedIds.length;
+  const hasSubmitEndpoint = Boolean(reviewSubmitEndpoint);
 
   useEffect(() => {
     const onHash = () => {
@@ -123,21 +128,79 @@ export default function ExternalReviewerGuide() {
     }
   }
 
+  function currentPayload() {
+    const submittedAt = new Date().toISOString();
+    const payload = {
+      ...response,
+      submittedAt,
+      decision,
+      reviewerKey: profile.key,
+      reviewerName: response.reviewerName || profile.name,
+      reviewerRole: profile.role,
+      reviewerLens: profile.primaryLens,
+    };
+    return buildExternalReviewSubmission({ item, response: payload, scoreResult: result });
+  }
+
+  async function submitPayload(payload, label) {
+    if (!hasSubmitEndpoint) {
+      await copy(JSON.stringify(payload, null, 2), `${label} copied — send to Emeka`);
+      return { fallbackCopied: true };
+    }
+    const response = await fetch(reviewSubmitEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(body.error || `Submit failed with HTTP ${response.status}`);
+    return body;
+  }
+
+  async function submitCurrent() {
+    const submittedAt = new Date().toISOString();
+    const submission = currentPayload();
+    try {
+      await submitPayload(submission, "Current review");
+      updateResponse({ submitted: true, submittedAt });
+      setCopied(hasSubmitEndpoint ? "Current review submitted and saved." : "Current review copied. Send it to Emeka if no backend is connected.");
+    } catch (error) {
+      await copy(JSON.stringify(submission, null, 2), "Submit failed; copied current review JSON");
+      setCopied(`Submit failed, so JSON was copied instead: ${error.message}`);
+    }
+  }
+
+  async function submitAllCompleted() {
+    const batch = buildExternalReviewBatch({ items: reviewItems, drafts, reviewerProfile: profile, onlyCompleted: true });
+    if (!batch.count) {
+      setCopied("No completed/drafted reviews to submit yet.");
+      return;
+    }
+    try {
+      await submitPayload(batch, "All completed reviews");
+      const submittedAt = new Date().toISOString();
+      setDrafts((current) => {
+        const next = { ...current };
+        for (const submission of batch.submissions) {
+          next[submission.questionId] = { ...(next[submission.questionId] || {}), submitted: true, submittedAt };
+        }
+        return next;
+      });
+      setCopied(hasSubmitEndpoint ? `${batch.count} reviews submitted and saved.` : `${batch.count} reviews copied. Send them to Emeka if no backend is connected.`);
+    } catch (error) {
+      await copy(JSON.stringify(batch, null, 2), "Submit failed; copied all reviews JSON");
+      setCopied(`Submit failed, so JSON was copied instead: ${error.message}`);
+    }
+  }
+
   function openIssue() {
     const payload = { ...response, decision, reviewerKey: profile.key, reviewerName: response.reviewerName || profile.name, reviewerRole: profile.role, reviewerLens: profile.primaryLens };
     const url = buildGitHubIssueUrl({ repo: captureRepo, item, response: payload, scoreResult: result });
-    updateResponse({ submitted: true, submittedAt: new Date().toISOString() });
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
   function exportAll() {
-    const payload = {
-      exportedAt: new Date().toISOString(),
-      reviewer: profile.name,
-      reviewerRole: profile.role,
-      drafts,
-      note: "Fallback export from phone localStorage. GitHub Issues are the source of truth when submitted.",
-    };
+    const payload = buildExternalReviewBatch({ items: reviewItems, drafts, reviewerProfile: profile, onlyCompleted: false });
     copy(JSON.stringify(payload, null, 2), "All drafts copied as JSON");
   }
 
@@ -149,9 +212,11 @@ export default function ExternalReviewerGuide() {
           <h1>{profile.headline}</h1>
           <p>{profile.intro}</p>
           <div className="button-row">
-            <button className="primary-btn" onClick={openIssue}><ExternalLink size={18} /> Submit current review to GitHub</button>
-            <button className="secondary-btn" onClick={exportAll}>Copy all saved drafts</button>
+            <button className="primary-btn" onClick={submitCurrent}><Database size={18} /> Submit current review</button>
+            <button className="primary-btn" onClick={submitAllCompleted}><ClipboardCheck size={18} /> Submit all completed</button>
+            <button className="secondary-btn" onClick={exportAll}>Copy/export backup</button>
           </div>
+          <p className="helper-text">{hasSubmitEndpoint ? "Submits directly to the review log. No GitHub account or issue screen." : "Backend endpoint is not connected in this build, so submit buttons copy JSON as a safe fallback."}</p>
         </div>
         <div className="reviewer-hero-card">
           <UserCheck size={28} />
@@ -173,7 +238,7 @@ export default function ExternalReviewerGuide() {
       <div className="reviewer-step-grid">
         <article className="reviewer-step-card"><span>1</span><h2>Choose your reviewer space</h2><p>Use your own link so your name and role are captured correctly.</p></article>
         <article className="reviewer-step-card"><span>2</span><h2>Read before showing key</h2><p>Choose the answer first. Then show the rationale and score the item.</p></article>
-        <article className="reviewer-step-card"><span>3</span><h2>Submit one issue per question</h2><p>Tap submit, review the prefilled GitHub Issue, then tap “Submit new issue.”</p></article>
+        <article className="reviewer-step-card"><span>3</span><h2>Submit without GitHub</h2><p>Tap “Submit current review” or “Submit all completed.” GitHub issue export stays available only as an admin fallback.</p></article>
       </div>
 
       <article className="reviewer-panel">
@@ -266,13 +331,13 @@ export default function ExternalReviewerGuide() {
           <label className="field"><span>{profile.name} notes</span><textarea value={response.notes} onChange={(event) => updateResponse({ notes: event.target.value })} placeholder="Be blunt. What feels fake, unsafe, unclear, copied, too easy, or actually useful?" /></label>
           <label className="field"><span>Suggested fix, if any</span><textarea value={response.suggestedFix} onChange={(event) => updateResponse({ suggestedFix: event.target.value })} placeholder="Only suggest a fix if it is obvious. If unsure, say what concern needs checking." /></label>
           <pre className="review-template">{template}</pre>
-          <div className="button-row"><button className="primary-btn" onClick={openIssue}>Submit to GitHub Issues</button><button className="secondary-btn" onClick={() => copy(template, "Template copied")}>Copy note</button></div>
+          <div className="button-row"><button className="primary-btn" onClick={submitCurrent}>Submit current review</button><button className="primary-btn" onClick={submitAllCompleted}>Submit all completed</button><button className="secondary-btn" onClick={() => copy(template, "Template copied")}>Copy note</button><button className="secondary-btn" onClick={openIssue}><ExternalLink size={16} /> GitHub fallback</button></div>
           {copied && <div className="notice approved-banner">{copied}</div>}
         </article>
       </div>
 
       <div className="reviewer-layout">
-        <article className="reviewer-panel"><h2>What “good review” means</h2><ol className="reviewer-checklist"><li>Say what is wrong, why it matters, and what would fix it.</li><li>Separate major issues from minor edits.</li><li>Flag uncertainty instead of guessing.</li><li>Mark low-quality AI-sounding rationales down even if the answer key is right.</li><li>Reject anything unsafe, copied-looking, or not useful for learners.</li><li>Submit one GitHub Issue per question.</li></ol></article>
+        <article className="reviewer-panel"><h2>What “good review” means</h2><ol className="reviewer-checklist"><li>Say what is wrong, why it matters, and what would fix it.</li><li>Separate major issues from minor edits.</li><li>Flag uncertainty instead of guessing.</li><li>Mark low-quality AI-sounding rationales down even if the answer key is right.</li><li>Reject anything unsafe, copied-looking, or not useful for learners.</li><li>Use “Submit current review” for one item, or “Submit all completed” when finished. GitHub is only a fallback.</li></ol></article>
         <article className="reviewer-panel warning-box"><h2>NCLEX result report privacy</h2><p>Do not upload raw failed-result emails/reports here. If Emeka leaves a report in Downloads, Hermes can privately summarize broad weakness categories later. The public review site should never receive screenshots, exact report text, or identifiers.</p><ul>{NCLEX_RESULT_REPORT_CASE_STUDY_GUIDANCE.map((item) => <li key={item}>{item}</li>)}</ul></article>
       </div>
 

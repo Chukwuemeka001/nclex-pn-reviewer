@@ -230,6 +230,75 @@ export function buildReviewIssueBody(item = {}, response = {}, scoreResult = sco
   ].join("\n");
 }
 
+export function buildExternalReviewSubmission({ item = {}, response = {}, scoreResult } = {}) {
+  const computed = scoreResult || scoreExternalReview(response.scores || {});
+  const profile = getReviewerProfile(response.reviewerKey || response.reviewerName);
+  const decision = response.decision || computed.decision;
+  return {
+    schemaVersion: "external-review-submission.v1",
+    submittedAt: response.submittedAt || new Date().toISOString(),
+    questionId: item.id || response.id || "unknown",
+    reviewer: {
+      key: response.reviewerKey || profile.key,
+      name: response.reviewerName || profile.name,
+      role: response.reviewerRole || profile.role,
+      lens: response.reviewerLens || profile.primaryLens || [],
+    },
+    decision,
+    computedScore: {
+      total: computed.total,
+      max: computed.max,
+      percent: computed.percent,
+      decision: computed.decision,
+      blockers: computed.blockers,
+    },
+    response: {
+      issueType: response.issueType || "",
+      severity: response.severity || "",
+      confidence: response.confidence || "",
+      notes: response.notes || "",
+      suggestedFix: response.suggestedFix || "",
+      scores: response.scores || {},
+    },
+    itemSnapshot: {
+      id: item.id || "",
+      stem: item.stem || "",
+      answerChoices: item.answerChoices || [],
+      correctAnswerIndexes: item.correctAnswerIndexes || [],
+      correctAnswerText: item.correctAnswerText || "",
+      rationale: item.rationale || "",
+      whyWrong: item.whyWrong || [],
+      tags: item.tags || {},
+    },
+    acknowledgements: {
+      noRawResultReportText: true,
+      noPublicPastedCommercialQbankContent: true,
+      calibrationOnlyNotStudentFacing: true,
+    },
+  };
+}
+
+export function buildExternalReviewBatch({ items = [], drafts = {}, reviewerProfile = REVIEWER_PROFILES.alexis, onlyCompleted = true } = {}) {
+  const submissions = items
+    .filter((item) => item?.id && drafts[item.id])
+    .filter((item) => !onlyCompleted || drafts[item.id]?.decision || drafts[item.id]?.notes || drafts[item.id]?.submitted)
+    .map((item) => {
+      const response = { ...drafts[item.id], reviewerKey: reviewerProfile.key, reviewerRole: reviewerProfile.role, reviewerLens: reviewerProfile.primaryLens };
+      return buildExternalReviewSubmission({ item, response, scoreResult: scoreExternalReview(response.scores || {}) });
+    });
+  return {
+    schemaVersion: "external-review-batch.v1",
+    exportedAt: new Date().toISOString(),
+    reviewer: {
+      key: reviewerProfile.key,
+      name: reviewerProfile.name,
+      role: reviewerProfile.role,
+    },
+    count: submissions.length,
+    submissions,
+  };
+}
+
 export function buildGitHubIssueUrl({ repo = "Chukwuemeka001/nclex-pn-reviewer", item = {}, response = {}, scoreResult } = {}) {
   const computed = scoreResult || scoreExternalReview(response.scores || {});
   const reviewer = response.reviewerName || getReviewerProfile(response.reviewerKey).name;
