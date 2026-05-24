@@ -1,18 +1,5 @@
-# NCLEX-PN Reviewer Portal
+# NCLEX-PN Reviewer Pilot
 
-Mobile-first external/founder reviewer portal for calibration review.
+Static GitHub Pages build for the external reviewer pilot.
 
-Live reviewer links:
-
-- Emeka: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=emeka
-- Alexis: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=alexis
-- Ihechi: https://chukwuemeka001.github.io/nclex-pn-reviewer/#/reviewer?reviewer=ihechi
-
-Capture method:
-
-- Each reviewer submits one prefilled GitHub Issue per question.
-- If GitHub login blocks them, they can copy all saved drafts as JSON.
-
-Privacy/source-safety rule:
-
-Do not enter raw NCLEX result-report text, screenshots, emails, personal identifiers, commercial qbank questions, recalled NCLEX items, or copyrighted prep-bank content into this public review site.
+Source app lives locally in Emeka's NCLEX repo. This repo contains the deployable `dist/` output.
