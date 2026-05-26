@@ -1,5 +1,3 @@
-# NCLEX-PN Reviewer Pilot
+# NCLEX-PN Reviewer Static Deploy
 
-Static GitHub Pages build for the external reviewer pilot.
-
-Submits reviewer feedback to the deployed Render capture endpoint.
+Generated from app/dist in /Users/emeka/Documents/Codex/2026-05-02/hey-codex-browser-plugin-browser-use.
