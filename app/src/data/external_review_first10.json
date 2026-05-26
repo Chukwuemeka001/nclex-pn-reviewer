@@ -29,8 +29,12 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "needs_structural_rewrite",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "alphaSlice": false,
+    "quorumDecision": "revise_once",
+    "revisionPriority": "P1_structural_rewrite",
+    "revisionPlan": "Rebuild with a direct object and complete option grammar, e.g. client statements showing understanding of brace skin-breakdown prevention."
   },
   {
     "id": "assistive_devices_first20_q001_variant_a",
@@ -46,14 +50,14 @@
       0
     ],
     "correctAnswerText": [
-      "food untouched on one side of the plate"
+      "Orient the tray using clock positions and ask whether the client can locate each food item."
     ],
     "rationale": "Food left on one side of the plate may mean the client cannot locate the food, not that the client is refusing to eat. The first nursing action is to make the tray easier to understand by using clock positions and checking whether the client can find the food. This supports safety, nutrition, and independence.",
     "whyWrong": [
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation."
+      "Documenting refusal is premature because the nurse has not checked whether severe vision loss kept the client from finding food on the tray.",
+      "Changing future meals to finger foods skips the immediate assessment and may reduce independence before trying tray orientation.",
+      "Having the client sweep the plate by hand is less organized and can increase spills compared with predictable clock-position cues."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -62,8 +66,12 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "needs_light_revision",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "alphaSlice": false,
+    "quorumDecision": "revise_once",
+    "revisionPriority": "P0_metadata_then_light_revision",
+    "revisionPlan": "Metadata corrected so correctAnswerText matches option A. Still needs human review after option-specific why-wrong cleanup because Ihechi flagged answer/question mismatch."
   },
   {
     "id": "assistive_devices_first20_q001_variant_b",
@@ -95,8 +103,12 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "quarantined_rewrite_from_scratch",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "alphaSlice": false,
+    "quorumDecision": "quarantine",
+    "revisionPriority": "P1_replace_or_rewrite",
+    "revisionPlan": "Do not reuse the report/complication frame. Stem and correct answer echo each other and reviewers found the item unclear/too obvious."
   },
   {
     "id": "assistive_devices_first20_q001_variant_c",
@@ -117,9 +129,9 @@
     "rationale": "Hour-position meal orientation promotes independence and reduces spills because the client can locate each food item predictably. The other options delay assessment, increase risk, or reduce safe independent use.",
     "whyWrong": [
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation."
+      "Feeling across the plate may help locate food, but it is less safe and less dignified than giving a predictable clock-position map first.",
+      "Moving items without explaining the change makes the tray harder to trust and can confuse a client who depends on consistent placement.",
+      "Asking family to feed the client reduces independence and is not the first nursing response when tray orientation can support self-feeding."
     ],
     "tags": {
       "clientNeeds": "Physiological Integrity",
@@ -128,8 +140,11 @@
       "clinicalJudgment": "Recognize Cues",
       "difficulty": "Medium-High"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "candidate_approved_alpha",
+    "publicPilotNotice": "Candidate alpha item approved by Emeka + Ihechi quorum after rationale cleanup. Keep internal until final human approval.",
+    "alphaSlice": true,
+    "quorumDecision": "approve_pool",
+    "revisionPriority": "P3_specific_why_wrong_completed"
   },
   {
     "id": "assistive_devices_first20_q002_variant_a",
@@ -161,8 +176,12 @@
       "clinicalJudgment": "Prioritize Hypotheses",
       "difficulty": "Medium"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "needs_structural_rewrite",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "alphaSlice": false,
+    "quorumDecision": "revise_once",
+    "revisionPriority": "P1_structural_rewrite",
+    "revisionPlan": "Rebuild as either all client instructions or an immediate nursing action/finding question. Current options mix client instructions with nurse actions."
   },
   {
     "id": "assistive_devices_first20_q002_variant_b",
@@ -183,9 +202,9 @@
     "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
     "whyWrong": [
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety."
+      "Leaving the client standing during spinning dizziness keeps the fall risk active when the safest first step is to get the client seated or lying down.",
+      "Fluids may be appropriate later for some clients, but they do not solve the immediate risk of falling while dizzy.",
+      "Dim lights may reduce stimulation, but asking a dizzy client to walk slowly still delays the priority safety action."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -194,31 +213,35 @@
       "clinicalJudgment": "Prioritize Hypotheses",
       "difficulty": "Medium-High"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "needs_light_revision",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "alphaSlice": false,
+    "quorumDecision": "revise_once",
+    "revisionPriority": "P2_specific_why_wrong",
+    "revisionPlan": "Concept passed Emeka review; rewrite option-specific why-wrong explanations before approval."
   },
   {
     "id": "assistive_devices_first20_q002_variant_c",
     "itemType": "multiple_choice",
     "stem": "A practical nurse is caring for adult reporting spinning dizziness in the urgent care discharge area. Which action has the highest priority?",
     "answerChoices": [
-      "Have the client sit or lie down and call for help before walking.",
       "Walk beside the client slowly to the lobby and reassess dizziness there.",
       "Finish the discharge teaching first because the client is already leaving.",
+      "Have the client sit or lie down and call for help before walking.",
       "Offer fluids while the client remains standing at the counter."
     ],
     "correctAnswerIndexes": [
-      0
+      2
     ],
     "correctAnswerText": [
       "Have the client sit or lie down and call for help before walking."
     ],
     "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
     "whyWrong": [
+      "Walking the client to the lobby while dizziness is active still exposes the client to a fall before the nurse stabilizes the situation.",
+      "Finishing discharge teaching first delays the immediate safety action; fall prevention comes before routine discharge tasks.",
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety."
+      "Offering fluids while the client remains standing does not remove the immediate fall risk from sudden spinning dizziness."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -227,8 +250,12 @@
       "clinicalJudgment": "Prioritize Hypotheses",
       "difficulty": "Medium"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "candidate_approved_alpha",
+    "publicPilotNotice": "Candidate alpha item approved by Emeka + Ihechi quorum after rationale cleanup. Keep internal until final human approval.",
+    "alphaSlice": true,
+    "quorumDecision": "approve_pool",
+    "revisionPriority": "P3_specific_why_wrong_completed",
+    "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key."
   },
   {
     "id": "assistive_devices_first20_q003_variant_a",
@@ -236,7 +263,7 @@
     "stem": "A client learning to use a lower-limb prosthesis says, \"I am worried I will not manage this safely at home.\" Which response by the practical nurse is most therapeutic?",
     "answerChoices": [
       "Let's review the steps together and identify when you should call for help.",
-      "That is not something you should be worried about.",
+      "You will feel more confident once you have practiced with it for a few days.",
       "You need to be more independent with this equipment.",
       "Wear the prosthesis longer when soreness develops to toughen the skin."
     ],
@@ -249,9 +276,9 @@
     "rationale": "The best response accepts the client's concern and turns it into a practical safety plan. Reviewing the steps together helps the client practice, ask questions, and know when to call for help. This supports confidence without dismissing the client's fear.",
     "whyWrong": [
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care."
+      "Simple reassurance may sound supportive, but it does not assess the client\u2019s specific safety concern or build a plan for when to call for help.",
+      "Pushing independence before checking the client\u2019s skills and concerns can increase injury risk and shuts down therapeutic communication.",
+      "Soreness can signal pressure or poor fit; wearing the prosthesis longer can worsen skin injury instead of protecting the residual limb."
     ],
     "tags": {
       "clientNeeds": "Physiological Integrity",
@@ -260,13 +287,17 @@
       "clinicalJudgment": "Recognize Cues",
       "difficulty": "Medium"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "needs_light_revision",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "alphaSlice": false,
+    "quorumDecision": "revise_once",
+    "revisionPriority": "P2_distractor_plausibility",
+    "revisionPlan": "Replaced cartoonishly dismissive distractor with a more plausible but incomplete reassurance. Needs human review before approval."
   },
   {
     "id": "assistive_devices_first20_q003_variant_b",
     "itemType": "multiple_choice",
-    "stem": "The nurse is reviewing instructions with a client learning to use a lower-limb prosthesis. Which statement indicates that teaching about prosthesis and residual-limb care should be reinforced?",
+    "stem": "The nurse is reviewing prosthesis and residual-limb care with a client. Which client statement requires immediate correction?",
     "answerChoices": [
       "I should keep wearing it if a red area is painful but not bleeding.",
       "I will check my skin every time I remove the prosthesis.",
@@ -282,9 +313,9 @@
     "rationale": "A painful red area can be an early sign of pressure injury even if the skin is not bleeding. The client should remove the prosthesis and report persistent redness or pain instead of continuing to wear it. The other statements show safer prosthesis and residual-limb care.",
     "whyWrong": [
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care."
+      "Checking the skin each time the prosthesis is removed helps catch pressure injury early, so this statement shows safe understanding.",
+      "Reporting redness that does not fade is appropriate because persistent redness can be an early warning sign of tissue damage.",
+      "Keeping the residual limb clean and dry reduces irritation and infection risk and helps the prosthesis fit more safely."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -293,31 +324,35 @@
       "clinicalJudgment": "Recognize Cues",
       "difficulty": "Medium"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "needs_light_revision",
+    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "alphaSlice": false,
+    "quorumDecision": "revise_once",
+    "revisionPriority": "P2_stem_clarity",
+    "revisionPlan": "Sharpened vague reinforcement stem into direct safety-correction wording. Needs human review before approval."
   },
   {
     "id": "assistive_devices_first20_q003_variant_c",
     "itemType": "multiple_choice",
     "stem": "A client is learning home care for a lower-limb prosthesis and residual limb. Which instruction should the practical nurse reinforce as the priority for preventing skin injury?",
     "answerChoices": [
-      "Inspect the residual limb after removing the prosthesis and report persistent redness or skin breakdown.",
       "Massage an open area before reapplying the prosthesis.",
+      "Inspect the residual limb after removing the prosthesis and report persistent redness or skin breakdown.",
       "Skip sock changes when the socket feels loose.",
       "Apply a heating pad to the residual limb before each fitting."
     ],
     "correctAnswerIndexes": [
-      0
+      1
     ],
     "correctAnswerText": [
       "Inspect the residual limb after removing the prosthesis and report persistent redness or skin breakdown."
     ],
     "rationale": "Skin inspection detects pressure injury early; persistent redness or breakdown can worsen if the prosthesis is reapplied without follow-up. The other options delay assessment, increase risk, or reduce safe independent use.",
     "whyWrong": [
+      "Massaging an open area can worsen tissue injury and does not address the need to stop using the prosthesis and report breakdown.",
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for prosthesis and residual-limb care."
+      "Skipping sock changes can make the socket fit poorly, increasing friction, pressure, and skin breakdown risk.",
+      "Heat can burn or irritate vulnerable tissue and should not be used as a routine step before fitting the prosthesis."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -326,7 +361,11 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "calibration_review_only",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use."
+    "reviewStatus": "candidate_approved_alpha",
+    "publicPilotNotice": "Candidate alpha item approved by Emeka + Ihechi quorum after rationale cleanup. Keep internal until final human approval.",
+    "alphaSlice": true,
+    "quorumDecision": "approve_pool",
+    "revisionPriority": "P3_specific_why_wrong_completed",
+    "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key."
   }
 ]
