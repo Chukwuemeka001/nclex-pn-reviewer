@@ -71,6 +71,9 @@ Review API routes:
 - `POST /api/review/items/:id/approve`
 - `POST /api/review/items/:id/reject`
 - `POST /api/review/items/:id/rewrite`
+- `POST /api/external-reviews`
+- `POST /api/review/batch-approve`
+- `POST /api/review/items/:id/apply-rewrite`
 
 The frontend calls `/api/review/*`; `vite.config.js` proxies that path to `http://127.0.0.1:5174` during local development. The student question loader checks the review API approved list first so newly approved local questions can appear after a browser refresh. If the API is unavailable, it falls back to demo seed questions.
 

@@ -154,17 +154,18 @@ Bad notes say only:
 
 ## How responses are captured
 
-The public site is static GitHub Pages. It cannot securely write directly to a database without a backend token. We therefore capture responses through prefilled GitHub Issues.
+The public site is static GitHub Pages. Primary capture is direct submission to a backend endpoint, not GitHub Issues.
 
-Flow:
+Primary flow:
 1. Reviewer fills form on phone.
-2. Draft autosaves in their browser localStorage.
-3. `Submit to GitHub Issues` opens a prefilled issue.
-4. Reviewer taps `Submit new issue`.
-5. Hermes later pulls issues and compares Alexis / Ihechi / Emeka reviews.
+2. Draft autosaves in browser localStorage.
+3. Reviewer taps `Submit current review` or `Submit all completed`.
+4. The app POSTs structured JSON to the configured endpoint (`VITE_EXTERNAL_REVIEW_SUBMIT_ENDPOINT`, currently Render-backed).
+5. Hermes later reviews aggregated submissions and compares reviewer decisions.
 
-Fallback:
-If GitHub login blocks the reviewer, they tap `Copy all saved drafts` and send the JSON to Emeka.
+Fallback flow:
+- If submit fails, the same submit actions copy structured JSON to clipboard for manual handoff.
+- `GitHub fallback` can still be used, but it is not the primary capture path.
 
 ## Privacy
 

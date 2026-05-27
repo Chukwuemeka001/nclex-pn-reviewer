@@ -290,13 +290,13 @@ Private qbank reference bank:
 - Do not publish or commit raw/source-derived questions; use private reference only for analysis and transformation planning.
 
 Next best steps:
-1. Alexis opens `/reviewer`, reads the orientation, then reviews only the first 10 IDs in AdminReview.
-2. Emeka separately reviews the same 10 using the same PASS/FIX/REJECT and 0-4 rubric.
-3. Compare Emeka vs Alexis scoring disagreements to calibrate the rubric before scaling.
-4. Use Alexis's NCLEX result report only privately to map broad weakness categories and product implications.
-5. If at least 7/10 pass or need only minor fixes from both reviewers, scale to a 50-question clinically reviewed batch.
-6. If many feel generated/unsafe, improve rewrite prompts and distractor/rationale guards before spending paid model budget.
-7. Add beta disclaimer/non-affiliation text before any public tester sees it.
+1. Emeka and Ihechi review the first 10 IDs in `/reviewer` using the same PASS/FIX/REJECT + 0-4 rubric (current minimum quorum).
+2. Normalize submissions and dedupe to latest per `(reviewer, questionId)` before triage.
+3. Triage by quorum: both approve -> candidate pool; one approve/one revise -> revise once; any reject -> quarantine/rewrite.
+4. Alexis lane remains optional for extra perspective and should not block progress.
+5. If at least 7/10 are approved or minor-fix after Emeka+Ihechi quorum, scale to a 50-question clinically reviewed batch.
+6. If many still feel generated/unsafe, improve rewrite prompts and distractor/rationale guards before spending more paid model budget.
+7. Add beta disclaimer/non-affiliation text before any broader public testing.
 8. Replace sourceRegistrySnapshot with an automated generated frontend snapshot if source registry grows.
 9. Consider database/auth only after local workflow proves useful.
 
