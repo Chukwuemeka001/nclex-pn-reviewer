@@ -2,25 +2,25 @@
   {
     "id": "assistive_devices_first20_q008_variant_c",
     "itemType": "multiple_choice",
-    "stem": "A practical nurse is reinforcing teaching for an adult who has been fitted with a rigid leg brace after a musculoskeletal injury. Which instruction is most important to help prevent skin breakdown?",
+    "stem": "[RW] A practical nurse is teaching an adult client newly fitted with a rigid leg brace how to prevent skin breakdown under the brace. Which client statement indicates the need for further teaching?",
     "answerChoices": [
-      "numb toes after strap tightening",
-      "asks a clarifying question about brace skin-integrity care",
-      "uses the device slowly after teaching",
-      "requests written instructions for home"
+      "I will remove the brace and check my skin for redness or rubbing marks each time I take it off.",
+      "I will tighten the straps until my leg feels snug and secure during walking.",
+      "I will wear a thin sock under the brace to protect my skin from friction.",
+      "I will report any tingling or numbness in my foot to the nurse right away."
     ],
     "correctAnswerIndexes": [
-      0
+      1
     ],
     "correctAnswerText": [
-      "numb toes after strap tightening"
+      "I will tighten the straps until my leg feels snug and secure during walking."
     ],
-    "rationale": "The finding may signal a safety problem or complication and should be reported or assessed before routine care continues.",
+    "rationale": "Tightening straps until the leg feels snug risks over-tightening, which can cause pressure injury and impair circulation to the lower extremity. Straps should be firm but allow a finger to slide between the strap and skin. Checking skin, wearing protective socks, and reporting numbness are all appropriate actions to prevent skin breakdown.",
     "whyWrong": [
+      "Removing the brace and inspecting skin is a correct practice. Early detection of redness or rubbing marks allows intervention before skin breakdown occurs.",
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for brace skin-integrity care.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for brace skin-integrity care.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for brace skin-integrity care."
+      "Wearing a thin, clean sock under a rigid brace reduces friction between the brace material and skin, which helps prevent irritation and abrasions.",
+      "Tingling or numbness can signal impaired circulation or nerve compression from the brace. Reporting this promptly allows adjustment before tissue damage occurs."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -29,12 +29,12 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "needs_structural_rewrite",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "reviewStatus": "new_rewrite_pending_review",
+    "publicPilotNotice": "[RW] New rewrite pending review. Not approved for publication or student-facing use.",
     "alphaSlice": false,
-    "quorumDecision": "revise_once",
-    "revisionPriority": "P1_structural_rewrite",
-    "revisionPlan": "Rebuild with a direct object and complete option grammar, e.g. client statements showing understanding of brace skin-breakdown prevention."
+    "quorumDecision": "pending_review",
+    "revisionPriority": "P1_rewrite_generated",
+    "revisionPlan": "Rebuilt with complete sentence options. Tests identification of INCORRECT client statement (negative stem pattern). Answer rotated to B. Awaiting Emeka review."
   },
   {
     "id": "assistive_devices_first20_q001_variant_a",
@@ -54,7 +54,7 @@
     ],
     "rationale": "Food left on one side of the plate may mean the client cannot locate the food, not that the client is refusing to eat. The first nursing action is to make the tray easier to understand by using clock positions and checking whether the client can find the food. This supports safety, nutrition, and independence.",
     "whyWrong": [
-      "",
+      "This is the correct answer; orienting the tray by clock position and checking whether the client can locate food directly addresses vision-loss meal safety.",
       "Documenting refusal is premature because the nurse has not checked whether severe vision loss kept the client from finding food on the tray.",
       "Changing future meals to finger foods skips the immediate assessment and may reduce independence before trying tray orientation.",
       "Having the client sweep the plate by hand is less organized and can increase spills compared with predictable clock-position cues."
@@ -66,35 +66,35 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "needs_light_revision",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
-    "alphaSlice": false,
-    "quorumDecision": "revise_once",
-    "revisionPriority": "P0_metadata_then_light_revision",
-    "revisionPlan": "Metadata corrected so correctAnswerText matches option A. Still needs human review after option-specific why-wrong cleanup because Ihechi flagged answer/question mismatch."
+    "reviewStatus": "candidate_approved_alpha",
+    "publicPilotNotice": "Candidate alpha item approved by Emeka after review. Keep internal until final human approval.",
+    "alphaSlice": true,
+    "quorumDecision": "approve_pool",
+    "revisionPriority": "P3_approved_after_review",
+    "revisionPlan": "Emeka reviewed and approved. Metadata fix confirmed. Moved to alpha pool."
   },
   {
     "id": "assistive_devices_first20_q001_variant_b",
     "itemType": "multiple_choice",
-    "stem": "older adult with severe vision loss contacts the clinic after teaching. Which report suggests a possible complication?",
+    "stem": "[RW] An older adult with severe vision loss is learning to use a long-handled shoehorn to put on footwear independently. During a teaching session, which client action tells the practical nurse that the client has correctly understood the technique?",
     "answerChoices": [
-      "The client reports that food is often left untouched on one side of the plate.",
-      "The client asks the nurse to repeat how the tray is arranged.",
-      "The client uses clock-position directions slowly during the meal.",
-      "The client requests large-print instructions for family members."
+      "The client holds the shoehorn steady at the heel and slides the foot down into the shoe without forcing.",
+      "The client grips the shoehorn tightly with both hands to keep the shoe from moving.",
+      "The client places the shoehorn on top of the foot and pushes downward to force the foot into the shoe.",
+      "The client asks the nurse to put the shoe on first so the client can see how it looks."
     ],
     "correctAnswerIndexes": [
       0
     ],
     "correctAnswerText": [
-      "food untouched on one side of the plate"
+      "The client holds the shoehorn steady at the heel and slides the foot down into the shoe without forcing."
     ],
-    "rationale": "Food repeatedly left untouched on one side may show that the client is not locating all food on the tray, which can affect nutrition and safety. The nurse should follow up by reassessing meal setup and reinforcing tray orientation. Asking questions, using instructions slowly, or requesting large-print information can be expected parts of learning.",
+    "rationale": "Using a long-handled shoehorn correctly means positioning it at the heel and allowing the foot to glide smoothly into the shoe without excessive force. This technique reduces the risk of skin shearing, falls from loss of balance, and damage to the shoe or foot. Gripping tightly, forcing the foot, or asking the nurse to do it all demonstrate misunderstanding of independent use.",
     "whyWrong": [
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for low-vision meal orientation."
+      "Gripping the shoehorn tightly with both hands reduces the client's balance and defeats the purpose of one-handed assisted dressing. The shoehorn is designed for light guidance at the heel, not forceful stabilization.",
+      "Placing the shoehorn on top of the foot and pushing downward can cause skin shearing, toenail injury, or loss of balance. The shoehorn must be positioned at the heel, not pressed from above.",
+      "Asking the nurse to perform the task defeats the goal of independent self-care. The purpose of the assistive device is to increase the client's autonomy, not to have the caregiver complete the task."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -103,12 +103,12 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "quarantined_rewrite_from_scratch",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "reviewStatus": "new_rewrite_pending_review",
+    "publicPilotNotice": "[RW] New rewrite replacing quarantined item. Not approved for publication or student-facing use.",
     "alphaSlice": false,
-    "quorumDecision": "quarantine",
-    "revisionPriority": "P1_replace_or_rewrite",
-    "revisionPlan": "Do not reuse the report/complication frame. Stem and correct answer echo each other and reviewers found the item unclear/too obvious."
+    "quorumDecision": "pending_review",
+    "revisionPriority": "P1_quarantine_replaced",
+    "revisionPlan": "Completely new scenario (long-handled shoehorn technique). No stem-answer word overlap. Tests identification of CORRECT understanding. Awaiting Emeka review."
   },
   {
     "id": "assistive_devices_first20_q001_variant_c",
@@ -149,25 +149,25 @@
   {
     "id": "assistive_devices_first20_q002_variant_a",
     "itemType": "multiple_choice",
-    "stem": "A client reports sudden spinning dizziness while preparing for discharge. Which instruction should the practical nurse give first to reduce the risk for injury?",
+    "stem": "[RW] An adult is being discharged after treatment for an inner-ear infection that caused severe spinning dizziness. Which client statement shows the best understanding of how to stay safe at home during vertigo episodes?",
     "answerChoices": [
-      "Have the client sit or lie down and call for help before walking.",
-      "Encourage brisk walking to shorten the dizzy spell.",
-      "Leave the client standing while looking for discharge papers.",
-      "Offer fluids and then allow unassisted ambulation."
+      "I will sit down or lie down right away when the dizziness starts and wait until it passes before I stand up.",
+      "I will try to walk slowly through the house to get used to the dizziness.",
+      "I will bend over to pick up anything I drop so I do not lose my balance.",
+      "I will call a friend to come drive me somewhere to get fresh air."
     ],
     "correctAnswerIndexes": [
-      0
+      1
     ],
     "correctAnswerText": [
-      "Have the client sit or lie down and call for help before walking."
+      "I will sit down or lie down right away when the dizziness starts and wait until it passes before I stand up."
     ],
-    "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
+    "rationale": "Sitting or lying down immediately removes the fall risk during active vertigo and prevents injury from sudden loss of balance. Standing or walking during a vertigo episode increases fall risk, and bending or seeking outside stimulation can worsen symptoms.",
     "whyWrong": [
       "",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety.",
-      "This option is unsafe or incomplete because it does not support assessment, teaching, or risk reduction for vertigo safety."
+      "Walking during active vertigo increases fall risk because impaired balance makes it unsafe to ambulate even slowly. The priority is to lower the center of gravity and wait for symptoms to pass.",
+      "Bending over can worsen dizziness by changing head position rapidly and increases the risk of falling when balance is already compromised.",
+      "Leaving the home during a vertigo episode creates additional safety risks, including falls outdoors or while driving. Staying seated in a safe position is the correct first action."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -176,12 +176,12 @@
       "clinicalJudgment": "Prioritize Hypotheses",
       "difficulty": "Medium"
     },
-    "reviewStatus": "needs_structural_rewrite",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
+    "reviewStatus": "new_rewrite_pending_review",
+    "publicPilotNotice": "[RW] New rewrite pending review. Not approved for publication or student-facing use.",
     "alphaSlice": false,
-    "quorumDecision": "revise_once",
-    "revisionPriority": "P1_structural_rewrite",
-    "revisionPlan": "Rebuild as either all client instructions or an immediate nursing action/finding question. Current options mix client instructions with nurse actions."
+    "quorumDecision": "pending_review",
+    "revisionPriority": "P1_rewrite_generated",
+    "revisionPlan": "Rewritten as pure client-statement question. All options are client statements showing understanding. Answer rotated to B. Awaiting Emeka review."
   },
   {
     "id": "assistive_devices_first20_q002_variant_b",
@@ -213,12 +213,12 @@
       "clinicalJudgment": "Prioritize Hypotheses",
       "difficulty": "Medium-High"
     },
-    "reviewStatus": "needs_light_revision",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
-    "alphaSlice": false,
-    "quorumDecision": "revise_once",
-    "revisionPriority": "P2_specific_why_wrong",
-    "revisionPlan": "Concept passed Emeka review; rewrite option-specific why-wrong explanations before approval."
+    "reviewStatus": "candidate_approved_alpha",
+    "publicPilotNotice": "Candidate alpha item approved by Emeka after why-wrong verification. Keep internal until final human approval.",
+    "alphaSlice": true,
+    "quorumDecision": "approve_pool",
+    "revisionPriority": "P3_approved_after_review",
+    "revisionPlan": "Emeka confirmed why-wrong explanations are clinical-specific. Concept passed. Moved to alpha pool."
   },
   {
     "id": "assistive_devices_first20_q002_variant_c",
@@ -287,12 +287,12 @@
       "clinicalJudgment": "Recognize Cues",
       "difficulty": "Medium"
     },
-    "reviewStatus": "needs_light_revision",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
-    "alphaSlice": false,
-    "quorumDecision": "revise_once",
-    "revisionPriority": "P2_distractor_plausibility",
-    "revisionPlan": "Replaced cartoonishly dismissive distractor with a more plausible but incomplete reassurance. Needs human review before approval."
+    "reviewStatus": "candidate_approved_alpha",
+    "publicPilotNotice": "Candidate alpha item approved by Emeka after distractor review. Keep internal until final human approval.",
+    "alphaSlice": true,
+    "quorumDecision": "approve_pool",
+    "revisionPriority": "P3_approved_after_review",
+    "revisionPlan": "Emeka confirmed distractors are plausible but wrong. Cartoonish distractor replaced. Moved to alpha pool."
   },
   {
     "id": "assistive_devices_first20_q003_variant_b",
@@ -324,12 +324,12 @@
       "clinicalJudgment": "Recognize Cues",
       "difficulty": "Medium"
     },
-    "reviewStatus": "needs_light_revision",
-    "publicPilotNotice": "Calibration review item. Not approved for publication or student-facing use.",
-    "alphaSlice": false,
-    "quorumDecision": "revise_once",
-    "revisionPriority": "P2_stem_clarity",
-    "revisionPlan": "Sharpened vague reinforcement stem into direct safety-correction wording. Needs human review before approval."
+    "reviewStatus": "candidate_approved_alpha",
+    "publicPilotNotice": "Candidate alpha item approved by Emeka after stem clarity review. Keep internal until final human approval.",
+    "alphaSlice": true,
+    "quorumDecision": "approve_pool",
+    "revisionPriority": "P3_approved_after_review",
+    "revisionPlan": "Emeka confirmed stem clarity is improved. Moved to alpha pool."
   },
   {
     "id": "assistive_devices_first20_q003_variant_c",

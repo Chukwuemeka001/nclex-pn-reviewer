@@ -11,8 +11,12 @@ const first10 = JSON.parse(readFileSync(join(__dirname, "../data/external_review
 const byId = new Map(first10.map((item) => [item.id, item]));
 
 const approvedAlphaIds = [
+  "assistive_devices_first20_q001_variant_a",
   "assistive_devices_first20_q001_variant_c",
+  "assistive_devices_first20_q002_variant_b",
   "assistive_devices_first20_q002_variant_c",
+  "assistive_devices_first20_q003_variant_a",
+  "assistive_devices_first20_q003_variant_b",
   "assistive_devices_first20_q003_variant_c",
 ];
 
@@ -48,15 +52,11 @@ test("approved alpha items carry specific why-wrong teaching and pass existing g
   }
 });
 
-test("revise and quarantine items are not accidentally marked alpha approved", () => {
+test("pending rewrite items remain out of alpha approved slice", () => {
   const expectedStatuses = new Map([
-    ["assistive_devices_first20_q001_variant_a", "needs_light_revision"],
-    ["assistive_devices_first20_q001_variant_b", "quarantined_rewrite_from_scratch"],
-    ["assistive_devices_first20_q002_variant_a", "needs_structural_rewrite"],
-    ["assistive_devices_first20_q002_variant_b", "needs_light_revision"],
-    ["assistive_devices_first20_q003_variant_a", "needs_light_revision"],
-    ["assistive_devices_first20_q003_variant_b", "needs_light_revision"],
-    ["assistive_devices_first20_q008_variant_c", "needs_structural_rewrite"],
+    ["assistive_devices_first20_q001_variant_b", "new_rewrite_pending_review"],
+    ["assistive_devices_first20_q002_variant_a", "new_rewrite_pending_review"],
+    ["assistive_devices_first20_q008_variant_c", "new_rewrite_pending_review"],
   ]);
 
   for (const [id, status] of expectedStatuses) {
