@@ -5,7 +5,7 @@ import reviewerInstructionResearch from "../data/reviewer_instruction_research.j
 import sourceSafetyGuidance from "../data/source_safety_guidance.json";
 import {
   EXTERNAL_REVIEW_CRITERIA,
-  FIRST_TEN_REVIEW_IDS,
+  REVIEW_IDS as REVIEW_IDS,
   NCLEX_RESULT_REPORT_CASE_STUDY_GUIDANCE,
   REVIEWER_PROFILES,
   buildExternalReviewBatch,
@@ -73,7 +73,7 @@ function reviewerUrl(key) {
 export default function ExternalReviewerGuide() {
   const [reviewerKey, setReviewerKey] = useState(reviewerKeyFromLocation);
   const profile = getReviewerProfile(reviewerKey);
-  const [selectedId, setSelectedId] = useState(FIRST_TEN_REVIEW_IDS[0]);
+  const [selectedId, setSelectedId] = useState(REVIEW_IDS[0]);
   const [drafts, setDrafts] = useState(() => loadDrafts(profile));
   const [showKey, setShowKey] = useState(false);
   const [copied, setCopied] = useState("");
@@ -82,7 +82,7 @@ export default function ExternalReviewerGuide() {
   const result = useMemo(() => scoreExternalReview(response.scores), [response.scores]);
   const decision = response.decision || result.decision;
   const template = useMemo(() => buildReviewerNoteTemplate(selectedId, { ...response, decision }), [selectedId, response, decision]);
-  const completedIds = FIRST_TEN_REVIEW_IDS.filter((id) => drafts[id]?.decision || drafts[id]?.notes || drafts[id]?.submitted);
+  const completedIds = REVIEW_IDS.filter((id) => drafts[id]?.decision || drafts[id]?.notes || drafts[id]?.submitted);
   const completedCount = completedIds.length;
   const hasSubmitEndpoint = Boolean(reviewSubmitEndpoint);
 
@@ -277,11 +277,11 @@ export default function ExternalReviewerGuide() {
       <div className="reviewer-layout mobile-review-layout">
         <article className="reviewer-panel">
           <div className="section-title">
-            <h2><ClipboardCheck size={18} /> First 10 calibration items</h2>
-            <button className="secondary-btn" onClick={() => copy(FIRST_TEN_REVIEW_IDS.join("\n"), "IDs copied")}>Copy IDs</button>
+            <h2><ClipboardCheck size={18} /> Review items ({REVIEW_IDS.length})</h2>
+            <button className="secondary-btn" onClick={() => copy(REVIEW_IDS.join("\n"), "IDs copied")}>Copy IDs</button>
           </div>
           <div className="review-id-list compact">
-            {FIRST_TEN_REVIEW_IDS.map((id, index) => (
+            {REVIEW_IDS.map((id, index) => (
               <button key={id} className={selectedId === id ? "review-id active" : "review-id"} onClick={() => { setSelectedId(id); setShowKey(false); }}>
                 <strong>{index + 1}.</strong> {id}{drafts[id]?.submitted ? " ✓" : drafts[id]?.decision ? " • drafted" : ""}
               </button>

@@ -375,7 +375,7 @@
     "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key."
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q01",
     "itemType": "multiple_choice",
     "stem": "A nurse is setting up lunch for a client with severe macular degeneration. Which instruction best helps the client locate each food item independently?",
     "answerChoices": [
@@ -411,7 +411,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q02",
     "itemType": "multiple_choice",
     "stem": "During assessment, a client says, \"The room spins sometimes, but other days I just feel lightheaded.\" Which statement by the nurse is most accurate?",
     "answerChoices": [
@@ -447,7 +447,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q03",
     "itemType": "multiple_choice",
     "stem": "At a home visit, a client with diabetes and a transtibial prosthesis says the device feels so good that it stays on all day and all night except during bathing. What should the nurse emphasize first?",
     "answerChoices": [
@@ -484,7 +484,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q04",
     "itemType": "multiple_choice",
     "stem": "A client with a below-knee prosthesis reports that the residual limb becomes puffy in the evening after the device is removed. Which question is most useful?",
     "answerChoices": [
@@ -521,7 +521,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q05",
     "itemType": "multiple_choice",
     "stem": "Two weeks after a traumatic forearm amputation, a client says, \"My missing hand burns and aches.\" Which explanation best fits this report?",
     "answerChoices": [
@@ -557,7 +557,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q06",
     "itemType": "multiple_choice",
     "stem": "A client with a healed above-knee amputation reports intermittent aching where the lower leg used to be. Which nurse teaching is appropriate as an initial comfort strategy?",
     "answerChoices": [
@@ -593,7 +593,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q07",
     "itemType": "multiple_choice",
     "stem": "A client is discharged with a lower-leg orthotic brace after a sports injury. Which instruction best reduces skin breakdown under the brace?",
     "answerChoices": [
@@ -629,7 +629,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q08",
     "itemType": "multiple_choice",
     "stem": "A nurse reviews home care for a client who wears an ankle-foot orthosis during the day. Which pair of instructions should be included?",
     "answerChoices": [
@@ -665,7 +665,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q09",
     "itemType": "multiple_choice",
     "stem": "A client with an essential tremor spills food from a standard fork despite adequate grip strength. Which adaptive device is most appropriate to try first?",
     "answerChoices": [
@@ -701,7 +701,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q10",
     "itemType": "multiple_choice",
     "stem": "An older adult asks how to clean removable dentures before bedtime. Which instruction should the nurse give?",
     "answerChoices": [
@@ -737,7 +737,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q11",
     "itemType": "multiple_choice",
     "stem": "A client with moderate hearing loss declines hearing aids but wants to continue telephone conversations. Which feature set would be most helpful?",
     "answerChoices": [
@@ -773,7 +773,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q12",
     "itemType": "multiple_choice",
     "stem": "A client has left-sided leg weakness after hip surgery. The right leg is stronger. Which cane teaching is correct?",
     "answerChoices": [
@@ -809,7 +809,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q13",
     "itemType": "multiple_choice",
     "stem": "A client with a non-weight-bearing ankle injury says, \"The crutches can take the place of my bad leg, so I can lean on them however I need.\" Which response is best?",
     "answerChoices": [
@@ -845,7 +845,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q14",
     "itemType": "multiple_choice",
     "stem": "While observing a client using axillary crutches, which teaching point is most important?",
     "answerChoices": [
@@ -881,7 +881,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q15",
     "itemType": "multiple_choice",
     "stem": "A client with infrequent hard stools asks what foods or supplements may support bowel regularity. Which recommendation is most appropriate?",
     "answerChoices": [
@@ -917,7 +917,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q16",
     "itemType": "multiple_choice",
     "stem": "A student nurse asks which structure allows a person to voluntarily delay a bowel movement. Which answer is correct?",
     "answerChoices": [
@@ -953,7 +953,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q18",
     "itemType": "multiple_choice",
     "stem": "A client reports ear pain after pushing a cotton swab into the ear after swimming. Which teaching should the nurse provide?",
     "answerChoices": [
@@ -989,7 +989,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q19",
     "itemType": "multiple_choice",
     "stem": "A landscaper feels sharp eye pain after debris blows under protective glasses. What instruction is safest?",
     "answerChoices": [
@@ -1025,7 +1025,7 @@
     "publicPilotNotice": false
   },
   {
-    "id": "assistive_devices_q004",
+    "id": "orig_assistive_devices_q20",
     "itemType": "multiple_choice",
     "stem": "The nurse finds a small oval cup designed to fit around the orbit and hold solution against the eye. What is this device called?",
     "answerChoices": [

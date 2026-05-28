@@ -54,7 +54,7 @@ export function getReviewerProfile(key = "alexis") {
   return REVIEWER_PROFILES[normalized] || REVIEWER_PROFILES.alexis;
 }
 
-export const FIRST_TEN_REVIEW_IDS = [
+export const REVIEW_IDS = [
   "assistive_devices_first20_q008_variant_c",
   "assistive_devices_first20_q001_variant_a",
   "assistive_devices_first20_q001_variant_b",
@@ -65,7 +65,49 @@ export const FIRST_TEN_REVIEW_IDS = [
   "assistive_devices_first20_q003_variant_a",
   "assistive_devices_first20_q003_variant_b",
   "assistive_devices_first20_q003_variant_c",
+  "orig_assistive_devices_q01",
+  "orig_assistive_devices_q02",
+  "orig_assistive_devices_q03",
+  "orig_assistive_devices_q04",
+  "orig_assistive_devices_q05",
+  "orig_assistive_devices_q06",
+  "orig_assistive_devices_q07",
+  "orig_assistive_devices_q08",
+  "orig_assistive_devices_q09",
+  "orig_assistive_devices_q10",
+  "orig_assistive_devices_q11",
+  "orig_assistive_devices_q12",
+  "orig_assistive_devices_q13",
+  "orig_assistive_devices_q14",
+  "orig_assistive_devices_q15",
+  "orig_assistive_devices_q16",
+  "orig_assistive_devices_q18",
+  "orig_assistive_devices_q19",
+  "orig_assistive_devices_q20",
+  "safety_infection_ctrl_q001",
+  "safety_infection_ctrl_q002",
+  "safety_infection_ctrl_q003",
+  "health_promotion_q001",
+  "health_promotion_q002",
+  "health_promotion_q003",
+  "psychosocial_q001",
+  "psychosocial_q002",
+  "psychosocial_q003",
+  "physio_adaptation_q001",
+  "physio_adaptation_q002",
+  "physio_adaptation_q003",
+  "pharm_q001",
+  "pharm_q002",
+  "pharm_q003",
+  "basic_care_q001",
+  "basic_care_q002",
+  "basic_care_q003",
+  "mgmt_care_q001",
+  "mgmt_care_q002",
+  "mgmt_care_q003",
 ];
+// Backward alias
+export const FIRST_TEN_REVIEW_IDS = REVIEW_IDS;
 
 export const EXTERNAL_REVIEW_CRITERIA = [
   {
