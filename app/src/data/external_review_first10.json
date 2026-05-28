@@ -29,12 +29,14 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "new_rewrite_pending_review",
+    "reviewStatus": "approved_alpha",
     "publicPilotNotice": "[RW] New rewrite pending review. Not approved for publication or student-facing use.",
     "alphaSlice": false,
-    "quorumDecision": "pending_review",
+    "quorumDecision": "APPROVE",
     "revisionPriority": "P1_rewrite_generated",
-    "revisionPlan": "Stage 3 critical rewrite: upgraded distractor plausibility and instruction framing; removed easy elimination cues; retained negative-stem safety-teaching target. Awaiting review."
+    "revisionPlan": "Stage 3 critical rewrite: upgraded distractor plausibility and instruction framing; removed easy elimination cues; retained negative-stem safety-teaching target. Awaiting review.",
+    "approvedBy": "emeka",
+    "approvedAt": "2026-05-28T12:45:00Z"
   },
   {
     "id": "assistive_devices_first20_q001_variant_a",
@@ -103,12 +105,14 @@
       "clinicalJudgment": "Take Action",
       "difficulty": "Medium"
     },
-    "reviewStatus": "new_rewrite_pending_review",
+    "reviewStatus": "approved_alpha",
     "publicPilotNotice": "[RW] New rewrite replacing quarantined item. Not approved for publication or student-facing use.",
     "alphaSlice": false,
-    "quorumDecision": "pending_review",
+    "quorumDecision": "APPROVE",
     "revisionPriority": "P1_quarantine_replaced",
-    "revisionPlan": "Stage 3 revise-once: replaced out-of-place distractor with clinically plausible unsafe techniques and increased requirement for true safe-use judgment. Awaiting review."
+    "revisionPlan": "Stage 3 revise-once: replaced out-of-place distractor with clinically plausible unsafe techniques and increased requirement for true safe-use judgment. Awaiting review.",
+    "approvedBy": "emeka",
+    "approvedAt": "2026-05-28T12:45:00Z"
   },
   {
     "id": "assistive_devices_first20_q001_variant_c",
@@ -176,12 +180,14 @@
       "clinicalJudgment": "Prioritize Hypotheses",
       "difficulty": "Medium"
     },
-    "reviewStatus": "new_rewrite_pending_review",
+    "reviewStatus": "approved_alpha",
     "publicPilotNotice": "[RW] New rewrite pending review. Not approved for publication or student-facing use.",
     "alphaSlice": false,
-    "quorumDecision": "pending_review",
+    "quorumDecision": "APPROVE",
     "revisionPriority": "P1_rewrite_generated",
-    "revisionPlan": "Stage 3 critical rewrite: converted all distractors to realistic but unsafe client instruction statements; removed framing mismatch and strengthened discharge-teaching validity. Awaiting review."
+    "revisionPlan": "Stage 3 critical rewrite: converted all distractors to realistic but unsafe client instruction statements; removed framing mismatch and strengthened discharge-teaching validity. Awaiting review.",
+    "approvedBy": "emeka",
+    "approvedAt": "2026-05-28T12:45:00Z"
   },
   {
     "id": "assistive_devices_first20_q002_variant_b",
@@ -276,8 +282,8 @@
     "rationale": "The best response accepts the client's concern and turns it into a practical safety plan. Reviewing the steps together helps the client practice, ask questions, and know when to call for help. This supports confidence without dismissing the client's fear.",
     "whyWrong": [
       "",
-      "Simple reassurance may sound supportive, but it does not assess the client\u2019s specific safety concern or build a plan for when to call for help.",
-      "Pushing independence before checking the client\u2019s skills and concerns can increase injury risk and shuts down therapeutic communication.",
+      "Simple reassurance may sound supportive, but it does not assess the client’s specific safety concern or build a plan for when to call for help.",
+      "Pushing independence before checking the client’s skills and concerns can increase injury risk and shuts down therapeutic communication.",
       "Soreness can signal pressure or poor fit; wearing the prosthesis longer can worsen skin injury instead of protecting the residual limb."
     ],
     "tags": {
