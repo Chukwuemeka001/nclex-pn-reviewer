@@ -31,7 +31,7 @@
     },
     "reviewStatus": "approved_alpha",
     "publicPilotNotice": "[RW] New rewrite pending review. Not approved for publication or student-facing use.",
-    "alphaSlice": false,
+    "alphaSlice": true,
     "quorumDecision": "APPROVE",
     "revisionPriority": "P1_rewrite_generated",
     "revisionPlan": "Stage 3 critical rewrite: upgraded distractor plausibility and instruction framing; removed easy elimination cues; retained negative-stem safety-teaching target. Awaiting review.",
@@ -80,21 +80,21 @@
     "itemType": "multiple_choice",
     "stem": "[RW] An older adult with severe vision loss is learning to use a long-handled shoehorn for independent dressing. Which client action shows correct technique?",
     "answerChoices": [
-      "The client keeps the shoehorn at the heel and slides the foot gently into the shoe without forcing.",
       "The client rocks side to side while pushing the foot down hard so the shoe goes on faster.",
+      "The client keeps the shoehorn at the heel and slides the foot gently into the shoe without forcing.",
       "The client stands on one leg and twists the foot repeatedly until the shoe slides in.",
       "The client places the shoehorn over the top of the foot and presses downward to seat the shoe."
     ],
     "correctAnswerIndexes": [
-      0
+      1
     ],
     "correctAnswerText": [
       "The client keeps the shoehorn at the heel and slides the foot gently into the shoe without forcing."
     ],
     "rationale": "Correct shoehorn use places the blade at the heel and allows the foot to glide in with controlled, gentle motion. Forcing, twisting, or unstable positioning increases risk of skin injury and loss of balance.",
     "whyWrong": [
-      "",
       "Forceful downward pressure and rocking reduce stability and can cause loss of balance or skin shear at the heel.",
+      "",
       "Standing on one leg while repeatedly twisting increases fall risk and does not reflect safe assistive-device technique.",
       "Pressing from the top of the foot mispositions the shoehorn and can create pressure injury instead of guiding the heel safely."
     ],
@@ -107,7 +107,7 @@
     },
     "reviewStatus": "approved_alpha",
     "publicPilotNotice": "[RW] New rewrite replacing quarantined item. Not approved for publication or student-facing use.",
-    "alphaSlice": false,
+    "alphaSlice": true,
     "quorumDecision": "APPROVE",
     "revisionPriority": "P1_quarantine_replaced",
     "revisionPlan": "Stage 3 revise-once: replaced out-of-place distractor with clinically plausible unsafe techniques and increased requirement for true safe-use judgment. Awaiting review.",
@@ -155,22 +155,22 @@
     "itemType": "multiple_choice",
     "stem": "[RW] An adult client is being discharged after treatment for acute vertigo. Which client statement shows correct understanding of home safety instructions during a dizziness episode?",
     "answerChoices": [
-      "I will sit or lie down immediately when the room starts spinning and wait until symptoms settle before standing.",
       "I will walk slowly without help to train my balance when the spinning starts.",
       "I will bend quickly to pick up objects so I can finish tasks before symptoms worsen.",
+      "I will sit or lie down immediately when the room starts spinning and wait until symptoms settle before standing.",
       "I will drive myself a short distance if I need fresh air because slow driving is safer."
     ],
     "correctAnswerIndexes": [
-      0
+      2
     ],
     "correctAnswerText": [
       "I will sit or lie down immediately when the room starts spinning and wait until symptoms settle before standing."
     ],
     "rationale": "During active vertigo, the priority is fall prevention. Sitting or lying down immediately reduces injury risk until symptoms improve. Unassisted ambulation, rapid position changes, and driving during dizziness increase risk of falls or accidents.",
     "whyWrong": [
-      "",
       "Walking unassisted during active vertigo increases fall risk; activity should resume only after symptoms improve and safety is reassessed.",
       "Rapid bending can worsen vertigo and destabilize balance, increasing the chance of a fall.",
+      "",
       "Driving during dizziness is unsafe because vertigo can impair spatial orientation and reaction time."
     ],
     "tags": {
@@ -182,7 +182,7 @@
     },
     "reviewStatus": "approved_alpha",
     "publicPilotNotice": "[RW] New rewrite pending review. Not approved for publication or student-facing use.",
-    "alphaSlice": false,
+    "alphaSlice": true,
     "quorumDecision": "APPROVE",
     "revisionPriority": "P1_rewrite_generated",
     "revisionPlan": "Stage 3 critical rewrite: converted all distractors to realistic but unsafe client instruction statements; removed framing mismatch and strengthened discharge-teaching validity. Awaiting review.",

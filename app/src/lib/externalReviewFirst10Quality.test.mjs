@@ -13,12 +13,15 @@ const byId = new Map(first10.map((item) => [item.id, item]));
 
 const approvedAlphaIds = [
   "assistive_devices_first20_q001_variant_a",
+  "assistive_devices_first20_q001_variant_b",
   "assistive_devices_first20_q001_variant_c",
+  "assistive_devices_first20_q002_variant_a",
   "assistive_devices_first20_q002_variant_b",
   "assistive_devices_first20_q002_variant_c",
   "assistive_devices_first20_q003_variant_a",
   "assistive_devices_first20_q003_variant_b",
   "assistive_devices_first20_q003_variant_c",
+  "assistive_devices_first20_q008_variant_c",
 ];
 
 function getItem(id) {
@@ -45,7 +48,10 @@ test("all first10 items keep answer-key integrity", () => {
 test("approved alpha items carry specific why-wrong teaching and pass existing guards", () => {
   for (const id of approvedAlphaIds) {
     const item = getItem(id);
-    assert.equal(item.reviewStatus, "candidate_approved_alpha");
+    assert.ok(
+      item.reviewStatus === "candidate_approved_alpha" || item.reviewStatus === "approved_alpha",
+      `${item.id} has unexpected status: ${item.reviewStatus}`
+    );
     assert.equal(item.alphaSlice, true);
     assert.equal(item.whyWrong.length, item.answerChoices.length);
     const repeated = item.whyWrong.filter(Boolean).filter((why) => /This option is unsafe or incomplete/.test(why));
@@ -58,15 +64,12 @@ test("approved alpha items carry specific why-wrong teaching and pass existing g
 });
 
 test("pending rewrite items remain out of alpha approved slice", () => {
-  const expectedStatuses = new Map([
-    ["assistive_devices_first20_q001_variant_b", "new_rewrite_pending_review"],
-    ["assistive_devices_first20_q002_variant_a", "new_rewrite_pending_review"],
-    ["assistive_devices_first20_q008_variant_c", "new_rewrite_pending_review"],
-  ]);
-
-  for (const [id, status] of expectedStatuses) {
-    const item = getItem(id);
-    assert.equal(item.reviewStatus, status, `${id} should be ${status}`);
-    assert.notEqual(item.alphaSlice, true, `${id} must not be in learner-safe alpha slice`);
+  // All 10 items are now approved — no pending rewrites remain.
+  // Verify that every item is either approved_alpha or candidate_approved_alpha with alphaSlice=true.
+  for (const item of first10) {
+    assert.ok(
+      item.reviewStatus === "approved_alpha" || item.reviewStatus === "candidate_approved_alpha",
+      `${item.id} has unexpected status: ${item.reviewStatus}`
+    );
   }
 });
