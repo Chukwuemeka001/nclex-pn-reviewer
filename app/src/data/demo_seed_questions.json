@@ -11,28 +11,81 @@
       "Mix all foods together so the plate is easier to manage.",
       "Explain the food groups represented on the tray."
     ],
-    "correctAnswerIndexes": [0],
-    "correctAnswerText": ["Describe the food locations using clock positions."],
-    "rationale": "Clock positions give a consistent spatial reference and help the client locate food without relying on vision.",
-    "whyWrong": [
-      "Touching food is not the preferred first approach.",
-      "Mixing foods reduces choice and dignity.",
-      "Food-group teaching does not orient the client to the plate."
+    "correctAnswerIndexes": [
+      0
     ],
+    "correctAnswerText": [
+      "Describe the food locations using clock positions."
+    ],
+    "rationale": "Clock positions give a consistent spatial reference and help the client locate food without relying on vision.",
+    "whyWrong": [],
     "tagging": {
-      "examProgram": { "id": "nclex-pn", "label": "NCLEX-PN" },
-      "clientNeedsCategory": { "id": "physiological-integrity", "label": "Physiological Integrity" },
-      "clientNeedsSubcategory": { "id": "basic-care-comfort", "label": "Basic Care and Comfort" },
-      "integratedProcess": { "id": "teaching-learning", "label": "Teaching/Learning" },
-      "clinicalJudgmentStep": { "id": "take-action", "label": "Take Action" },
-      "nursingProcessStep": { "id": "implementation", "label": "Implementation" },
-      "questionType": { "id": "multiple-choice", "label": "Multiple Choice" },
-      "topicTags": [{ "id": "low-vision-meal-orientation", "label": "Low-Vision Meal Orientation" }],
-      "populationTags": [{ "id": "sensory-impairment", "label": "Sensory Impairment" }],
-      "safetyTags": [{ "id": "device-safety", "label": "Device Safety" }],
-      "skillTags": [{ "id": "patient-teaching", "label": "Patient Teaching" }, { "id": "sensory-care", "label": "Sensory Care" }],
-      "bodySystemTags": [{ "id": "sensory-visual", "label": "Sensory: Visual" }],
-      "difficulty": { "id": "easy", "label": "Easy" },
+      "examProgram": {
+        "id": "nclex-pn",
+        "label": "NCLEX-PN"
+      },
+      "clientNeedsCategory": {
+        "id": "physiological-integrity",
+        "label": "Physiological Integrity"
+      },
+      "clientNeedsSubcategory": {
+        "id": "basic-care-comfort",
+        "label": "Basic Care and Comfort"
+      },
+      "integratedProcess": {
+        "id": "teaching-learning",
+        "label": "Teaching/Learning"
+      },
+      "clinicalJudgmentStep": {
+        "id": "take-action",
+        "label": "Take Action"
+      },
+      "nursingProcessStep": {
+        "id": "implementation",
+        "label": "Implementation"
+      },
+      "questionType": {
+        "id": "multiple-choice",
+        "label": "Multiple Choice"
+      },
+      "topicTags": [
+        {
+          "id": "low-vision-meal-orientation",
+          "label": "Low-Vision Meal Orientation"
+        }
+      ],
+      "populationTags": [
+        {
+          "id": "sensory-impairment",
+          "label": "Sensory Impairment"
+        }
+      ],
+      "safetyTags": [
+        {
+          "id": "device-safety",
+          "label": "Device Safety"
+        }
+      ],
+      "skillTags": [
+        {
+          "id": "patient-teaching",
+          "label": "Patient Teaching"
+        },
+        {
+          "id": "sensory-care",
+          "label": "Sensory Care"
+        }
+      ],
+      "bodySystemTags": [
+        {
+          "id": "sensory-visual",
+          "label": "Sensory: Visual"
+        }
+      ],
+      "difficulty": {
+        "id": "easy",
+        "label": "Easy"
+      },
       "estimatedTimeSeconds": 60,
       "examModeEligibility": {
         "tutor_mode": true,
@@ -46,7 +99,10 @@
     "difficulty": 1,
     "estimatedTimeSeconds": 60,
     "sourceTracePrivate": null,
-    "review": { "status": "demo_seed", "notes": "Demo fallback item." },
+    "review": {
+      "status": "demo_seed",
+      "notes": "Demo fallback item."
+    },
     "createdAt": "2026-05-11T00:00:00.000Z",
     "updatedAt": "2026-05-11T00:00:00.000Z"
   },
@@ -63,31 +119,85 @@
       "Encourage fiber-containing foods if not contraindicated.",
       "Reduce fluid intake if stools are hard."
     ],
-    "correctAnswerIndexes": [0, 1, 3],
+    "correctAnswerIndexes": [
+      0,
+      1,
+      3
+    ],
     "correctAnswerText": [
       "Encourage walking as tolerated.",
       "Offer fluids within the prescribed fluid plan.",
       "Encourage fiber-containing foods if not contraindicated."
     ],
     "rationale": "Walking as tolerated, fluids within the prescribed plan, and fiber-containing foods help prevent constipation without jumping straight to medication. The safest teaching starts with routine bowel habits and non-medication measures unless the provider has ordered something else.",
-    "whyWrong": [
-      "Daily stimulant laxative use can cause dependence or cramping and should not be the routine first teaching point without provider guidance.",
-      "Hard stool usually means the client needs enough fluid if allowed, not less fluid. Always follow fluid restrictions if present."
-    ],
+    "whyWrong": [],
     "tagging": {
-      "examProgram": { "id": "nclex-pn", "label": "NCLEX-PN" },
-      "clientNeedsCategory": { "id": "physiological-integrity", "label": "Physiological Integrity" },
-      "clientNeedsSubcategory": { "id": "basic-care-comfort", "label": "Basic Care and Comfort" },
-      "integratedProcess": { "id": "teaching-learning", "label": "Teaching/Learning" },
-      "clinicalJudgmentStep": { "id": "analyze-cues", "label": "Analyze Cues" },
-      "nursingProcessStep": { "id": "implementation", "label": "Implementation" },
-      "questionType": { "id": "multiple-response", "label": "Multiple Response" },
-      "topicTags": [{ "id": "constipation-management", "label": "Constipation Management" }],
-      "populationTags": [{ "id": "adult", "label": "Adult" }],
-      "safetyTags": [{ "id": "pending-review", "label": "Pending Review" }],
-      "skillTags": [{ "id": "patient-teaching", "label": "Patient Teaching" }, { "id": "elimination-management", "label": "Elimination Management" }],
-      "bodySystemTags": [{ "id": "gastrointestinal", "label": "Gastrointestinal" }],
-      "difficulty": { "id": "medium-high", "label": "Medium-High" },
+      "examProgram": {
+        "id": "nclex-pn",
+        "label": "NCLEX-PN"
+      },
+      "clientNeedsCategory": {
+        "id": "physiological-integrity",
+        "label": "Physiological Integrity"
+      },
+      "clientNeedsSubcategory": {
+        "id": "basic-care-comfort",
+        "label": "Basic Care and Comfort"
+      },
+      "integratedProcess": {
+        "id": "teaching-learning",
+        "label": "Teaching/Learning"
+      },
+      "clinicalJudgmentStep": {
+        "id": "analyze-cues",
+        "label": "Analyze Cues"
+      },
+      "nursingProcessStep": {
+        "id": "implementation",
+        "label": "Implementation"
+      },
+      "questionType": {
+        "id": "multiple-response",
+        "label": "Multiple Response"
+      },
+      "topicTags": [
+        {
+          "id": "constipation-management",
+          "label": "Constipation Management"
+        }
+      ],
+      "populationTags": [
+        {
+          "id": "adult",
+          "label": "Adult"
+        }
+      ],
+      "safetyTags": [
+        {
+          "id": "pending-review",
+          "label": "Pending Review"
+        }
+      ],
+      "skillTags": [
+        {
+          "id": "patient-teaching",
+          "label": "Patient Teaching"
+        },
+        {
+          "id": "elimination-management",
+          "label": "Elimination Management"
+        }
+      ],
+      "bodySystemTags": [
+        {
+          "id": "gastrointestinal",
+          "label": "Gastrointestinal"
+        }
+      ],
+      "difficulty": {
+        "id": "medium-high",
+        "label": "Medium-High"
+      },
       "estimatedTimeSeconds": 90,
       "examModeEligibility": {
         "tutor_mode": true,
@@ -101,7 +211,10 @@
     "difficulty": 4,
     "estimatedTimeSeconds": 90,
     "sourceTracePrivate": null,
-    "review": { "status": "demo_seed", "notes": "Demo fallback item." },
+    "review": {
+      "status": "demo_seed",
+      "notes": "Demo fallback item."
+    },
     "createdAt": "2026-05-11T00:00:00.000Z",
     "updatedAt": "2026-05-11T00:00:00.000Z"
   },
@@ -117,28 +230,85 @@
       "Remove the rubber tips for smoother movement.",
       "Keep elbows locked while walking."
     ],
-    "correctAnswerIndexes": [0],
-    "correctAnswerText": ["Support body weight through the hand grips."],
-    "rationale": "Weight should be borne through the hands. Axillary pressure can cause nerve injury, and rubber tips support traction.",
-    "whyWrong": [
-      "Axillary pressure can injure nerves and blood vessels.",
-      "Rubber tips reduce fall risk.",
-      "Locked elbows reduce control and shock absorption."
+    "correctAnswerIndexes": [
+      0
     ],
+    "correctAnswerText": [
+      "Support body weight through the hand grips."
+    ],
+    "rationale": "Weight should be borne through the hands. Axillary pressure can cause nerve injury, and rubber tips support traction.",
+    "whyWrong": [],
     "tagging": {
-      "examProgram": { "id": "nclex-pn", "label": "NCLEX-PN" },
-      "clientNeedsCategory": { "id": "safe-effective-care-environment", "label": "Safe and Effective Care Environment" },
-      "clientNeedsSubcategory": { "id": "safety-infection-control", "label": "Safety and Infection Control" },
-      "integratedProcess": { "id": "teaching-learning", "label": "Teaching/Learning" },
-      "clinicalJudgmentStep": { "id": "take-action", "label": "Take Action" },
-      "nursingProcessStep": { "id": "implementation", "label": "Implementation" },
-      "questionType": { "id": "multiple-choice", "label": "Multiple Choice" },
-      "topicTags": [{ "id": "crutch-use", "label": "Crutch Use" }],
-      "populationTags": [{ "id": "mobility-impairment", "label": "Mobility Impairment" }],
-      "safetyTags": [{ "id": "fall-risk", "label": "Fall Risk" }, { "id": "device-safety", "label": "Device Safety" }],
-      "skillTags": [{ "id": "assistive-device-use", "label": "Assistive Device Use" }, { "id": "mobility-support", "label": "Mobility Support" }],
-      "bodySystemTags": [{ "id": "musculoskeletal", "label": "Musculoskeletal" }],
-      "difficulty": { "id": "medium", "label": "Medium" },
+      "examProgram": {
+        "id": "nclex-pn",
+        "label": "NCLEX-PN"
+      },
+      "clientNeedsCategory": {
+        "id": "safe-effective-care-environment",
+        "label": "Safe and Effective Care Environment"
+      },
+      "clientNeedsSubcategory": {
+        "id": "safety-infection-control",
+        "label": "Safety and Infection Control"
+      },
+      "integratedProcess": {
+        "id": "teaching-learning",
+        "label": "Teaching/Learning"
+      },
+      "clinicalJudgmentStep": {
+        "id": "take-action",
+        "label": "Take Action"
+      },
+      "nursingProcessStep": {
+        "id": "implementation",
+        "label": "Implementation"
+      },
+      "questionType": {
+        "id": "multiple-choice",
+        "label": "Multiple Choice"
+      },
+      "topicTags": [
+        {
+          "id": "crutch-use",
+          "label": "Crutch Use"
+        }
+      ],
+      "populationTags": [
+        {
+          "id": "mobility-impairment",
+          "label": "Mobility Impairment"
+        }
+      ],
+      "safetyTags": [
+        {
+          "id": "fall-risk",
+          "label": "Fall Risk"
+        },
+        {
+          "id": "device-safety",
+          "label": "Device Safety"
+        }
+      ],
+      "skillTags": [
+        {
+          "id": "assistive-device-use",
+          "label": "Assistive Device Use"
+        },
+        {
+          "id": "mobility-support",
+          "label": "Mobility Support"
+        }
+      ],
+      "bodySystemTags": [
+        {
+          "id": "musculoskeletal",
+          "label": "Musculoskeletal"
+        }
+      ],
+      "difficulty": {
+        "id": "medium",
+        "label": "Medium"
+      },
       "estimatedTimeSeconds": 60,
       "examModeEligibility": {
         "tutor_mode": true,
@@ -152,7 +322,10 @@
     "difficulty": 3,
     "estimatedTimeSeconds": 60,
     "sourceTracePrivate": null,
-    "review": { "status": "demo_seed", "notes": "Demo fallback item." },
+    "review": {
+      "status": "demo_seed",
+      "notes": "Demo fallback item."
+    },
     "createdAt": "2026-05-11T00:00:00.000Z",
     "updatedAt": "2026-05-11T00:00:00.000Z"
   }
