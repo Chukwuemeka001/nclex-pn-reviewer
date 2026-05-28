@@ -23,11 +23,21 @@ function difficultyNumber(question) {
   return 3;
 }
 
+import { validateQuestionIntegrity } from "./questionIntegrity.js";
+
 function normalizeQuestion(raw, source = "approved") {
   const now = new Date().toISOString();
   const itemType = normalizeItemType(raw.itemType || raw.tagging?.questionType?.id);
-  const choices = raw.choices || raw.newAnswerChoices || [];
-  const correctAnswerIndexes = raw.correctAnswerIndexes || [];
+  const integrity = validateQuestionIntegrity({ ...raw, itemType }, { strictItemType: false });
+  const choices = integrity.normalized.choices;
+  const correctAnswerIndexes = integrity.normalized.correctAnswerIndexes;
+  const correctAnswerText = integrity.normalized.correctAnswerText;
+
+  if (!integrity.passed) {
+    const id = raw.id || raw.newQuestionId || "unknown";
+    throw new Error(`Question integrity failed for ${id}: ${integrity.errors.join("; ")}`);
+  }
+
   return {
     id: raw.id || raw.newQuestionId || crypto.randomUUID(),
     status: raw.status || raw.reviewStatus || "reviewed_approved",
@@ -36,7 +46,7 @@ function normalizeQuestion(raw, source = "approved") {
     stem: raw.stem || raw.newStem || "",
     choices,
     correctAnswerIndexes,
-    correctAnswerText: raw.correctAnswerText || correctAnswerIndexes.map((index) => choices[index]).filter(Boolean),
+    correctAnswerText,
     rationale: raw.rationale || raw.newRationale || "",
     whyWrong: raw.whyWrong || [],
     tagging: raw.tagging || {},

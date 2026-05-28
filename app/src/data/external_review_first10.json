@@ -78,22 +78,22 @@
     "itemType": "multiple_choice",
     "stem": "[RW] An older adult with severe vision loss is learning to use a long-handled shoehorn to put on footwear independently. During a teaching session, which client action tells the practical nurse that the client has correctly understood the technique?",
     "answerChoices": [
-      "The client holds the shoehorn steady at the heel and slides the foot down into the shoe without forcing.",
       "The client grips the shoehorn tightly with both hands to keep the shoe from moving.",
       "The client places the shoehorn on top of the foot and pushes downward to force the foot into the shoe.",
+      "The client holds the shoehorn steady at the heel and slides the foot down into the shoe without forcing.",
       "The client asks the nurse to put the shoe on first so the client can see how it looks."
     ],
     "correctAnswerIndexes": [
-      0
+      2
     ],
     "correctAnswerText": [
       "The client holds the shoehorn steady at the heel and slides the foot down into the shoe without forcing."
     ],
     "rationale": "Using a long-handled shoehorn correctly means positioning it at the heel and allowing the foot to glide smoothly into the shoe without excessive force. This technique reduces the risk of skin shearing, falls from loss of balance, and damage to the shoe or foot. Gripping tightly, forcing the foot, or asking the nurse to do it all demonstrate misunderstanding of independent use.",
     "whyWrong": [
-      "",
       "Gripping the shoehorn tightly with both hands reduces the client's balance and defeats the purpose of one-handed assisted dressing. The shoehorn is designed for light guidance at the heel, not forceful stabilization.",
       "Placing the shoehorn on top of the foot and pushing downward can cause skin shearing, toenail injury, or loss of balance. The shoehorn must be positioned at the heel, not pressed from above.",
+      "",
       "Asking the nurse to perform the task defeats the goal of independent self-care. The purpose of the assistive device is to increase the client's autonomy, not to have the caregiver complete the task."
     ],
     "tags": {
@@ -157,7 +157,7 @@
       "I will call a friend to come drive me somewhere to get fresh air."
     ],
     "correctAnswerIndexes": [
-      1
+      0
     ],
     "correctAnswerText": [
       "I will sit down or lie down right away when the dizziness starts and wait until it passes before I stand up."

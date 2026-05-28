@@ -79,7 +79,7 @@ function supportedItemType(item) {
 }
 
 function choicesFromItem(item) {
-  return item.newAnswerChoices || item.choices || [];
+  return item.newAnswerChoices || item.answerChoices || item.choices || [];
 }
 
 function stemFromItem(item) {
@@ -88,6 +88,57 @@ function stemFromItem(item) {
 
 function rationaleFromItem(item) {
   return item.newRationale || item.rationale || "";
+}
+
+function normalizeTextArray(value) {
+  if (Array.isArray(value)) return value.map((entry) => String(entry ?? "").trim());
+  if (typeof value === "string") return [value.trim()];
+  return [];
+}
+
+function validateQuestionIntegrity(item = {}) {
+  const integrityIssues = [];
+  const choices = choicesFromItem(item).map((choice) => String(choice ?? "").trim());
+  const indexesRaw = Array.isArray(item.correctAnswerIndexes) ? item.correctAnswerIndexes : [];
+  const indexes = indexesRaw.map((idx) => Number(idx));
+  const uniqueIndexes = [...new Set(indexes)];
+  const declaredText = normalizeTextArray(item.correctAnswerText);
+  const whyWrong = Array.isArray(item.whyWrong) ? item.whyWrong : [];
+
+  if (!choices.length) {
+    integrityIssues.push({ code: "MISSING_CHOICES", field: "answerChoices", message: "answerChoices/choices are required." });
+  }
+  if (!uniqueIndexes.length) {
+    integrityIssues.push({ code: "MISSING_CORRECT_ANSWER_INDEX", field: "correctAnswerIndexes", message: "At least one correct answer index is required." });
+  }
+
+  for (const idx of uniqueIndexes) {
+    if (!Number.isInteger(idx)) {
+      integrityIssues.push({ code: "INVALID_CORRECT_ANSWER_INDEX_TYPE", field: "correctAnswerIndexes", message: `Index ${idx} is not an integer.`, actual: idx });
+      continue;
+    }
+    if (idx < 0 || idx >= choices.length) {
+      integrityIssues.push({ code: "INVALID_CORRECT_ANSWER_INDEX", field: "correctAnswerIndexes", message: `Index ${idx} is out of range for ${choices.length} choices.`, actual: idx, expected: `0..${Math.max(0, choices.length - 1)}` });
+    }
+  }
+
+  const expectedText = uniqueIndexes
+    .filter((idx) => Number.isInteger(idx) && idx >= 0 && idx < choices.length)
+    .map((idx) => choices[idx]);
+
+  if (declaredText.length && JSON.stringify(declaredText) !== JSON.stringify(expectedText)) {
+    integrityIssues.push({ code: "CORRECT_ANSWER_TEXT_MISMATCH", field: "correctAnswerText", message: "correctAnswerText must exactly match choices at correctAnswerIndexes.", expected: expectedText, actual: declaredText });
+  }
+
+  if (whyWrong.length && whyWrong.length !== choices.length) {
+    integrityIssues.push({ code: "WHY_WRONG_LENGTH_MISMATCH", field: "whyWrong", message: "whyWrong length must equal choices length.", expected: choices.length, actual: whyWrong.length });
+  }
+
+  return {
+    passed: integrityIssues.length === 0,
+    integrityIssues,
+    issues: integrityIssues.map((issue) => issue.message),
+  };
 }
 
 function allWarnings(item) {
@@ -169,6 +220,8 @@ function approvalIssues(item, audit, meta) {
   if (!Array.isArray(choicesFromItem(item)) || choicesFromItem(item).length < 2) issues.push("Choices are invalid.");
   if (!Array.isArray(item.correctAnswerIndexes) || item.correctAnswerIndexes.length < 1) issues.push("Correct answer is missing.");
   if (!rationaleFromItem(item).trim()) issues.push("Rationale is missing.");
+  const integrity = validateQuestionIntegrity(item);
+  if (!integrity.passed) issues.push(...integrity.issues);
   issues.push(...validateTagging(item.tagging));
   issues.push(...validateQualityRubric(meta.qualityRubric));
   const unresolved = blockingWarnings(item, meta.resolvedWarnings || []);
@@ -385,6 +438,18 @@ async function applyRewriteItem(id, body) {
   const issues = validateApplyRewriteBody(body);
   if (issues.length) return { status: 400, body: { error: "Rewrite apply blocked", issues } };
   const item = applyRewriteToItem(entry.item, body);
+  const integrity = validateQuestionIntegrity(item);
+  if (!integrity.passed) {
+    return {
+      status: 400,
+      body: {
+        error: "Question integrity failed",
+        code: "QUESTION_INTEGRITY_FAILED",
+        issues: integrity.issues,
+        integrityIssues: integrity.integrityIssues,
+      },
+    };
+  }
   await upsertWorking(item);
   await appendEvent({
     type: "rewrite_applied",
@@ -555,6 +620,15 @@ async function handleRequest(req, res) {
       return json(res, { ok: true });
     }
     if (req.method === "POST" && url.pathname === "/api/review/save") {
+      const integrity = validateQuestionIntegrity(body.item || {});
+      if (!integrity.passed) {
+        return json(res, {
+          error: "Question integrity failed",
+          code: "QUESTION_INTEGRITY_FAILED",
+          issues: integrity.issues,
+          integrityIssues: integrity.integrityIssues,
+        }, 400);
+      }
       await upsertWorking(body.item);
       await appendEvent({ type: "saved", id: idFromDraft(body.item), reviewerNote: body.reviewerNote || "" });
       return json(res, { ok: true });

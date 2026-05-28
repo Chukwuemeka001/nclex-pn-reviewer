@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { assessLearnerFriendlyRationale } from "./learnerFriendlyRationale.js";
 import { assessDistractorPlausibility } from "./distractorQuality.js";
+import { assessSingleAnswerPositionBalance, validateQuestionIntegrity } from "./questionIntegrity.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const first10 = JSON.parse(readFileSync(join(__dirname, "../data/external_review_first10.json"), "utf8"));
@@ -26,15 +27,19 @@ function getItem(id) {
   return item;
 }
 
-test("approved alpha answer positions are not all the same", () => {
-  const keyedPositions = approvedAlphaIds.map((id) => getItem(id).correctAnswerIndexes[0]);
-  assert.ok(new Set(keyedPositions).size >= 2, `Alpha answers should not all sit at ${keyedPositions[0]}`);
+test("approved alpha answer distribution stays balanced", () => {
+  const approved = approvedAlphaIds.map((id) => getItem(id));
+  const maxShare = approved.length >= 10 ? 0.5 : 0.75;
+  const balance = assessSingleAnswerPositionBalance(approved, { maxShare, minDistinct: 3 });
+  assert.equal(balance.passed, true, `Answer-key balance issues: ${balance.issues.join("; ")} histogram=${JSON.stringify(balance.histogram)}`);
 });
 
-test("q001_variant_a correctAnswerText matches the keyed option, not the stem clue", () => {
-  const item = getItem("assistive_devices_first20_q001_variant_a");
-  assert.deepEqual(item.correctAnswerIndexes, [0]);
-  assert.deepEqual(item.correctAnswerText, [item.answerChoices[0]]);
+test("all first10 items keep answer-key integrity", () => {
+  for (const item of first10) {
+    const integrity = validateQuestionIntegrity(item, { strictItemType: false });
+    assert.equal(integrity.passed, true, `${item.id} integrity errors: ${integrity.errors.join("; ")}`);
+    assert.deepEqual(item.correctAnswerText, integrity.normalized.correctAnswerText, `${item.id} correctAnswerText is out of sync with keyed index`);
+  }
 });
 
 test("approved alpha items carry specific why-wrong teaching and pass existing guards", () => {
