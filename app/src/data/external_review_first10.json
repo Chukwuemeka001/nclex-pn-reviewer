@@ -2,25 +2,25 @@
   {
     "id": "assistive_devices_first20_q008_variant_c",
     "itemType": "multiple_choice",
-    "stem": "[RW] A practical nurse is teaching an adult client newly fitted with a rigid leg brace how to prevent skin breakdown under the brace. Which client statement indicates the need for further teaching?",
+    "stem": "[RW] A practical nurse is teaching an adult client newly fitted with a rigid leg brace how to prevent skin breakdown. Which client statement indicates the need for further teaching?",
     "answerChoices": [
-      "I will remove the brace and check my skin for redness or rubbing marks each time I take it off.",
-      "I will tighten the straps until my leg feels snug and secure during walking.",
-      "I will wear a thin sock under the brace to protect my skin from friction.",
-      "I will report any tingling or numbness in my foot to the nurse right away."
+      "I will remove the brace at scheduled times to inspect my skin for red areas or rubbing.",
+      "I will tighten the brace straps as much as possible so the brace does not shift while I walk.",
+      "I will wear a clean, wrinkle-free sock under the brace unless told otherwise.",
+      "I will report numbness, tingling, or persistent pressure points to the nurse right away."
     ],
     "correctAnswerIndexes": [
       1
     ],
     "correctAnswerText": [
-      "I will tighten the straps until my leg feels snug and secure during walking."
+      "I will tighten the brace straps as much as possible so the brace does not shift while I walk."
     ],
-    "rationale": "Tightening straps until the leg feels snug risks over-tightening, which can cause pressure injury and impair circulation to the lower extremity. Straps should be firm but allow a finger to slide between the strap and skin. Checking skin, wearing protective socks, and reporting numbness are all appropriate actions to prevent skin breakdown.",
+    "rationale": "Straps should be secure but not maximally tight. Over-tightening increases focal pressure, impairs circulation, and raises risk of skin injury. Routine skin checks, protective sock use, and early reporting of neurovascular warning signs are appropriate safety behaviors.",
     "whyWrong": [
-      "Removing the brace and inspecting skin is a correct practice. Early detection of redness or rubbing marks allows intervention before skin breakdown occurs.",
+      "Scheduled brace removal with skin inspection is a correct prevention strategy because early redness or rubbing can be addressed before breakdown occurs.",
       "",
-      "Wearing a thin, clean sock under a rigid brace reduces friction between the brace material and skin, which helps prevent irritation and abrasions.",
-      "Tingling or numbness can signal impaired circulation or nerve compression from the brace. Reporting this promptly allows adjustment before tissue damage occurs."
+      "A thin, clean, wrinkle-free sock helps reduce friction and shear under a rigid brace and supports skin protection.",
+      "Numbness, tingling, or persistent pressure can indicate neurovascular compromise or poor brace fit and should be reported promptly."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -34,7 +34,7 @@
     "alphaSlice": false,
     "quorumDecision": "pending_review",
     "revisionPriority": "P1_rewrite_generated",
-    "revisionPlan": "Rebuilt with complete sentence options. Tests identification of INCORRECT client statement (negative stem pattern). Answer rotated to B. Awaiting Emeka review."
+    "revisionPlan": "Stage 3 critical rewrite: upgraded distractor plausibility and instruction framing; removed easy elimination cues; retained negative-stem safety-teaching target. Awaiting review."
   },
   {
     "id": "assistive_devices_first20_q001_variant_a",
@@ -76,25 +76,25 @@
   {
     "id": "assistive_devices_first20_q001_variant_b",
     "itemType": "multiple_choice",
-    "stem": "[RW] An older adult with severe vision loss is learning to use a long-handled shoehorn to put on footwear independently. During a teaching session, which client action tells the practical nurse that the client has correctly understood the technique?",
+    "stem": "[RW] An older adult with severe vision loss is learning to use a long-handled shoehorn for independent dressing. Which client action shows correct technique?",
     "answerChoices": [
-      "The client grips the shoehorn tightly with both hands to keep the shoe from moving.",
-      "The client places the shoehorn on top of the foot and pushes downward to force the foot into the shoe.",
-      "The client holds the shoehorn steady at the heel and slides the foot down into the shoe without forcing.",
-      "The client asks the nurse to put the shoe on first so the client can see how it looks."
+      "The client keeps the shoehorn at the heel and slides the foot gently into the shoe without forcing.",
+      "The client rocks side to side while pushing the foot down hard so the shoe goes on faster.",
+      "The client stands on one leg and twists the foot repeatedly until the shoe slides in.",
+      "The client places the shoehorn over the top of the foot and presses downward to seat the shoe."
     ],
     "correctAnswerIndexes": [
-      2
+      0
     ],
     "correctAnswerText": [
-      "The client holds the shoehorn steady at the heel and slides the foot down into the shoe without forcing."
+      "The client keeps the shoehorn at the heel and slides the foot gently into the shoe without forcing."
     ],
-    "rationale": "Using a long-handled shoehorn correctly means positioning it at the heel and allowing the foot to glide smoothly into the shoe without excessive force. This technique reduces the risk of skin shearing, falls from loss of balance, and damage to the shoe or foot. Gripping tightly, forcing the foot, or asking the nurse to do it all demonstrate misunderstanding of independent use.",
+    "rationale": "Correct shoehorn use places the blade at the heel and allows the foot to glide in with controlled, gentle motion. Forcing, twisting, or unstable positioning increases risk of skin injury and loss of balance.",
     "whyWrong": [
-      "Gripping the shoehorn tightly with both hands reduces the client's balance and defeats the purpose of one-handed assisted dressing. The shoehorn is designed for light guidance at the heel, not forceful stabilization.",
-      "Placing the shoehorn on top of the foot and pushing downward can cause skin shearing, toenail injury, or loss of balance. The shoehorn must be positioned at the heel, not pressed from above.",
       "",
-      "Asking the nurse to perform the task defeats the goal of independent self-care. The purpose of the assistive device is to increase the client's autonomy, not to have the caregiver complete the task."
+      "Forceful downward pressure and rocking reduce stability and can cause loss of balance or skin shear at the heel.",
+      "Standing on one leg while repeatedly twisting increases fall risk and does not reflect safe assistive-device technique.",
+      "Pressing from the top of the foot mispositions the shoehorn and can create pressure injury instead of guiding the heel safely."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -108,7 +108,7 @@
     "alphaSlice": false,
     "quorumDecision": "pending_review",
     "revisionPriority": "P1_quarantine_replaced",
-    "revisionPlan": "Completely new scenario (long-handled shoehorn technique). No stem-answer word overlap. Tests identification of CORRECT understanding. Awaiting Emeka review."
+    "revisionPlan": "Stage 3 revise-once: replaced out-of-place distractor with clinically plausible unsafe techniques and increased requirement for true safe-use judgment. Awaiting review."
   },
   {
     "id": "assistive_devices_first20_q001_variant_c",
@@ -149,25 +149,25 @@
   {
     "id": "assistive_devices_first20_q002_variant_a",
     "itemType": "multiple_choice",
-    "stem": "[RW] An adult is being discharged after treatment for an inner-ear infection that caused severe spinning dizziness. Which client statement shows the best understanding of how to stay safe at home during vertigo episodes?",
+    "stem": "[RW] An adult client is being discharged after treatment for acute vertigo. Which client statement shows correct understanding of home safety instructions during a dizziness episode?",
     "answerChoices": [
-      "I will sit down or lie down right away when the dizziness starts and wait until it passes before I stand up.",
-      "I will try to walk slowly through the house to get used to the dizziness.",
-      "I will bend over to pick up anything I drop so I do not lose my balance.",
-      "I will call a friend to come drive me somewhere to get fresh air."
+      "I will sit or lie down immediately when the room starts spinning and wait until symptoms settle before standing.",
+      "I will walk slowly without help to train my balance when the spinning starts.",
+      "I will bend quickly to pick up objects so I can finish tasks before symptoms worsen.",
+      "I will drive myself a short distance if I need fresh air because slow driving is safer."
     ],
     "correctAnswerIndexes": [
       0
     ],
     "correctAnswerText": [
-      "I will sit down or lie down right away when the dizziness starts and wait until it passes before I stand up."
+      "I will sit or lie down immediately when the room starts spinning and wait until symptoms settle before standing."
     ],
-    "rationale": "Sitting or lying down immediately removes the fall risk during active vertigo and prevents injury from sudden loss of balance. Standing or walking during a vertigo episode increases fall risk, and bending or seeking outside stimulation can worsen symptoms.",
+    "rationale": "During active vertigo, the priority is fall prevention. Sitting or lying down immediately reduces injury risk until symptoms improve. Unassisted ambulation, rapid position changes, and driving during dizziness increase risk of falls or accidents.",
     "whyWrong": [
       "",
-      "Walking during active vertigo increases fall risk because impaired balance makes it unsafe to ambulate even slowly. The priority is to lower the center of gravity and wait for symptoms to pass.",
-      "Bending over can worsen dizziness by changing head position rapidly and increases the risk of falling when balance is already compromised.",
-      "Leaving the home during a vertigo episode creates additional safety risks, including falls outdoors or while driving. Staying seated in a safe position is the correct first action."
+      "Walking unassisted during active vertigo increases fall risk; activity should resume only after symptoms improve and safety is reassessed.",
+      "Rapid bending can worsen vertigo and destabilize balance, increasing the chance of a fall.",
+      "Driving during dizziness is unsafe because vertigo can impair spatial orientation and reaction time."
     ],
     "tags": {
       "clientNeeds": "Safe and Effective Care Environment",
@@ -181,7 +181,7 @@
     "alphaSlice": false,
     "quorumDecision": "pending_review",
     "revisionPriority": "P1_rewrite_generated",
-    "revisionPlan": "Rewritten as pure client-statement question. All options are client statements showing understanding. Answer rotated to B. Awaiting Emeka review."
+    "revisionPlan": "Stage 3 critical rewrite: converted all distractors to realistic but unsafe client instruction statements; removed framing mismatch and strengthened discharge-teaching validity. Awaiting review."
   },
   {
     "id": "assistive_devices_first20_q002_variant_b",
