@@ -220,7 +220,7 @@ export default function ExternalReviewerGuide() {
         </div>
         <div className="reviewer-hero-card">
           <UserCheck size={28} />
-          <strong>{completedCount}/10 started or submitted</strong>
+          <strong>{completedCount}/{REVIEW_IDS.length} started or submitted</strong>
           <span>{profile.shortLabel}. Drafts autosave only on this phone/browser.</span>
         </div>
       </header>
