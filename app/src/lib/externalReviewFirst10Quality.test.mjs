@@ -63,12 +63,15 @@ test("approved alpha items carry specific why-wrong teaching and pass existing g
   }
 });
 
-test("pending rewrite items remain out of alpha approved slice", () => {
-  // All 10 items are now approved — no pending rewrites remain.
-  // Verify that every item is either approved_alpha or candidate_approved_alpha with alphaSlice=true.
+test("all items have valid review status", () => {
+  // Every item must be in a recognized review status.
+  // approved_alpha/candidate_approved_alpha: promoted items (alphaSlice=true)
+  // new_pending_review: new items awaiting first review (alphaSlice=false)
   for (const item of first10) {
     assert.ok(
-      item.reviewStatus === "approved_alpha" || item.reviewStatus === "candidate_approved_alpha",
+      item.reviewStatus === "approved_alpha" ||
+      item.reviewStatus === "candidate_approved_alpha" ||
+      item.reviewStatus === "new_pending_review",
       `${item.id} has unexpected status: ${item.reviewStatus}`
     );
   }

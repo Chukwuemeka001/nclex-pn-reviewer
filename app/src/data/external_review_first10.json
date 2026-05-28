@@ -373,5 +373,1462 @@
     "quorumDecision": "approve_pool",
     "revisionPriority": "P3_specific_why_wrong_completed",
     "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key."
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is setting up lunch for a client with severe macular degeneration. Which instruction best helps the client locate each food item independently?",
+    "answerChoices": [
+      "Explain the tray using clock positions.",
+      "Review the recommended food groups on the plate.",
+      "Place all foods in separate bowls.",
+      "Tell the client to feel each item before eating."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Explain the tray using clock positions."
+    ],
+    "rationale": "Clock positions give the client a simple, repeatable way to locate foods without seeing the plate. Food-group teaching and bowl placement do not provide precise spatial orientation, and touching each food is unnecessary and less dignified.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Review the recommended food groups on the plate may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Place all foods in separate bowls may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Tell the client to feel each item before eating may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "assistive-devices",
+      "topic": "low-vision",
+      "all": [
+        "assistive-devices",
+        "low-vision",
+        "meal-assistance"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "During assessment, a client says, \"The room spins sometimes, but other days I just feel lightheaded.\" Which statement by the nurse is most accurate?",
+    "answerChoices": [
+      "Vertigo occurs only as a sudden short-term problem.",
+      "Vertigo can occur as either a short-term or persistent condition.",
+      "Lightheadedness and vertigo always mean the same thing.",
+      "Dizziness rules out a vestibular cause."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Vertigo can occur as either a short-term or persistent condition."
+    ],
+    "rationale": "Vertigo may be acute, recurrent, or chronic. Dizziness is a broader symptom and may or may not include vertigo, so absolute statements are unsafe.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Vertigo occurs only as a sudden short-term problem may seem relevant but does not match the priority action described in the scenario.",
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Lightheadedness and vertigo always mean the same thing may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Dizziness rules out a vestibular cause may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "vertigo",
+      "topic": "assessment",
+      "all": [
+        "vertigo",
+        "assessment",
+        "physiological-adaptation"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "At a home visit, a client with diabetes and a transtibial prosthesis says the device feels so good that it stays on all day and all night except during bathing. What should the nurse emphasize first?",
+    "answerChoices": [
+      "How to polish and store the prosthetic socket",
+      "Daily removal of the prosthesis to assess the residual limb",
+      "Praise for tolerating the prosthesis for long periods",
+      "Ways to increase walking distance each week"
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Daily removal of the prosthesis to assess the residual limb"
+    ],
+    "rationale": "The priority is protecting skin and tissue on the residual limb. A client with diabetes needs routine inspection because pressure and irritation may progress before discomfort is noticed.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. How to polish and store the prosthetic socket may seem relevant but does not match the priority action described in the scenario.",
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Praise for tolerating the prosthesis for long periods may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Ways to increase walking distance each week may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "prosthesis",
+      "topic": "diabetes",
+      "all": [
+        "prosthesis",
+        "diabetes",
+        "skin-integrity",
+        "teaching"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client with a below-knee prosthesis reports that the residual limb becomes puffy in the evening after the device is removed. Which question is most useful?",
+    "answerChoices": [
+      "Do you leave the limb uncovered when the prosthesis is off?",
+      "Has the prosthesis always felt too tight during walking?",
+      "Does swelling disappear if you loosen the shoe?",
+      "Are you using the ordered shrinker or elastic wrap after removal?"
+    ],
+    "correctAnswerIndexes": [
+      3
+    ],
+    "correctAnswerText": [
+      "Are you using the ordered shrinker or elastic wrap after removal?"
+    ],
+    "rationale": "Compression when the prosthesis is not worn helps control edema and maintain limb shape. Swelling should not be dismissed or attributed to prosthesis fit without assessing compression use.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Do you leave the limb uncovered when the prosthesis is off? may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Has the prosthesis always felt too tight during walking? may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Does swelling disappear if you loosen the shoe? may seem relevant but does not match the priority action described in the scenario.",
+      ""
+    ],
+    "tags": {
+      "category": "prosthesis",
+      "topic": "edema",
+      "all": [
+        "prosthesis",
+        "edema",
+        "compression",
+        "amputation-care"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "Two weeks after a traumatic forearm amputation, a client says, \"My missing hand burns and aches.\" Which explanation best fits this report?",
+    "answerChoices": [
+      "Psychogenic pain caused by poor coping",
+      "Neurologic phantom limb pain",
+      "Pain from delayed wound closure",
+      "Infection in the removed hand"
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Neurologic phantom limb pain"
+    ],
+    "rationale": "Pain felt in an absent limb is phantom limb pain and is linked to nervous system activity after amputation. It should not be dismissed as psychogenic or attributed to tissue that is no longer present.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Psychogenic pain caused by poor coping may seem relevant but does not match the priority action described in the scenario.",
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Pain from delayed wound closure may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Infection in the removed hand may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "phantom-pain",
+      "topic": "amputation",
+      "all": [
+        "phantom-pain",
+        "amputation",
+        "neurologic-pain"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client with a healed above-knee amputation reports intermittent aching where the lower leg used to be. Which nurse teaching is appropriate as an initial comfort strategy?",
+    "answerChoices": [
+      "Stop wearing the prosthesis until all sensations disappear.",
+      "Use gentle massage or touch techniques on the residual limb.",
+      "Ask for psychotherapy before using physical comfort measures.",
+      "Keep the residual limb completely untouched."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Use gentle massage or touch techniques on the residual limb."
+    ],
+    "rationale": "Gentle massage or desensitization-style touch can be used as a nonpharmacologic approach for phantom pain. Avoiding all touch or stopping prosthesis use is not routinely indicated.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Stop wearing the prosthesis until all sensations disappear may seem relevant but does not match the priority action described in the scenario.",
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Ask for psychotherapy before using physical comfort measures may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Keep the residual limb completely untouched may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "phantom-pain",
+      "topic": "comfort",
+      "all": [
+        "phantom-pain",
+        "comfort",
+        "amputation-care"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client is discharged with a lower-leg orthotic brace after a sports injury. Which instruction best reduces skin breakdown under the brace?",
+    "answerChoices": [
+      "Apply the liner flat and evenly, with a snug but not constricting fit.",
+      "Pull the liner very tight so the limb cannot swell.",
+      "Leave the liner loose so air can circulate.",
+      "Add extra padding only over the middle of the calf."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Apply the liner flat and evenly, with a snug but not constricting fit."
+    ],
+    "rationale": "A smooth, evenly applied liner reduces friction and pressure. Padding that is too tight, too loose, or uneven can create localized injury.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Pull the liner very tight so the limb cannot swell may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Leave the liner loose so air can circulate may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Add extra padding only over the middle of the calf may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "brace",
+      "topic": "skin-integrity",
+      "all": [
+        "brace",
+        "skin-integrity",
+        "orthotics"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A nurse reviews home care for a client who wears an ankle-foot orthosis during the day. Which pair of instructions should be included?",
+    "answerChoices": [
+      "Check the skin each day and wash the limb with mild soap and water.",
+      "Sleep with the brace reapplied directly over bare skin.",
+      "Skip skin checks unless the brace becomes painful.",
+      "Use lotion under the brace before every application."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Check the skin each day and wash the limb with mild soap and water."
+    ],
+    "rationale": "Routine inspection and gentle cleansing help prevent and detect irritation. The brace should not be worn over unprotected skin during sleep unless specifically ordered and properly padded.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Sleep with the brace reapplied directly over bare skin may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Skip skin checks unless the brace becomes painful may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Use lotion under the brace before every application may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "brace-care",
+      "topic": "skin-assessment",
+      "all": [
+        "brace-care",
+        "skin-assessment",
+        "patient-education"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client with an essential tremor spills food from a standard fork despite adequate grip strength. Which adaptive device is most appropriate to try first?",
+    "answerChoices": [
+      "Weighted eating utensils",
+      "Only a soup spoon for all foods",
+      "Child-sized utensils",
+      "Extra-long utensils"
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Weighted eating utensils"
+    ],
+    "rationale": "Weighted utensils can improve control for some clients with tremor and support independent feeding. Changing size or shape alone does not address tremor control as directly.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Only a soup spoon for all foods may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Child-sized utensils may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Extra-long utensils may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "adaptive-equipment",
+      "topic": "tremor",
+      "all": [
+        "adaptive-equipment",
+        "tremor",
+        "feeding"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "An older adult asks how to clean removable dentures before bedtime. Which instruction should the nurse give?",
+    "answerChoices": [
+      "Scrub firmly with a stiff brush to remove all stains.",
+      "Soak them in household bleach after each meal.",
+      "Rinse with boiling water to disinfect them.",
+      "Brush gently with a soft brush and place them in denture solution overnight."
+    ],
+    "correctAnswerIndexes": [
+      3
+    ],
+    "correctAnswerText": [
+      "Brush gently with a soft brush and place them in denture solution overnight."
+    ],
+    "rationale": "Dentures should be cleaned gently and soaked in an appropriate solution. Stiff brushing, bleach, and very hot water can damage the appliance.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Scrub firmly with a stiff brush to remove all stains may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Soak them in household bleach after each meal may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Rinse with boiling water to disinfect them may seem relevant but does not match the priority action described in the scenario.",
+      ""
+    ],
+    "tags": {
+      "category": "denture-care",
+      "topic": "oral-hygiene",
+      "all": [
+        "denture-care",
+        "oral-hygiene",
+        "older-adult"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client with moderate hearing loss declines hearing aids but wants to continue telephone conversations. Which feature set would be most helpful?",
+    "answerChoices": [
+      "Caption display, amplified ring, visual call signal, and voice capability",
+      "A smaller handset with no screen",
+      "A phone that disables voice communication",
+      "A standard phone placed in a quiet room only"
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Caption display, amplified ring, visual call signal, and voice capability"
+    ],
+    "rationale": "A captioned/amplified phone can support both seeing and hearing communication cues. A standard phone or a device without voice features may not meet the client's needs.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. A smaller handset with no screen may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. A phone that disables voice communication may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. A standard phone placed in a quiet room only may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "hearing-loss",
+      "topic": "communication",
+      "all": [
+        "hearing-loss",
+        "communication",
+        "assistive-technology"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client has left-sided leg weakness after hip surgery. The right leg is stronger. Which cane teaching is correct?",
+    "answerChoices": [
+      "Hold the cane in the left hand with the elbow locked.",
+      "Hold the cane in the right hand with slight elbow flexion.",
+      "Hold the cane in the left hand with the arm fully extended.",
+      "Switch hands every few steps to avoid fatigue."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Hold the cane in the right hand with slight elbow flexion."
+    ],
+    "rationale": "The cane is typically held on the stronger side, with the elbow slightly bent, to provide balance and support for the weaker side.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Hold the cane in the left hand with the elbow locked may seem relevant but does not match the priority action described in the scenario.",
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Hold the cane in the left hand with the arm fully extended may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Switch hands every few steps to avoid fatigue may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "cane",
+      "topic": "ambulation",
+      "all": [
+        "cane",
+        "ambulation",
+        "mobility"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client with a non-weight-bearing ankle injury says, \"The crutches can take the place of my bad leg, so I can lean on them however I need.\" Which response is best?",
+    "answerChoices": [
+      "Crutches should be used exactly as taught to reduce injury risk.",
+      "One crutch can safely replace the injured leg at all times.",
+      "Crutches are needed only for walking outdoors.",
+      "Use the crutches only when pain becomes severe."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Crutches should be used exactly as taught to reduce injury risk."
+    ],
+    "rationale": "Crutches are assistive devices that require correct technique and consistent safety use. Treating them as a limb replacement or using them inconsistently can increase fall or nerve-injury risk.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. One crutch can safely replace the injured leg at all times may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Crutches are needed only for walking outdoors may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Use the crutches only when pain becomes severe may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "crutches",
+      "topic": "fall-prevention",
+      "all": [
+        "crutches",
+        "fall-prevention",
+        "patient-education"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "While observing a client using axillary crutches, which teaching point is most important?",
+    "answerChoices": [
+      "Support body weight through the hand grips.",
+      "Press the tops of the crutches firmly into the armpits.",
+      "Keep both elbows completely straight while walking.",
+      "Remove worn rubber tips so the crutches slide smoothly."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Support body weight through the hand grips."
+    ],
+    "rationale": "Weight should be supported through the hands on the grips. Axillary pressure may injure nerves and vessels, locked elbows reduce control, and missing tips increase fall risk.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Press the tops of the crutches firmly into the armpits may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Keep both elbows completely straight while walking may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Remove worn rubber tips so the crutches slide smoothly may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "crutches",
+      "topic": "mobility",
+      "all": [
+        "crutches",
+        "mobility",
+        "safety"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client with infrequent hard stools asks what foods or supplements may support bowel regularity. Which recommendation is most appropriate?",
+    "answerChoices": [
+      "Increase cheese and low-fiber snacks.",
+      "Add beans, seeds, and psyllium if not contraindicated.",
+      "Avoid leafy vegetables and whole grains.",
+      "Reduce fluids and bulk-forming fiber."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Add beans, seeds, and psyllium if not contraindicated."
+    ],
+    "rationale": "Legumes, seeds, and psyllium can increase fiber or bulk and help bowel regularity when appropriate. Low-fiber foods, fluid restriction without cause, and avoiding vegetables or whole grains work against constipation prevention.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Increase cheese and low-fiber snacks may seem relevant but does not match the priority action described in the scenario.",
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Avoid leafy vegetables and whole grains may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Reduce fluids and bulk-forming fiber may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "constipation",
+      "topic": "nutrition",
+      "all": [
+        "constipation",
+        "nutrition",
+        "fiber"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A student nurse asks which structure allows a person to voluntarily delay a bowel movement. Which answer is correct?",
+    "answerChoices": [
+      "External anal sphincter",
+      "Duodenum",
+      "Ascending colon",
+      "Internal anal sphincter"
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "External anal sphincter"
+    ],
+    "rationale": "The external anal sphincter is skeletal muscle under voluntary control. The internal anal sphincter is involuntary, and the intestines do not provide conscious control of defecation.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Duodenum may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Ascending colon may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Internal anal sphincter may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "bowel-elimination",
+      "topic": "anatomy",
+      "all": [
+        "bowel-elimination",
+        "anatomy",
+        "physiology"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A client reports ear pain after pushing a cotton swab into the ear after swimming. Which teaching should the nurse provide?",
+    "answerChoices": [
+      "Use cotton swabs in the canal only when the ear is wet.",
+      "Insert the swab only if the cotton tip is dry.",
+      "Rotate the swab gently inside the canal.",
+      "Clean only the outer ear with cotton swabs."
+    ],
+    "correctAnswerIndexes": [
+      3
+    ],
+    "correctAnswerText": [
+      "Clean only the outer ear with cotton swabs."
+    ],
+    "rationale": "Cotton swabs should be used only on the external ear. Inserting them into the canal can injure tissue or push material deeper.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Use cotton swabs in the canal only when the ear is wet may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Insert the swab only if the cotton tip is dry may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Rotate the swab gently inside the canal may seem relevant but does not match the priority action described in the scenario.",
+      ""
+    ],
+    "tags": {
+      "category": "ear-care",
+      "topic": "injury-prevention",
+      "all": [
+        "ear-care",
+        "injury-prevention",
+        "patient-education"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "A landscaper feels sharp eye pain after debris blows under protective glasses. What instruction is safest?",
+    "answerChoices": [
+      "Seek urgent eye evaluation for assessment and possible irrigation.",
+      "Schedule a routine visit later in the week.",
+      "Patch the eye at home and use warm compresses for several days.",
+      "Wait to see whether blinking removes the object overnight."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Seek urgent eye evaluation for assessment and possible irrigation."
+    ],
+    "rationale": "A suspected foreign body with eye pain requires prompt evaluation to reduce the risk of corneal abrasion, retained debris, or infection.",
+    "whyWrong": [
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Schedule a routine visit later in the week may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Patch the eye at home and use warm compresses for several days may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Wait to see whether blinking removes the object overnight may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "eye-injury",
+      "topic": "urgent-care",
+      "all": [
+        "eye-injury",
+        "urgent-care",
+        "safety"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "assistive_devices_q004",
+    "itemType": "multiple_choice",
+    "stem": "The nurse finds a small oval cup designed to fit around the orbit and hold solution against the eye. What is this device called?",
+    "answerChoices": [
+      "Specimen cup",
+      "Eye cup",
+      "Otic cup",
+      "Medication dose cup"
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Eye cup"
+    ],
+    "rationale": "An eye cup is shaped to hold irrigation fluid against the eye. Specimen and medication cups have different uses, and an otic cup is not a standard device for ear drops.",
+    "whyWrong": [
+      "This option does not address the key clinical concern identified in the rationale. Specimen cup may seem relevant but does not match the priority action described in the scenario.",
+      "",
+      "This option does not address the key clinical concern identified in the rationale. Otic cup may seem relevant but does not match the priority action described in the scenario.",
+      "This option does not address the key clinical concern identified in the rationale. Medication dose cup may seem relevant but does not match the priority action described in the scenario."
+    ],
+    "tags": {
+      "category": "eye-irrigation",
+      "topic": "equipment",
+      "all": [
+        "eye-irrigation",
+        "equipment",
+        "assistive-devices"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "safety_infection_ctrl_q001",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is caring for a client with Clostridioides difficile infection. Which action by the nurse requires immediate correction?",
+    "answerChoices": [
+      "The nurse places the client in a private room with contact precautions signage.",
+      "The nurse washes hands with soap and water after removing gloves in the client room.",
+      "The nurse uses an alcohol-based hand rub instead of soap and water after direct contact with soiled linens.",
+      "The nurse dons a gown and gloves before entering the client room."
+    ],
+    "correctAnswerIndexes": [
+      2
+    ],
+    "correctAnswerText": [
+      "The nurse uses an alcohol-based hand rub instead of soap and water after direct contact with soiled linens."
+    ],
+    "rationale": "C difficile spores are not eliminated by alcohol-based hand rubs. Soap and water with mechanical friction is required to physically remove spores from hands after contact with C difficile clients or their environment.",
+    "whyWrong": [
+      "",
+      "Handwashing with soap and water is the correct method for C difficile and does not require correction.",
+      "Alcohol-based rubs do not kill C difficile spores; soap and water is required.",
+      "Contact precautions with gown and gloves are appropriate for C difficile."
+    ],
+    "tags": {
+      "category": "safety-and-infection-control",
+      "topic": "infection-prevention",
+      "all": [
+        "safety",
+        "infection-control",
+        "c-difficile",
+        "hand-hygiene"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "safety_infection_ctrl_q002",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is teaching a client how to perform hand hygiene before preparing food at home. Which statement by the client indicates correct understanding?",
+    "answerChoices": [
+      "I will rub my hands together with soap for at least 10 seconds under running water.",
+      "I will use hand sanitizer only since it is faster than washing.",
+      "I will scrub all surfaces of my hands with soap and running water for at least 20 seconds.",
+      "I will rinse my hands first, then apply soap and rinse again quickly."
+    ],
+    "correctAnswerIndexes": [
+      2
+    ],
+    "correctAnswerText": [
+      "I will scrub all surfaces of my hands with soap and running water for at least 20 seconds."
+    ],
+    "rationale": "The recommended handwashing technique requires scrubbing all hand surfaces with soap under running water for at least 20 seconds to effectively remove transient microorganisms before food preparation.",
+    "whyWrong": [
+      "",
+      "Ten seconds is insufficient; 20 seconds is the minimum recommended duration.",
+      "Hand sanitizer is not a substitute for handwashing before food preparation when hands are visibly soiled.",
+      "Rinsing first then briefly applying soap does not allow adequate contact time for microbial removal."
+    ],
+    "tags": {
+      "category": "safety-and-infection-control",
+      "topic": "hand-hygiene",
+      "all": [
+        "safety",
+        "hand-hygiene",
+        "teaching"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "safety_infection_ctrl_q003",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is preparing to insert a urinary catheter. Which action best demonstrates sterile technique?",
+    "answerChoices": [
+      "The nurse opens the sterile catheter kit on the client bedside table.",
+      "The nurse drops the catheter into the sterile tray without touching the tray edges.",
+      "The nurse uses clean gloves to hold the catheter during insertion.",
+      "The nurse places the sterile drape on the bed before washing hands."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "The nurse drops the catheter into the sterile tray without touching the tray edges."
+    ],
+    "rationale": "Dropping the catheter into the sterile field without touching the edges maintains sterility. Touching the tray edges, using clean instead of sterile gloves, or placing the drape before hand hygiene all break sterile technique.",
+    "whyWrong": [
+      "",
+      "Opening a kit on a non-sterile surface contaminates the sterile field.",
+      "Clean gloves introduce microorganisms; sterile gloves are required for catheter insertion.",
+      "Hand hygiene must be performed before handling any sterile equipment or drapes."
+    ],
+    "tags": {
+      "category": "safety-and-infection-control",
+      "topic": "sterile-technique",
+      "all": [
+        "safety",
+        "sterile-technique",
+        "catheter-insertion"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "health_promotion_q001",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is teaching a group of older adults about fall prevention at home. Which statement by a participant indicates a need for further teaching?",
+    "answerChoices": [
+      "I will keep a nightlight on in my bedroom and bathroom.",
+      "I will remove loose rugs from hallways and near stairs.",
+      "I will wear soft-soled slippers without backs when walking around the house.",
+      "I will install grab bars near the toilet and inside the shower."
+    ],
+    "correctAnswerIndexes": [
+      2
+    ],
+    "correctAnswerText": [
+      "I will wear soft-soled slippers without backs when walking around the house."
+    ],
+    "rationale": "Slippers without backs do not secure the heel and can slip off or cause tripping. Supportive footwear with non-slip soles and a secure fit is recommended for fall prevention in older adults.",
+    "whyWrong": [
+      "",
+      "Nightlights improve visibility and reduce fall risk during nighttime bathroom trips.",
+      "Removing loose rugs eliminates a common tripping hazard.",
+      "Grab bars near toilets and showers provide stability support and reduce fall risk in wet areas."
+    ],
+    "tags": {
+      "category": "health-promotion-and-maintenance",
+      "topic": "fall-prevention",
+      "all": [
+        "health-promotion",
+        "fall-prevention",
+        "older-adults"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "health_promotion_q002",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is performing a wellness check on a 65-year-old client. Which screening is most appropriate to recommend at this visit?",
+    "answerChoices": [
+      "Bone density scan for osteoporosis screening",
+      "Colonoscopy for colorectal cancer screening",
+      "Mammogram for breast cancer screening",
+      "All of the above are appropriate for this age group"
+    ],
+    "correctAnswerIndexes": [
+      3
+    ],
+    "correctAnswerText": [
+      "All of the above are appropriate for this age group"
+    ],
+    "rationale": "At age 65, guidelines support bone density screening, colorectal cancer screening, and mammography. All three are recommended preventive screenings for this age group.",
+    "whyWrong": [
+      "",
+      "Bone density screening is recommended but is only one of several appropriate screenings at this age.",
+      "Colonoscopy is recommended starting at age 45-50 but is not the only appropriate screening.",
+      "Mammography is recommended but does not replace other age-appropriate screenings."
+    ],
+    "tags": {
+      "category": "health-promotion-and-maintenance",
+      "topic": "preventive-screening",
+      "all": [
+        "health-promotion",
+        "screening",
+        "older-adults"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "health_promotion_q003",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is teaching a new mother about infant car seat safety. Which instruction is most important?",
+    "answerChoices": [
+      "Place the infant in a rear-facing car seat in the back seat of the vehicle.",
+      "Use a forward-facing car seat once the infant can sit up unsupported.",
+      "Place the car seat in the front passenger seat for easier monitoring.",
+      "Transition to a booster seat when the infant weighs 15 pounds."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "Place the infant in a rear-facing car seat in the back seat of the vehicle."
+    ],
+    "rationale": "Infants must ride rear-facing in the back seat until they reach the maximum height or weight limit of their car seat. This position protects the head, neck, and spine in a collision.",
+    "whyWrong": [
+      "",
+      "Forward-facing is not recommended until at least age 2 or when the child exceeds the rear-facing seat limits.",
+      "The front passenger seat is dangerous due to airbag deployment risk.",
+      "A booster seat is for older children; infants need a rear-facing car seat, not a booster."
+    ],
+    "tags": {
+      "category": "health-promotion-and-maintenance",
+      "topic": "child-safety",
+      "all": [
+        "health-promotion",
+        "child-safety",
+        "car-seat"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "psychosocial_q001",
+    "itemType": "multiple_choice",
+    "stem": "A client tells the nurse, 'I feel like nobody cares about me anymore since my husband died.' Which response by the nurse is most therapeutic?",
+    "answerChoices": [
+      "You should not feel that way; your family loves you very much.",
+      "Tell me more about what it has been like for you since your husband passed.",
+      "Have you thought about joining a support group for bereavement?",
+      "I understand exactly how you feel because I lost someone too."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Tell me more about what it has been like for you since your husband passed."
+    ],
+    "rationale": "This open-ended response encourages the client to express feelings and validates their experience. It uses therapeutic communication by exploring the client's perspective without minimizing or redirecting.",
+    "whyWrong": [
+      "",
+      "This response dismisses the client's feelings and contradicts their lived experience.",
+      "While potentially helpful, this deflects from the immediate emotional expression rather than exploring it first.",
+      "This shifts focus to the nurse's experience and is not client-centered."
+    ],
+    "tags": {
+      "category": "psychosocial-integrity",
+      "topic": "grief-and-loss",
+      "all": [
+        "psychosocial",
+        "therapeutic-communication",
+        "grief"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "psychosocial_q002",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is caring for a client with major depressive disorder who has not eaten for two days. Which action is the nurse's priority?",
+    "answerChoices": [
+      "Encourage the client to join the group dining room for socialization.",
+      "Assess the client's nutritional status and report to the healthcare provider.",
+      "Offer the client a choice of favorite foods to stimulate appetite.",
+      "Document the client's refusal to eat in the medical record."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Assess the client's nutritional status and report to the healthcare provider."
+    ],
+    "rationale": "With two days of no intake, the priority is a focused nutritional assessment and reporting to the provider for potential intervention (e.g., nutritional supplements, medication adjustment, or meal planning).",
+    "whyWrong": [
+      "",
+      "Socialization may help but does not address the immediate nutritional deficit or need for provider notification.",
+      "Offering favorites may be tried but is not the priority when two days of no intake requires clinical assessment and intervention.",
+      "Documenting refusal without assessment and reporting is negligent; clinical action is needed first."
+    ],
+    "tags": {
+      "category": "psychosocial-integrity",
+      "topic": "depression",
+      "all": [
+        "psychosocial",
+        "depression",
+        "nutrition",
+        "priority"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "psychosocial_q003",
+    "itemType": "multiple_choice",
+    "stem": "A client with schizophrenia tells the nurse that voices are telling them to hurt themselves. What is the nurse's best initial response?",
+    "answerChoices": [
+      "Tell the client that the voices are not real and should be ignored.",
+      "Ask the client what the voices are saying and assess for suicidal intent.",
+      "Redirect the client to a group activity to distract from the voices.",
+      "Administer PRN antipsychotic medication immediately without further assessment."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Ask the client what the voices are saying and assess for suicidal intent."
+    ],
+    "rationale": "When a client reports command hallucinations with self-harm content, the nurse must assess the specific content and the client's intent to follow the commands. This assessment determines the level of intervention needed.",
+    "whyWrong": [
+      "",
+      "Dismissing the voices invalidates the client's experience and may increase distress.",
+      "Distraction does not address the safety risk posed by command hallucinations.",
+      "Medication may be needed but assessment of the specific risk must come first to guide treatment."
+    ],
+    "tags": {
+      "category": "psychosocial-integrity",
+      "topic": "schizophrenia",
+      "all": [
+        "psychosocial",
+        "schizophrenia",
+        "command-hallucinations",
+        "safety"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "physio_adaptation_q001",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is caring for a client with heart failure who has gained 3 pounds overnight. Which action should the nurse take first?",
+    "answerChoices": [
+      "Restrict the client's fluid intake to 1000 mL per day.",
+      "Notify the healthcare provider of the weight change.",
+      "Auscultate the client's lung sounds for crackles.",
+      "Encourage the client to ambulate to promote fluid mobilization."
+    ],
+    "correctAnswerIndexes": [
+      2
+    ],
+    "correctAnswerText": [
+      "Auscultate the client's lung sounds for crackles."
+    ],
+    "rationale": "A rapid weight gain in a heart failure client suggests fluid retention. The nurse's first action is to assess for pulmonary congestion by auscultating lung sounds before notifying the provider or implementing interventions.",
+    "whyWrong": [
+      "",
+      "Fluid restriction may be needed but assessment of the clinical impact must come first.",
+      "Notification to the provider is important but the nurse should gather assessment data first.",
+      "Ambulation may worsen symptoms if the client is in respiratory distress from fluid overload."
+    ],
+    "tags": {
+      "category": "physiological-adaptation",
+      "topic": "heart-failure",
+      "all": [
+        "physiological-adaptation",
+        "heart-failure",
+        "fluid-management",
+        "priority"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "physio_adaptation_q002",
+    "itemType": "multiple_choice",
+    "stem": "A client with type 2 diabetes has a blood glucose of 52 mg/dL and is diaphoretic and trembling. Which action should the nurse take first?",
+    "answerChoices": [
+      "Administer 10 units of regular insulin subcutaneously.",
+      "Give the client 4 ounces of orange juice or glucose tablets.",
+      "Recheck the blood glucose in 15 minutes.",
+      "Notify the healthcare provider immediately."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Give the client 4 ounces of orange juice or glucose tablets."
+    ],
+    "rationale": "Blood glucose of 52 mg/dL with symptoms of hypoglycemia requires immediate treatment with fast-acting glucose (15-20 grams of simple carbohydrates). This is the priority before rechecking or notifying the provider.",
+    "whyWrong": [
+      "",
+      "Insulin would further lower blood glucose and is contraindicated in hypoglycemia.",
+      "Rechecking can wait until after the client receives glucose treatment; the current value already confirms hypoglycemia.",
+      "Provider notification is needed but immediate glucose administration is the life-saving priority."
+    ],
+    "tags": {
+      "category": "physiological-adaptation",
+      "topic": "diabetes",
+      "all": [
+        "physiological-adaptation",
+        "diabetes",
+        "hypoglycemia",
+        "priority"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "physio_adaptation_q003",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is assessing a client 4 hours after a total knee replacement. The client reports severe pain rated 9/10 and the dressing is saturated with blood. What is the nurse's priority action?",
+    "answerChoices": [
+      "Administer the prescribed PRN pain medication immediately.",
+      "Elevate the leg and apply ice while notifying the healthcare provider.",
+      "Document the findings and continue to monitor every 15 minutes.",
+      "Remove the dressing to inspect the surgical site."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Elevate the leg and apply ice while notifying the healthcare provider."
+    ],
+    "rationale": "Severe pain with saturated dressing after knee replacement suggests possible hemorrhage. The priority is to elevate and apply ice (to reduce bleeding and swelling) while notifying the provider for possible surgical intervention.",
+    "whyWrong": [
+      "",
+      "Pain medication does not address the potential hemorrhage and may mask worsening symptoms.",
+      "Continuing to monitor without intervention delays treatment for a potential post-surgical complication.",
+      "Removing the dressing could disrupt any clot formation and worsen bleeding."
+    ],
+    "tags": {
+      "category": "physiological-adaptation",
+      "topic": "postoperative-care",
+      "all": [
+        "physiological-adaptation",
+        "postoperative",
+        "hemorrhage",
+        "priority"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "pharm_q001",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is administering digoxin to a client with heart failure. The client's apical pulse is 58 beats per minute. What should the nurse do?",
+    "answerChoices": [
+      "Administer the digoxin as prescribed since the heart failure requires it.",
+      "Hold the digoxin and notify the healthcare provider of the pulse rate.",
+      "Give half the dose and recheck the pulse in 30 minutes.",
+      "Administer the digoxin with food to slow absorption."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Hold the digoxin and notify the healthcare provider of the pulse rate."
+    ],
+    "rationale": "Digoxin is held when the apical pulse is below 60 bpm in adults because the drug slows heart rate further and can cause dangerous bradycardia or heart block. The nurse must notify the provider before administering.",
+    "whyWrong": [
+      "",
+      "Administering digoxin with a pulse below 60 bpm risks severe bradycardia or cardiac arrest.",
+      "Half-dosing is not an acceptable response to a low pulse; the dose should be withheld entirely.",
+      "Food does not affect the cardiac risk associated with administering digoxin to a bradycardic client."
+    ],
+    "tags": {
+      "category": "pharmacological-therapies",
+      "topic": "cardiac-medications",
+      "all": [
+        "pharmacology",
+        "digoxin",
+        "bradycardia",
+        "safety"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "pharm_q002",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is teaching a client who is prescribed warfarin about dietary considerations. Which statement by the client indicates correct understanding?",
+    "answerChoices": [
+      "I will eat a consistent amount of leafy green vegetables each week.",
+      "I will increase my intake of spinach and kale to improve my nutrition.",
+      "I will avoid all vegetables while taking this medication.",
+      "I will take a vitamin K supplement daily to prevent bleeding."
+    ],
+    "correctAnswerIndexes": [
+      0
+    ],
+    "correctAnswerText": [
+      "I will eat a consistent amount of leafy green vegetables each week."
+    ],
+    "rationale": "Vitamin K-rich foods (leafy greens) affect warfarin's anticoagulant effect. The key is consistency, not avoidance. Sudden increases or decreases in vitamin K intake can cause dangerous INR fluctuations.",
+    "whyWrong": [
+      "",
+      "Increasing vitamin K intake counteracts warfarin and can lead to clotting.",
+      "Complete avoidance of vegetables is unnecessary and nutritionally harmful.",
+      "Vitamin K supplements would antagonize warfarin and increase clotting risk."
+    ],
+    "tags": {
+      "category": "pharmacological-therapies",
+      "topic": "anticoagulants",
+      "all": [
+        "pharmacology",
+        "warfarin",
+        "diet",
+        "vitamin-k"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "pharm_q003",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is preparing to administer insulin lispro (Humalog) to a client with diabetes. Which time frame is correct for this medication?",
+    "answerChoices": [
+      "Administer 30 minutes before meals.",
+      "Administer immediately before or just after meals.",
+      "Administer 60 minutes before meals.",
+      "Administer at bedtime only."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Administer immediately before or just after meals."
+    ],
+    "rationale": "Insulin lispro is a rapid-acting insulin with an onset of 15 minutes. It should be given immediately before or just after meals to match the glucose spike from food intake.",
+    "whyWrong": [
+      "",
+      "Thirty minutes before meals is too early for rapid-acting insulin and risks hypoglycemia before eating.",
+      "Sixty minutes before meals is the timing for regular insulin, not rapid-acting lispro.",
+      "Insulin lispro is mealtime insulin, not a basal insulin given only at bedtime."
+    ],
+    "tags": {
+      "category": "pharmacological-therapies",
+      "topic": "insulin-therapy",
+      "all": [
+        "pharmacology",
+        "insulin",
+        "diabetes",
+        "timing"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "basic_care_q001",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is repositioning a client who weighs 200 pounds and cannot assist. Which technique best protects the nurse from back injury?",
+    "answerChoices": [
+      "Bend at the waist and pull the client toward you using upper body strength.",
+      "Keep the feet apart, bend the knees, and use leg muscles while keeping the client close.",
+      "Lock the knees and twist the torso to slide the client to one side.",
+      "Ask one other person to help and lift the client entirely off the bed."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Keep the feet apart, bend the knees, and use leg muscles while keeping the client close."
+    ],
+    "rationale": "Proper body mechanics for client repositioning include a wide stance, bent knees, and using leg muscles while keeping the load close to the body. This minimizes spinal strain and prevents back injury.",
+    "whyWrong": [
+      "",
+      "Bending at the waist places excessive strain on the lumbar spine and risks disc herniation.",
+      "Locked knees and twisting combine two high-risk movements that dramatically increase back injury risk.",
+      "Lifting a 200-pound client entirely off the bed is unsafe even with two people; sliding and repositioning is preferred."
+    ],
+    "tags": {
+      "category": "basic-care-and-comfort",
+      "topic": "body-mechanics",
+      "all": [
+        "basic-care",
+        "body-mechanics",
+        "safety",
+        "mobility"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "basic_care_q002",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is caring for a client with a stage 2 pressure injury on the sacrum. Which intervention is most appropriate?",
+    "answerChoices": [
+      "Apply a transparent film dressing to the wound bed.",
+      "Cleanse the wound with full-strength hydrogen peroxide.",
+      "Reposition the client every 2 hours on a pressure-redistribution surface.",
+      "Massage the reddened area around the wound to promote circulation."
+    ],
+    "correctAnswerIndexes": [
+      2
+    ],
+    "correctAnswerText": [
+      "Reposition the client every 2 hours on a pressure-redistribution surface."
+    ],
+    "rationale": "Repositioning every 2 hours on a pressure-redistribution surface relieves pressure on the sacrum and is the cornerstone of pressure injury management. Without pressure relief, no local wound treatment will be effective.",
+    "whyWrong": [
+      "",
+      "Transparent film dressings are for shallow wounds or intact skin protection, not a standard treatment for stage 2 pressure injuries.",
+      "Hydrogen peroxide is cytotoxic and damages healing tissue; mild wound cleanser or saline is preferred.",
+      "Massaging over reddened areas can cause further tissue damage and is contraindicated in pressure injury care."
+    ],
+    "tags": {
+      "category": "basic-care-and-comfort",
+      "topic": "wound-care",
+      "all": [
+        "basic-care",
+        "wound-care",
+        "pressure-injury",
+        "skin-integrity"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "basic_care_q003",
+    "itemType": "multiple_choice",
+    "stem": "A nurse is assisting a client with dysphagia during mealtime. Which action reduces the risk of aspiration?",
+    "answerChoices": [
+      "Position the client flat in bed with the head turned to the side.",
+      "Have the client tilt the head back to help food move down faster.",
+      "Sit the client upright at 90 degrees and offer small bites with adequate time to chew.",
+      "Mix all foods with liquid to create a thinner consistency for easier swallowing."
+    ],
+    "correctAnswerIndexes": [
+      2
+    ],
+    "correctAnswerText": [
+      "Sit the client upright at 90 degrees and offer small bites with adequate time to chew."
+    ],
+    "rationale": "Upright positioning at 90 degrees uses gravity to assist swallowing and reduces aspiration risk. Small bites and adequate chewing time allow the client to manage the bolus safely before swallowing.",
+    "whyWrong": [
+      "",
+      "Flat positioning increases aspiration risk because gravity does not assist the swallow.",
+      "Head tilting back opens the airway and increases aspiration risk.",
+      "Thinning foods with liquid can paradoxically increase aspiration risk; thickened liquids are often safer for dysphagia."
+    ],
+    "tags": {
+      "category": "basic-care-and-comfort",
+      "topic": "nutrition",
+      "all": [
+        "basic-care",
+        "nutrition",
+        "dysphagia",
+        "aspiration-prevention"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "mgmt_care_q001",
+    "itemType": "multiple_choice",
+    "stem": "During a shift change, a practical nurse receives a report that a client has a new order for a medication the nurse has never administered. What is the nurse's best action?",
+    "answerChoices": [
+      "Look up the medication in a drug reference and administer it as prescribed.",
+      "Ask another nurse to administer the medication instead.",
+      "Verify the order and consult with the charge nurse or pharmacist before administration.",
+      "Hold the medication until the prescriber can be contacted the next day."
+    ],
+    "correctAnswerIndexes": [
+      2
+    ],
+    "correctAnswerText": [
+      "Verify the order and consult with the charge nurse or pharmacist before administration."
+    ],
+    "rationale": "When a nurse is unfamiliar with a medication, the safe practice is to verify the order and consult available resources (charge nurse, pharmacist) before administration. This protects the client while maintaining timely care.",
+    "whyWrong": [
+      "",
+      "Simply looking up the medication without consulting may miss critical administration considerations, monitoring requirements, or contraindications.",
+      "Delegating to another nurse does not resolve the knowledge gap and may not be within scope.",
+      "Holding until the next day delays necessary treatment and is not appropriate."
+    ],
+    "tags": {
+      "category": "management-of-care",
+      "topic": "medication-safety",
+      "all": [
+        "management",
+        "medication-safety",
+        "delegation",
+        "scope"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "mgmt_care_q002",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is caring for four clients on a medical-surgical unit. Which client should the nurse assess first?",
+    "answerChoices": [
+      "A client with pneumonia who requests a glass of water.",
+      "A client post-abdominal surgery who reports sudden severe pain and rigidity.",
+      "A client with diabetes who asks when the next blood glucose check will be.",
+      "A client with hypertension whose routine medication is due in 30 minutes."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "A client post-abdominal surgery who reports sudden severe pain and rigidity."
+    ],
+    "rationale": "Sudden severe pain with rigidity in a post-abdominal surgery client may indicate a surgical complication such as anastomotic leak, perforation, or peritonitis. This is an emergency requiring immediate assessment.",
+    "whyWrong": [
+      "",
+      "A request for water is a routine comfort need that can be addressed after the emergency.",
+      "A question about schedule timing is routine and non-urgent.",
+      "Medication due in 30 minutes does not require immediate assessment compared to a potential surgical emergency."
+    ],
+    "tags": {
+      "category": "management-of-care",
+      "topic": "prioritization",
+      "all": [
+        "management",
+        "prioritization",
+        "postoperative",
+        "emergency"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
+  },
+  {
+    "id": "mgmt_care_q003",
+    "itemType": "multiple_choice",
+    "stem": "A practical nurse is caring for a client who refuses to take prescribed medication. What is the nurse's best initial action?",
+    "answerChoices": [
+      "Document the refusal and skip the medication for that dose.",
+      "Explain the purpose of the medication and explore the reason for refusal.",
+      "Crush the medication and mix it in applesauce without telling the client.",
+      "Notify the healthcare provider and request a different route of administration."
+    ],
+    "correctAnswerIndexes": [
+      1
+    ],
+    "correctAnswerText": [
+      "Explain the purpose of the medication and explore the reason for refusal."
+    ],
+    "rationale": "When a client refuses medication, the nurse should first explore the reason for refusal and provide education about the medication's purpose. The client has the right to refuse, and understanding the concern may resolve the issue without escalation.",
+    "whyWrong": [
+      "",
+      "Documenting without exploring the reason or providing education is incomplete care and does not respect the client's autonomy.",
+      "Crushing medication and hiding it in food without consent is unethical and potentially dangerous.",
+      "Provider notification may be needed later but the nurse should first explore and educate."
+    ],
+    "tags": {
+      "category": "management-of-care",
+      "topic": "client-rights",
+      "all": [
+        "management",
+        "client-rights",
+        "medication-refusal",
+        "autonomy"
+      ]
+    },
+    "reviewStatus": "new_pending_review",
+    "alphaSlice": false,
+    "publicPilotNotice": false
   }
 ]
