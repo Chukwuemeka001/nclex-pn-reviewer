@@ -583,19 +583,10 @@ async function handleRequest(req, res) {
   const url = new URL(req.url, "http://localhost");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, ngrok-skip-browser-warning");
   if (req.method === "OPTIONS") return res.end();
 
   try {
-    if (process.env.EXTERNAL_REVIEW_SUBMIT_SECRET && req.method === "POST" && url.pathname === "/api/external-reviews") {
-      const authHeader = req.headers.authorization || "";
-      const tokenParam = url.searchParams.get("token") || "";
-      const provided = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : tokenParam;
-      if (provided !== process.env.EXTERNAL_REVIEW_SUBMIT_SECRET) {
-        return json(res, { error: "Unauthorized" }, 401);
-      }
-    }
-
     let body = {};
     if (req.method === "POST") {
       const chunks = [];

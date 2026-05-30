@@ -149,7 +149,10 @@ export default function ExternalReviewerGuide() {
     }
     const response = await fetch(reviewSubmitEndpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "true",
+      },
       body: JSON.stringify(payload),
     });
     const body = await response.json().catch(() => ({}));
