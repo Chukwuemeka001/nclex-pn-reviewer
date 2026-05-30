@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "status": "hold",
+  "last_updated": "2026-05-30",
+  "owner": "Emeka",
+  "policy": {
+    "description": "Scaling NCLEX content is blocked until first-10 feedback comparison evidence is refreshed and approved.",
+    "scaling_blocked_when_status_not": "ready_to_scale"
+  },
+  "evidence": {
+    "first10_feedback_comparison_completed": false,
+    "comparison_report_path": "",
+    "review_cycle_id": "",
+    "approved_by": "",
+    "approved_at": ""
+  },
+  "notes": "Initial governance artifact from Opus Stage 1 hardening. Keep status=hold until comparison evidence is complete."
+}
