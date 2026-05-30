@@ -1,0 +1,393 @@
+{
+  "schemaVersion": "served-questions.v1",
+  "compiledAt": "2026-05-30T17:04:50.558Z",
+  "sourceFile": "app/src/data/external_review_first10.json",
+  "gateVersions": {
+    "integrity": "requireWhyWrong:true,strictItemType:false",
+    "distractor": "CARTOON_UNSAFE_PATTERNS",
+    "rationale": "learnerFriendly>=3,issues<=1"
+  },
+  "counts": {
+    "eligible": 10,
+    "passed": 10,
+    "dropped": 0
+  },
+  "dropped": [],
+  "questions": [
+    {
+      "id": "assistive_devices_first20_q008_variant_c",
+      "itemType": "multiple_choice",
+      "stem": "[RW] A practical nurse is teaching an adult client newly fitted with a rigid leg brace how to prevent skin breakdown. Which client statement indicates the need for further teaching?",
+      "answerChoices": [
+        "I will report numbness, tingling, or persistent pressure points to the nurse right away.",
+        "I will remove the brace at scheduled times to inspect my skin for red areas or rubbing.",
+        "I will tighten the brace straps as much as possible so the brace does not shift while I walk.",
+        "I will wear a clean, wrinkle-free sock under the brace unless told otherwise."
+      ],
+      "correctAnswerIndexes": [
+        2
+      ],
+      "correctAnswerText": [
+        "I will tighten the brace straps as much as possible so the brace does not shift while I walk."
+      ],
+      "rationale": "Straps should be secure but not maximally tight. Over-tightening increases focal pressure, impairs circulation, and raises risk of skin injury. Routine skin checks, protective sock use, and early reporting of neurovascular warning signs are appropriate safety behaviors.",
+      "whyWrong": [
+        "Numbness, tingling, or persistent pressure can indicate neurovascular compromise or poor brace fit and should be reported promptly.",
+        "Scheduled brace removal with skin inspection is a correct prevention strategy because early redness or rubbing can be addressed before breakdown occurs.",
+        "",
+        "A thin, clean, wrinkle-free sock helps reduce friction and shear under a rigid brace and supports skin protection."
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Take Action",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "approved_alpha",
+      "publicPilotNotice": "[RW] New rewrite pending review. Not approved for publication or student-facing use.",
+      "alphaSlice": true,
+      "quorumDecision": "APPROVE",
+      "revisionPriority": "P1_rewrite_generated",
+      "revisionPlan": "Stage 3 critical rewrite: upgraded distractor plausibility and instruction framing; removed easy elimination cues; retained negative-stem safety-teaching target. Awaiting review.",
+      "approvedBy": "emeka",
+      "approvedAt": "2026-05-28T12:45:00Z"
+    },
+    {
+      "id": "assistive_devices_first20_q001_variant_a",
+      "itemType": "multiple_choice",
+      "stem": "An older adult with severe vision loss has eaten very little breakfast and most food remains untouched on one side of the plate. Which action should the practical nurse take first?",
+      "answerChoices": [
+        "Remove the untouched food and document that the client refused part of the meal.",
+        "Ask dietary services to send only finger foods for future meals.",
+        "Tell the client to feel across the plate with a hand to find the remaining food.",
+        "Orient the tray using clock positions and ask whether the client can locate each food item."
+      ],
+      "correctAnswerIndexes": [
+        3
+      ],
+      "correctAnswerText": [
+        "Orient the tray using clock positions and ask whether the client can locate each food item."
+      ],
+      "rationale": "Food left on one side of the plate may mean the client cannot locate the food, not that the client is refusing to eat. The first nursing action is to make the tray easier to understand by using clock positions and checking whether the client can find the food. This supports safety, nutrition, and independence.",
+      "whyWrong": [
+        "Documenting refusal is premature because the nurse has not checked whether severe vision loss kept the client from finding food on the tray.",
+        "Changing future meals to finger foods skips the immediate assessment and may reduce independence before trying tray orientation.",
+        "Having the client sweep the plate by hand is less organized and can increase spills compared with predictable clock-position cues.",
+        ""
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Take Action",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "publicPilotNotice": "Candidate alpha item approved by Emeka after review. Keep internal until final human approval.",
+      "alphaSlice": true,
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_approved_after_review",
+      "revisionPlan": "Emeka reviewed and approved. Metadata fix confirmed. Moved to alpha pool."
+    },
+    {
+      "id": "assistive_devices_first20_q001_variant_b",
+      "itemType": "multiple_choice",
+      "stem": "[RW] An older adult with severe vision loss is learning to use a long-handled shoehorn for independent dressing. Which client action shows correct technique?",
+      "answerChoices": [
+        "The client places the shoehorn over the top of the foot and presses downward to seat the shoe.",
+        "The client rocks side to side while pushing the foot down hard so the shoe goes on faster.",
+        "The client keeps the shoehorn at the heel and slides the foot gently into the shoe without forcing.",
+        "The client stands on one leg and twists the foot repeatedly until the shoe slides in."
+      ],
+      "correctAnswerIndexes": [
+        2
+      ],
+      "correctAnswerText": [
+        "The client keeps the shoehorn at the heel and slides the foot gently into the shoe without forcing."
+      ],
+      "rationale": "Correct shoehorn use places the blade at the heel and allows the foot to glide in with controlled, gentle motion. Forcing, twisting, or unstable positioning increases risk of skin injury and loss of balance.",
+      "whyWrong": [
+        "Pressing from the top of the foot mispositions the shoehorn and can create pressure injury instead of guiding the heel safely.",
+        "Forceful downward pressure and rocking reduce stability and can cause loss of balance or skin shear at the heel.",
+        "",
+        "Standing on one leg while repeatedly twisting increases fall risk and does not reflect safe assistive-device technique."
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Take Action",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "approved_alpha",
+      "publicPilotNotice": "[RW] New rewrite replacing quarantined item. Not approved for publication or student-facing use.",
+      "alphaSlice": true,
+      "quorumDecision": "APPROVE",
+      "revisionPriority": "P1_quarantine_replaced",
+      "revisionPlan": "Stage 3 revise-once: replaced out-of-place distractor with clinically plausible unsafe techniques and increased requirement for true safe-use judgment. Awaiting review.",
+      "approvedBy": "emeka",
+      "approvedAt": "2026-05-28T12:45:00Z"
+    },
+    {
+      "id": "assistive_devices_first20_q001_variant_c",
+      "itemType": "multiple_choice",
+      "stem": "An older adult with severe vision loss has food untouched on one side of the plate. Which response by the practical nurse best supports safe independent eating?",
+      "answerChoices": [
+        "Tell the client to feel across the plate to identify foods.",
+        "Move items around during the meal without explaining the change.",
+        "Ask family to feed the client because vision is limited.",
+        "Orient the meal tray by describing each item according to its hour position."
+      ],
+      "correctAnswerIndexes": [
+        3
+      ],
+      "correctAnswerText": [
+        "Orient the meal tray by describing each item according to its hour position."
+      ],
+      "rationale": "Hour-position meal orientation promotes independence and reduces spills because the client can locate each food item predictably. The other options delay assessment, increase risk, or reduce safe independent use.",
+      "whyWrong": [
+        "Feeling across the plate may help locate food, but it is less safe and less dignified than giving a predictable clock-position map first.",
+        "Moving items without explaining the change makes the tray harder to trust and can confuse a client who depends on consistent placement.",
+        "Asking family to feed the client reduces independence and is not the first nursing response when tray orientation can support self-feeding.",
+        ""
+      ],
+      "tags": {
+        "clientNeeds": "Physiological Integrity",
+        "subcategory": "Basic Care and Comfort",
+        "integratedProcess": "Clinical Judgment",
+        "clinicalJudgment": "Recognize Cues",
+        "difficulty": "Medium-High"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "publicPilotNotice": "Candidate alpha item approved by Emeka + Ihechi quorum after rationale cleanup. Keep internal until final human approval.",
+      "alphaSlice": true,
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_specific_why_wrong_completed"
+    },
+    {
+      "id": "assistive_devices_first20_q002_variant_a",
+      "itemType": "multiple_choice",
+      "stem": "[RW] An adult client is being discharged after treatment for acute vertigo. Which client statement shows correct understanding of home safety instructions during a dizziness episode?",
+      "answerChoices": [
+        "I will walk slowly without help to train my balance when the spinning starts.",
+        "I will bend quickly to pick up objects so I can finish tasks before symptoms worsen.",
+        "I will sit or lie down immediately when the room starts spinning and wait until symptoms settle before standing.",
+        "I will drive myself a short distance if I need fresh air because slow driving is safer."
+      ],
+      "correctAnswerIndexes": [
+        2
+      ],
+      "correctAnswerText": [
+        "I will sit or lie down immediately when the room starts spinning and wait until symptoms settle before standing."
+      ],
+      "rationale": "During active vertigo, the priority is fall prevention. Sitting or lying down immediately reduces injury risk until symptoms improve. Unassisted ambulation, rapid position changes, and driving during dizziness increase risk of falls or accidents.",
+      "whyWrong": [
+        "Walking unassisted during active vertigo increases fall risk; activity should resume only after symptoms improve and safety is reassessed.",
+        "Rapid bending can worsen vertigo and destabilize balance, increasing the chance of a fall.",
+        "",
+        "Driving during dizziness is unsafe because vertigo can impair spatial orientation and reaction time."
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Prioritize Hypotheses",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "approved_alpha",
+      "publicPilotNotice": "[RW] New rewrite pending review. Not approved for publication or student-facing use.",
+      "alphaSlice": true,
+      "quorumDecision": "APPROVE",
+      "revisionPriority": "P1_rewrite_generated",
+      "revisionPlan": "Stage 3 critical rewrite: converted all distractors to realistic but unsafe client instruction statements; removed framing mismatch and strengthened discharge-teaching validity. Awaiting review.",
+      "approvedBy": "emeka",
+      "approvedAt": "2026-05-28T12:45:00Z"
+    },
+    {
+      "id": "assistive_devices_first20_q002_variant_b",
+      "itemType": "multiple_choice",
+      "stem": "An adult with spinning dizziness reaches for the wall when standing. Which response by the practical nurse is safest?",
+      "answerChoices": [
+        "Dim the lights and ask the client to walk slowly to the lobby.",
+        "Have the client sit or lie down and call for help before walking.",
+        "Leave the client standing while looking for discharge papers.",
+        "Offer fluids and then allow unassisted ambulation."
+      ],
+      "correctAnswerIndexes": [
+        1
+      ],
+      "correctAnswerText": [
+        "Have the client sit or lie down and call for help before walking."
+      ],
+      "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
+      "whyWrong": [
+        "Dim lights may reduce stimulation, but asking a dizzy client to walk slowly still delays the priority safety action.",
+        "",
+        "Leaving the client standing during spinning dizziness keeps the fall risk active when the safest first step is to get the client seated or lying down.",
+        "Fluids may be appropriate later for some clients, but they do not solve the immediate risk of falling while dizzy."
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Clinical Judgment",
+        "clinicalJudgment": "Prioritize Hypotheses",
+        "difficulty": "Medium-High"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "publicPilotNotice": "Candidate alpha item approved by Emeka after why-wrong verification. Keep internal until final human approval.",
+      "alphaSlice": true,
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_approved_after_review",
+      "revisionPlan": "Emeka confirmed why-wrong explanations are clinical-specific. Concept passed. Moved to alpha pool."
+    },
+    {
+      "id": "assistive_devices_first20_q002_variant_c",
+      "itemType": "multiple_choice",
+      "stem": "A practical nurse is caring for adult reporting spinning dizziness in the urgent care discharge area. Which action has the highest priority?",
+      "answerChoices": [
+        "Have the client sit or lie down and call for help before walking.",
+        "Offer fluids while the client remains standing at the counter.",
+        "Walk beside the client slowly to the lobby and reassess dizziness there.",
+        "Finish the discharge teaching first because the client is already leaving."
+      ],
+      "correctAnswerIndexes": [
+        0
+      ],
+      "correctAnswerText": [
+        "Have the client sit or lie down and call for help before walking."
+      ],
+      "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
+      "whyWrong": [
+        "",
+        "Offering fluids while the client remains standing does not remove the immediate fall risk from sudden spinning dizziness.",
+        "Walking the client to the lobby while dizziness is active still exposes the client to a fall before the nurse stabilizes the situation.",
+        "Finishing discharge teaching first delays the immediate safety action; fall prevention comes before routine discharge tasks."
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Clinical Judgment",
+        "clinicalJudgment": "Prioritize Hypotheses",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "publicPilotNotice": "Candidate alpha item approved by Emeka + Ihechi quorum after rationale cleanup. Keep internal until final human approval.",
+      "alphaSlice": true,
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_specific_why_wrong_completed",
+      "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key."
+    },
+    {
+      "id": "assistive_devices_first20_q003_variant_a",
+      "itemType": "multiple_choice",
+      "stem": "A client learning to use a lower-limb prosthesis says, \"I am worried I will not manage this safely at home.\" Which response by the practical nurse is most therapeutic?",
+      "answerChoices": [
+        "Let's review the steps together and identify when you should call for help.",
+        "You will feel more confident once you have practiced with it for a few days.",
+        "You need to be more independent with this equipment.",
+        "Wear the prosthesis longer when soreness develops to toughen the skin."
+      ],
+      "correctAnswerIndexes": [
+        0
+      ],
+      "correctAnswerText": [
+        "Let's review the steps together and identify when you should call for help."
+      ],
+      "rationale": "The best response accepts the client's concern and turns it into a practical safety plan. Reviewing the steps together helps the client practice, ask questions, and know when to call for help. This supports confidence without dismissing the client's fear.",
+      "whyWrong": [
+        "",
+        "Simple reassurance may sound supportive, but it does not assess the client’s specific safety concern or build a plan for when to call for help.",
+        "Pushing independence before checking the client’s skills and concerns can increase injury risk and shuts down therapeutic communication.",
+        "Soreness can signal pressure or poor fit; wearing the prosthesis longer can worsen skin injury instead of protecting the residual limb."
+      ],
+      "tags": {
+        "clientNeeds": "Physiological Integrity",
+        "subcategory": "Reduction of Risk Potential",
+        "integratedProcess": "Nursing Process",
+        "clinicalJudgment": "Recognize Cues",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "publicPilotNotice": "Candidate alpha item approved by Emeka after distractor review. Keep internal until final human approval.",
+      "alphaSlice": true,
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_approved_after_review",
+      "revisionPlan": "Emeka confirmed distractors are plausible but wrong. Cartoonish distractor replaced. Moved to alpha pool."
+    },
+    {
+      "id": "assistive_devices_first20_q003_variant_b",
+      "itemType": "multiple_choice",
+      "stem": "The nurse is reviewing prosthesis and residual-limb care with a client. Which client statement requires immediate correction?",
+      "answerChoices": [
+        "I will keep the residual limb clean and dry before applying the prosthesis.",
+        "I should keep wearing it if a red area is painful but not bleeding.",
+        "I will check my skin every time I remove the prosthesis.",
+        "I will report redness that does not fade after I remove the prosthesis."
+      ],
+      "correctAnswerIndexes": [
+        1
+      ],
+      "correctAnswerText": [
+        "I should keep wearing it if a red area is painful but not bleeding."
+      ],
+      "rationale": "A painful red area can be an early sign of pressure injury even if the skin is not bleeding. The client should remove the prosthesis and report persistent redness or pain instead of continuing to wear it. The other statements show safer prosthesis and residual-limb care.",
+      "whyWrong": [
+        "Keeping the residual limb clean and dry reduces irritation and infection risk and helps the prosthesis fit more safely.",
+        "",
+        "Checking the skin each time the prosthesis is removed helps catch pressure injury early, so this statement shows safe understanding.",
+        "Reporting redness that does not fade is appropriate because persistent redness can be an early warning sign of tissue damage."
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Recognize Cues",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "publicPilotNotice": "Candidate alpha item approved by Emeka after stem clarity review. Keep internal until final human approval.",
+      "alphaSlice": true,
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_approved_after_review",
+      "revisionPlan": "Emeka confirmed stem clarity is improved. Moved to alpha pool."
+    },
+    {
+      "id": "assistive_devices_first20_q003_variant_c",
+      "itemType": "multiple_choice",
+      "stem": "A client is learning home care for a lower-limb prosthesis and residual limb. Which instruction should the practical nurse reinforce as the priority for preventing skin injury?",
+      "answerChoices": [
+        "Massage an open area before reapplying the prosthesis.",
+        "Inspect the residual limb after removing the prosthesis and report persistent redness or skin breakdown.",
+        "Skip sock changes when the socket feels loose.",
+        "Apply a heating pad to the residual limb before each fitting."
+      ],
+      "correctAnswerIndexes": [
+        1
+      ],
+      "correctAnswerText": [
+        "Inspect the residual limb after removing the prosthesis and report persistent redness or skin breakdown."
+      ],
+      "rationale": "Skin inspection detects pressure injury early; persistent redness or breakdown can worsen if the prosthesis is reapplied without follow-up. The other options delay assessment, increase risk, or reduce safe independent use.",
+      "whyWrong": [
+        "Massaging an open area can worsen tissue injury and does not address the need to stop using the prosthesis and report breakdown.",
+        "",
+        "Skipping sock changes can make the socket fit poorly, increasing friction, pressure, and skin breakdown risk.",
+        "Heat can burn or irritate vulnerable tissue and should not be used as a routine step before fitting the prosthesis."
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Take Action",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "publicPilotNotice": "Candidate alpha item approved by Emeka + Ihechi quorum after rationale cleanup. Keep internal until final human approval.",
+      "alphaSlice": true,
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_specific_why_wrong_completed",
+      "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key."
+    }
+  ]
+}

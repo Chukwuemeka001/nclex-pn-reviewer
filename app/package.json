@@ -12,6 +12,8 @@
     "verify:pages-fresh": "node scripts/check_pages_artifacts_fresh.mjs",
     "release:pages": "npm run build:pages && npm run verify:deploy",
     "report:quality-trends": "node scripts/quality_trend_report.mjs",
+    "compile:served": "node scripts/compile_served_questions.mjs",
+    "test:served-artifact": "node src/lib/servedArtifact.test.mjs",
     "review-api": "node server/reviewApi.mjs",
     "test:rubric": "node src/lib/nclexQualityRubric.test.mjs",
     "test:rewrite": "node src/lib/rewriteWorkbench.test.mjs",
