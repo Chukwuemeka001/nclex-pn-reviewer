@@ -9,8 +9,11 @@ Update (2026-05-30, same session): Emeka approved the §6 open items. I then (a)
 the live GitHub Pages bundle (`d7e3d97`) so C1/C4 are built into the served assets, and (b) committed
 this handoff note + `docs/prompts/`. **The `git push` was REJECTED** because the stored Personal Access
 Token lacks the `workflow` scope required to push the C2 commit that adds
-`.github/workflows/quality-gates.yml`. All commits are safe locally; remote is unchanged. Fix is in
-§6.1 — needs a token with `workflow` scope, then a single `git push origin main`.
+`.github/workflows/quality-gates.yml`. All commits are safe locally; remote is unchanged.
+
+**HANDOFF TO HERMES:** Emeka has assigned the verify + push to Hermes. Hermes: confirm the local
+commits, fix the token scope, run `git push origin main`, then confirm CI goes green. Full steps in
+§6.1.
 
 ---
 
@@ -228,7 +231,12 @@ cd app && npm ci && npm run test:ci && npm run verify:deploy
 
 ## 6. OPEN ITEMS — RESOLVED (as-completed record)
 
-### 6.1 Push to remote — BLOCKED (needs Emeka)
+### 6.1 Push to remote — HERMES OWNS THIS (verify + push)
+Emeka has delegated this to Hermes: **Hermes verifies the local commits, fixes the token scope, and
+runs the push.** All 10 commits are ready on local `main` (ahead of `origin/main`); nothing is on
+remote yet. Suggested verify-before-push: `cd app && npm ci && npm run test:ci && npm run verify:deploy`
+should be green, then push.
+
 `git push origin main` was rejected:
 ```
 ! [remote rejected] main -> main (refusing to allow a Personal Access Token to create or
