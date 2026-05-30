@@ -25,7 +25,7 @@
     "test:serve-gate": "node src/lib/questionLoader.serveGate.test.mjs",
     "test:server-integrity": "node server/reviewApi.integrity.test.mjs",
     "test:ci": "npm run build && npm run test:nclex-quality-gates",
-    "test:nclex-quality-gates": "npm run test:first10-quality && npm run test:answer-key-distribution && node src/lib/questionIntegrity.test.mjs && node src/lib/learnerFriendlyRationale.test.mjs && node src/lib/distractorQuality.test.mjs && npm run test:serve-gate && npm run test:server-integrity && npm run test:external-reviewer"
+    "test:nclex-quality-gates": "npm run test:first10-quality && npm run test:answer-key-distribution && node src/lib/questionIntegrity.test.mjs && node src/lib/learnerFriendlyRationale.test.mjs && node src/lib/distractorQuality.test.mjs && npm run test:demo-seed && npm run test:serve-gate && npm run test:server-integrity && npm run test:external-reviewer"
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.4",

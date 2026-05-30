@@ -29,7 +29,7 @@ function difficultyNumber(question) {
 function normalizeQuestion(raw, source = "approved") {
   const now = new Date().toISOString();
   const itemType = normalizeItemType(raw.itemType || raw.tagging?.questionType?.id);
-  const integrity = validateQuestionIntegrity({ ...raw, itemType }, { strictItemType: false });
+  const integrity = validateQuestionIntegrity({ ...raw, itemType }, { strictItemType: false, requireWhyWrong: true });
   const choices = integrity.normalized.choices;
   const correctAnswerIndexes = integrity.normalized.correctAnswerIndexes;
   const correctAnswerText = integrity.normalized.correctAnswerText;
@@ -48,17 +48,12 @@ function normalizeQuestion(raw, source = "approved") {
     throw new Error(`Distractor quality failed for ${id}: ${distractors.issues.join("; ")}`);
   }
 
-  // Learner-rationale + whyWrong are hard floors for reviewed/approved content.
-  // The demo seed is an explicit fallback pool and is exempted here; C6 makes
-  // whyWrong strict everywhere and backfills the demo items.
-  if (source !== "demo") {
-    if (!whyWrong.filter((why) => String(why || "").trim()).length) {
-      throw new Error(`whyWrong is required for served item ${id}`);
-    }
-    const rationaleCheck = assessLearnerFriendlyRationale({ rationale: raw.rationale || raw.newRationale || "", whyWrong });
-    if (!rationaleCheck.passed) {
-      throw new Error(`Rationale quality failed for ${id}: ${rationaleCheck.issues.join("; ")}`);
-    }
+  // Learner-rationale is a hard floor for every served item, including the demo
+  // fallback. Per-option whyWrong presence/structure is enforced above via the
+  // requireWhyWrong integrity option.
+  const rationaleCheck = assessLearnerFriendlyRationale({ rationale: raw.rationale || raw.newRationale || "", whyWrong });
+  if (!rationaleCheck.passed) {
+    throw new Error(`Rationale quality failed for ${id}: ${rationaleCheck.issues.join("; ")}`);
   }
 
   return {

@@ -25,30 +25,28 @@ function choicesOf(item) {
 }
 
 // Gate logic replicated from questionLoader.normalizeQuestion. Keep in sync.
-function serveGate(item, source) {
+// The gate is now uniform across sources: every served item (including the demo
+// fallback) must pass integrity + requireWhyWrong + distractor + rationale.
+function serveGate(item) {
   const choices = choicesOf(item);
   const correctAnswerIndexes = item.correctAnswerIndexes || [];
-  const integrity = validateQuestionIntegrity({ ...item, answerChoices: choices }, { strictItemType: false });
+  const integrity = validateQuestionIntegrity({ ...item, answerChoices: choices }, { strictItemType: false, requireWhyWrong: true });
   assert.equal(integrity.passed, true, `${item.id} integrity: ${integrity.errors.join("; ")}`);
 
   const distractors = assessDistractorPlausibility({ stem: item.stem, choices, correctAnswerIndexes });
   assert.equal(distractors.passed, true, `${item.id} distractors: ${distractors.issues.join("; ")}`);
 
-  if (source !== "demo") {
-    const whyWrong = item.whyWrong || [];
-    assert.ok(whyWrong.filter((why) => String(why || "").trim()).length > 0, `${item.id} missing whyWrong on serve path`);
-    const rationale = assessLearnerFriendlyRationale({ rationale: item.rationale, whyWrong });
-    assert.equal(rationale.passed, true, `${item.id} rationale: ${rationale.issues.join("; ")}`);
-  }
+  const rationale = assessLearnerFriendlyRationale({ rationale: item.rationale, whyWrong: item.whyWrong || [] });
+  assert.equal(rationale.passed, true, `${item.id} rationale: ${rationale.issues.join("; ")}`);
 }
 
-test("demo fallback pool passes the serve-path distractor gate", () => {
-  for (const item of demo) serveGate(item, "demo");
+test("demo fallback pool passes the full serve-path gate (integrity + whyWrong + distractor + rationale)", () => {
+  for (const item of demo) serveGate(item);
 });
 
 test("approved-alpha pool passes the full serve-path gate (distractor + rationale + whyWrong)", () => {
   assert.ok(approvedAlpha.length > 0, "Expected at least one approved-alpha item");
-  for (const item of approvedAlpha) serveGate(item, "approved");
+  for (const item of approvedAlpha) serveGate(item);
 });
 
 test("a cartoonishly-unsafe distractor would be rejected by the serve gate", () => {
@@ -66,5 +64,18 @@ test("a cartoonishly-unsafe distractor would be rejected by the serve gate", () 
     whyWrong: ["", "x", "x", "x"],
     rationale: "First the nurse should assess so the safest action fits what the client needs.",
   };
-  assert.throws(() => serveGate(bad, "approved"), /distractors/);
+  assert.throws(() => serveGate(bad), /distractors/);
+});
+
+test("an item missing per-option whyWrong is rejected by the serve gate", () => {
+  const bad = {
+    id: "synthetic_no_whywrong",
+    stem: "A client at risk for falls calls for help. What should the PN do first?",
+    answerChoices: ["Stay with the client and keep the call bell in reach.", "Leave to find the charge nurse.", "Raise all side rails.", "Document later."],
+    correctAnswerIndexes: [0],
+    correctAnswerText: ["Stay with the client and keep the call bell in reach."],
+    whyWrong: [],
+    rationale: "First keep the client safe and within reach so the nurse can help before a fall happens.",
+  };
+  assert.throws(() => serveGate(bad), /whyWrong/);
 });

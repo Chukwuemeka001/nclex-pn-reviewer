@@ -13,7 +13,7 @@ export function canonicalCorrectAnswerText({ choices = [], correctAnswerIndexes 
     .map((i) => choices[i]);
 }
 
-export function validateQuestionIntegrity(raw = {}, { strictItemType = false } = {}) {
+export function validateQuestionIntegrity(raw = {}, { strictItemType = false, requireWhyWrong = false } = {}) {
   const errors = [];
   const warnings = [];
 
@@ -57,15 +57,35 @@ export function validateQuestionIntegrity(raw = {}, { strictItemType = false } =
   }
 
   const whyWrong = asArray(raw.whyWrong);
-  if (whyWrong.length && whyWrong.length !== choices.length) {
-    errors.push("whyWrong length must match answerChoices length when provided");
-  }
+  const correctSet = new Set(uniqueIndexes);
 
-  if (whyWrong.length && uniqueIndexes.length === 1) {
-    const correctIdx = uniqueIndexes[0];
-    const atKey = (whyWrong[correctIdx] ?? "").trim();
-    if (atKey !== "") {
-      warnings.push("whyWrong at correct answer index should be blank");
+  if (requireWhyWrong) {
+    // Strict floor for learner-eligible items: per-option teaching is mandatory.
+    const present = whyWrong.filter((why) => String(why ?? "").trim()).length;
+    if (!present) {
+      errors.push("whyWrong is required (per-option teaching) but is empty");
+    } else if (whyWrong.length !== choices.length) {
+      errors.push("whyWrong length must match answerChoices length");
+    } else {
+      choices.forEach((_, idx) => {
+        const text = String(whyWrong[idx] ?? "").trim();
+        if (correctSet.has(idx)) {
+          if (text !== "") errors.push(`whyWrong[${idx}] must be blank at a correct answer index`);
+        } else if (text === "") {
+          errors.push(`whyWrong[${idx}] must explain why this wrong option is wrong`);
+        }
+      });
+    }
+  } else {
+    if (whyWrong.length && whyWrong.length !== choices.length) {
+      errors.push("whyWrong length must match answerChoices length when provided");
+    }
+    if (whyWrong.length && uniqueIndexes.length === 1) {
+      const correctIdx = uniqueIndexes[0];
+      const atKey = (whyWrong[correctIdx] ?? "").trim();
+      if (atKey !== "") {
+        warnings.push("whyWrong at correct answer index should be blank");
+      }
     }
   }
 

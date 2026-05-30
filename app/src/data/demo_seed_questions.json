@@ -18,7 +18,12 @@
       "Describe the food locations using clock positions."
     ],
     "rationale": "Clock positions give a consistent spatial reference and help the client locate food without relying on vision.",
-    "whyWrong": [],
+    "whyWrong": [
+      "",
+      "Having the client probe each food by touch is less dignified and messier; clock-position cues give the same independence more cleanly.",
+      "Mixing all foods together removes the client's ability to choose each item and can reduce appetite and independence.",
+      "Naming the food groups teaches nutrition; it does not help the client locate and eat the food on the tray right now."
+    ],
     "tagging": {
       "examProgram": {
         "id": "nclex-pn",
@@ -130,7 +135,13 @@
       "Encourage fiber-containing foods if not contraindicated."
     ],
     "rationale": "Walking as tolerated, fluids within the prescribed plan, and fiber-containing foods help prevent constipation without jumping straight to medication. The safest teaching starts with routine bowel habits and non-medication measures unless the provider has ordered something else.",
-    "whyWrong": [],
+    "whyWrong": [
+      "",
+      "",
+      "Daily stimulant laxatives are not independent nursing teaching and can cause dependence; a standing medication change needs a provider order.",
+      "",
+      "Cutting fluids makes stool harder and worsens constipation; the client usually needs more fluid within the prescribed plan, not less."
+    ],
     "tagging": {
       "examProgram": {
         "id": "nclex-pn",
@@ -236,8 +247,13 @@
     "correctAnswerText": [
       "Support body weight through the hand grips."
     ],
-    "rationale": "Weight should be borne through the hands. Axillary pressure can cause nerve injury, and rubber tips support traction.",
-    "whyWrong": [],
+    "rationale": "The nurse teaches the client to carry body weight through the hand grips. Resting weight in the axillae can press on nerves and cause injury, and the rubber tips help prevent slipping.",
+    "whyWrong": [
+      "",
+      "Resting weight in the axillae presses on the nerves there and can cause numbness or weakness in the arm.",
+      "The rubber tips grip the floor and prevent slipping; removing them raises the client's fall risk.",
+      "Locking the elbows blocks the slight bend that absorbs shock and helps keep the client steady while walking."
+    ],
     "tagging": {
       "examProgram": {
         "id": "nclex-pn",
