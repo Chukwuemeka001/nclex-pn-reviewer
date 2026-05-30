@@ -3,6 +3,7 @@ import servedArtifact from "../data/served_questions.json" assert { type: "json"
 import { validateQuestionIntegrity } from "./questionIntegrity.js";
 import { assessDistractorPlausibility } from "./distractorQuality.js";
 import { assessLearnerFriendlyRationale } from "./learnerFriendlyRationale.js";
+import { buildBlueprintRef } from "./blueprint.js";
 
 const REVIEW_API_BASE = import.meta?.env?.VITE_REVIEW_API_BASE || "/api/review";
 
@@ -75,6 +76,7 @@ function normalizeQuestion(raw, source = "approved") {
     source,
     createdAt: raw.createdAt || now,
     updatedAt: raw.updatedAt || now,
+    blueprintRef: raw.blueprintRef || buildBlueprintRef(raw.tags || {}),
   };
 }
 
