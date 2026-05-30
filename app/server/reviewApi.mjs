@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { normalizeQualityRubric, scoreQualityRubric, validateQualityRubric } from "../src/lib/nclexQualityRubric.js";
+import { validateQuestionIntegrity as libValidateQuestionIntegrity } from "../src/lib/questionIntegrity.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "../..");
@@ -96,48 +97,23 @@ function normalizeTextArray(value) {
   return [];
 }
 
+// Single source of truth: delegate to the shared lib validator so server
+// approval, the question loader, and the test gates can never drift. We
+// pre-resolve choices and correctAnswerText with the server's own field
+// precedence (newAnswerChoices wins for rewritten drafts) and trimming, then
+// re-shape the lib's { errors } into the server's { issues, integrityIssues }
+// response contract.
 function validateQuestionIntegrity(item = {}) {
-  const integrityIssues = [];
   const choices = choicesFromItem(item).map((choice) => String(choice ?? "").trim());
-  const indexesRaw = Array.isArray(item.correctAnswerIndexes) ? item.correctAnswerIndexes : [];
-  const indexes = indexesRaw.map((idx) => Number(idx));
-  const uniqueIndexes = [...new Set(indexes)];
-  const declaredText = normalizeTextArray(item.correctAnswerText);
-  const whyWrong = Array.isArray(item.whyWrong) ? item.whyWrong : [];
-
-  if (!choices.length) {
-    integrityIssues.push({ code: "MISSING_CHOICES", field: "answerChoices", message: "answerChoices/choices are required." });
-  }
-  if (!uniqueIndexes.length) {
-    integrityIssues.push({ code: "MISSING_CORRECT_ANSWER_INDEX", field: "correctAnswerIndexes", message: "At least one correct answer index is required." });
-  }
-
-  for (const idx of uniqueIndexes) {
-    if (!Number.isInteger(idx)) {
-      integrityIssues.push({ code: "INVALID_CORRECT_ANSWER_INDEX_TYPE", field: "correctAnswerIndexes", message: `Index ${idx} is not an integer.`, actual: idx });
-      continue;
-    }
-    if (idx < 0 || idx >= choices.length) {
-      integrityIssues.push({ code: "INVALID_CORRECT_ANSWER_INDEX", field: "correctAnswerIndexes", message: `Index ${idx} is out of range for ${choices.length} choices.`, actual: idx, expected: `0..${Math.max(0, choices.length - 1)}` });
-    }
-  }
-
-  const expectedText = uniqueIndexes
-    .filter((idx) => Number.isInteger(idx) && idx >= 0 && idx < choices.length)
-    .map((idx) => choices[idx]);
-
-  if (declaredText.length && JSON.stringify(declaredText) !== JSON.stringify(expectedText)) {
-    integrityIssues.push({ code: "CORRECT_ANSWER_TEXT_MISMATCH", field: "correctAnswerText", message: "correctAnswerText must exactly match choices at correctAnswerIndexes.", expected: expectedText, actual: declaredText });
-  }
-
-  if (whyWrong.length && whyWrong.length !== choices.length) {
-    integrityIssues.push({ code: "WHY_WRONG_LENGTH_MISMATCH", field: "whyWrong", message: "whyWrong length must equal choices length.", expected: choices.length, actual: whyWrong.length });
-  }
-
+  const correctAnswerText = normalizeTextArray(item.correctAnswerText);
+  const result = libValidateQuestionIntegrity(
+    { ...item, answerChoices: choices, correctAnswerText },
+    { strictItemType: false },
+  );
   return {
-    passed: integrityIssues.length === 0,
-    integrityIssues,
-    issues: integrityIssues.map((issue) => issue.message),
+    passed: result.passed,
+    issues: result.errors,
+    integrityIssues: result.errors.map((message) => ({ code: "QUESTION_INTEGRITY", message })),
   };
 }
 
@@ -672,7 +648,14 @@ function json(res, body, status = 200) {
   res.end(JSON.stringify(body));
 }
 
-const port = Number(process.env.REVIEW_API_PORT || 5174);
-http.createServer(handleRequest).listen(port, "127.0.0.1", () => {
-  console.log(`Review API listening on http://127.0.0.1:${port}`);
-});
+export { validateQuestionIntegrity, choicesFromItem };
+
+// Only start listening when run directly (node server/reviewApi.mjs), so tests
+// can import the validator without booting an HTTP server.
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
+if (isMain) {
+  const port = Number(process.env.REVIEW_API_PORT || 5174);
+  http.createServer(handleRequest).listen(port, "127.0.0.1", () => {
+    console.log(`Review API listening on http://127.0.0.1:${port}`);
+  });
+}
