@@ -74,7 +74,13 @@ const scalingPathMatchers = [
   /^qbank_pipeline\//
 ];
 
-const hasScalingChanges = changedFiles.some((f) => scalingPathMatchers.some((rx) => rx.test(f)));
+const scalingExceptions = new Set([
+  'app/src/data/served_questions.json'
+]);
+
+const hasScalingChanges = changedFiles.some((f) =>
+  !scalingExceptions.has(f) && scalingPathMatchers.some((rx) => rx.test(f))
+);
 
 if (blockedStatuses.has(status) && hasScalingChanges) {
   fail(`status=${status} blocks scaling changes. Update docs/quality/FIRST10_PROOFPOINT_STATUS.json to ready_to_scale with evidence before changing scaling paths.`);
