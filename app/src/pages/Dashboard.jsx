@@ -1,7 +1,7 @@
 import { ArrowRight, Clock, Database, ShieldCheck } from "lucide-react";
 
 export default function Dashboard({ bank, lastResult, onStart }) {
-  const usingApproved = bank.source === "approved";
+  const usingApproved = bank.source === "approved-api" || bank.source === "approved-bundled";
 
   return (
     <section className="page">
