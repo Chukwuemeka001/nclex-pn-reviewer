@@ -109,6 +109,43 @@ export const REVIEW_IDS = [
 // Backward alias
 export const FIRST_TEN_REVIEW_IDS = REVIEW_IDS;
 
+export const REVIEWER_SCORE_KEY_MAP = {
+  stemRealismAndClarity: "stemRealism",
+  distractorPlausibility: "distractors",
+  rationaleTeachingQuality: "rationaleTeaching",
+  scopeFitPnRpnLpn: "pnScope",
+  clinicalSafetyAndAccuracy: "clinicalSafety",
+  studentExperienceAfterLongShift: "studentExperience",
+};
+
+const REQUIRED_REVIEWER_SCORE_IDS = [
+  "stemRealism",
+  "distractors",
+  "rationaleTeaching",
+  "pnScope",
+  "clinicalSafety",
+  "studentExperience",
+];
+
+export function mapReviewerScores(rawScores = {}) {
+  if (!rawScores || typeof rawScores !== "object") {
+    throw new Error("scores must be an object");
+  }
+
+  const mapped = {};
+  for (const [key, value] of Object.entries(rawScores)) {
+    const canonical = REVIEWER_SCORE_KEY_MAP[key] || key;
+    mapped[canonical] = value;
+  }
+
+  const missing = REQUIRED_REVIEWER_SCORE_IDS.filter((id) => !(id in mapped));
+  if (missing.length > 0) {
+    throw new Error(`Missing required reviewer score keys: ${missing.join(", ")}`);
+  }
+
+  return mapped;
+}
+
 export const EXTERNAL_REVIEW_CRITERIA = [
   {
     id: "stemRealism",
