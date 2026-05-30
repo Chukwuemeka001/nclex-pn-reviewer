@@ -9,6 +9,8 @@
     "preview": "vite preview --host 0.0.0.0",
     "build:pages": "node scripts/build_pages.mjs",
     "verify:deploy": "node scripts/verify_dist_sync.mjs",
+    "verify:pages-fresh": "node scripts/check_pages_artifacts_fresh.mjs",
+    "release:pages": "npm run build:pages && npm run verify:deploy",
     "review-api": "node server/reviewApi.mjs",
     "test:rubric": "node src/lib/nclexQualityRubric.test.mjs",
     "test:rewrite": "node src/lib/rewriteWorkbench.test.mjs",
@@ -24,7 +26,8 @@
     "test:answer-key-distribution": "node src/lib/answerKeyDistribution.test.mjs",
     "test:serve-gate": "node src/lib/questionLoader.serveGate.test.mjs",
     "test:server-integrity": "node server/reviewApi.integrity.test.mjs",
-    "test:ci": "npm run build && npm run test:nclex-quality-gates",
+    "test:proofpoint": "node scripts/check_first10_proofpoint.mjs",
+    "test:ci": "npm run test:proofpoint && npm run build && npm run test:nclex-quality-gates",
     "test:nclex-quality-gates": "npm run test:first10-quality && npm run test:answer-key-distribution && node src/lib/questionIntegrity.test.mjs && node src/lib/learnerFriendlyRationale.test.mjs && node src/lib/distractorQuality.test.mjs && npm run test:demo-seed && npm run test:serve-gate && npm run test:server-integrity && npm run test:external-reviewer"
   },
   "dependencies": {

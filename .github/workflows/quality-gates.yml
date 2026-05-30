@@ -20,13 +20,35 @@ jobs:
       VITE_BASE_PATH: /nclex-pn-reviewer/
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: npm
           cache-dependency-path: app/package-lock.json
       - run: npm ci
+      - name: Compute changed files for proof-point gate
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          else
+            BASE_SHA="${{ github.event.before }}"
+            HEAD_SHA="${{ github.sha }}"
+          fi
+
+          if [ -z "$BASE_SHA" ] || [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            BASE_SHA=$(git rev-list --max-parents=0 HEAD)
+          fi
+
+          git diff --name-only "$BASE_SHA" "$HEAD_SHA" > /tmp/changed_files.txt
+          {
+            echo "PROOFPOINT_CHANGED_FILES<<EOF"
+            cat /tmp/changed_files.txt
+            echo "EOF"
+          } >> "$GITHUB_ENV"
       - run: npm run test:ci
-      # Validate the committed GitHub Pages artifact (root index.html + assets/)
-      # is internally consistent, independent of the fresh build above.
-      - run: npm run verify:deploy
+      # Rebuild the canonical Pages artifact and fail if committed root
+      # index.html/assets are stale relative to current source.
+      - run: npm run verify:pages-fresh
