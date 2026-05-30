@@ -3,13 +3,14 @@
 Date: 2026-05-30
 Author: Claude Opus (Claude Code), executing Hermes-approved plan
 Scope: NCLEX-PN trainer repo (`/Users/emeka/Code/2026-05-02/hey-codex-browser-plugin-browser-use`)
-Status: **All 7 slices (C1–C7) committed on `main`, live Pages bundle rebuilt, pushed to remote.**
+Status: **All 7 slices (C1–C7) committed on `main`, live Pages bundle rebuilt. PUSH BLOCKED on token scope — nothing is on remote yet.**
 
 Update (2026-05-30, same session): Emeka approved the §6 open items. I then (a) rebuilt and committed
-the live GitHub Pages bundle (`d7e3d97`) so C1/C4 are now actually served, (b) committed this handoff
-note + `docs/prompts/`, and (c) pushed `main` to remote. CI (the C2 `quality-gates` workflow) runs on
-that push — confirm it went green in the Actions tab. Original §6 items are resolved; see §6 for the
-as-completed record.
+the live GitHub Pages bundle (`d7e3d97`) so C1/C4 are built into the served assets, and (b) committed
+this handoff note + `docs/prompts/`. **The `git push` was REJECTED** because the stored Personal Access
+Token lacks the `workflow` scope required to push the C2 commit that adds
+`.github/workflows/quality-gates.yml`. All commits are safe locally; remote is unchanged. Fix is in
+§6.1 — needs a token with `workflow` scope, then a single `git push origin main`.
 
 ---
 
@@ -227,10 +228,26 @@ cd app && npm ci && npm run test:ci && npm run verify:deploy
 
 ## 6. OPEN ITEMS — RESOLVED (as-completed record)
 
-### 6.1 Push to remote — DONE
-Pushed `main` to remote this session. The C2 `quality-gates` workflow fires on `push: main` — check
-the Actions tab to confirm green. If CI is red but local is green, the usual cause is a Node-version
-or `npm ci` (lockfile) difference in the runner.
+### 6.1 Push to remote — BLOCKED (needs Emeka)
+`git push origin main` was rejected:
+```
+! [remote rejected] main -> main (refusing to allow a Personal Access Token to create or
+  update workflow `.github/workflows/quality-gates.yml` without `workflow` scope)
+```
+The stored HTTPS credential is a PAT without the `workflow` scope, and the C2 commit (`890dcd5`) adds a
+workflow file. `gh` is not logged in and the SSH key is not registered with GitHub, so HTTPS+PAT is the
+only working channel. Remote is at `https://github.com/Chukwuemeka001/nclex-pn-reviewer.git`.
+
+Fix (any one):
+- Update/regenerate the PAT to include the `workflow` scope (classic token: check `workflow`;
+  fine-grained: grant Workflows read/write on this repo), update the stored credential, then:
+  `git push origin main`
+- Or `gh auth login` with a token/browser that has `workflow` scope (sets up the git credential
+  helper), then `git push origin main`.
+
+After it pushes, the C2 `quality-gates` workflow fires on `push: main` — confirm green in the Actions
+tab. If CI is red but local is green, the usual cause is a Node-version or `npm ci` (lockfile)
+difference in the runner.
 
 ### 6.2 Live site bundle — DONE (commit d7e3d97)
 Rebuilt the deployed `index.html` + `assets/` via `npm run build:pages` (VITE_BASE_PATH=
