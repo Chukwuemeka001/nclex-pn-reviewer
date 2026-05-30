@@ -1,0 +1,29 @@
+name: NCLEX quality gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Fail-fast quality gate for the NCLEX-PN trainer. Build first (cheapest, most
+# common failure per git history: base-path / asset breaks), then run the
+# deterministic gate chain. Nothing merges or deploys without this passing.
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    env:
+      # Match the GitHub Pages base path so CI catches the blank-screen class
+      # of bug at build time instead of after deploy.
+      VITE_BASE_PATH: /nclex-pn-reviewer/
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+      - run: npm run test:ci
