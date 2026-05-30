@@ -1,9 +1,10 @@
-import demoSeedQuestions from "../data/demo_seed_questions.json";
+import demoSeedQuestions from "../data/demo_seed_questions.json" assert { type: "json" };
+import servedArtifact from "../data/served_questions.json" assert { type: "json" };
 import { validateQuestionIntegrity } from "./questionIntegrity.js";
 import { assessDistractorPlausibility } from "./distractorQuality.js";
 import { assessLearnerFriendlyRationale } from "./learnerFriendlyRationale.js";
 
-const REVIEW_API_BASE = import.meta.env.VITE_REVIEW_API_BASE || "/api/review";
+const REVIEW_API_BASE = import.meta?.env?.VITE_REVIEW_API_BASE || "/api/review";
 
 function tagId(tag) {
   if (!tag) return "";
@@ -71,6 +72,7 @@ function normalizeQuestion(raw, source = "approved") {
     difficulty: difficultyNumber(raw),
     estimatedTimeSeconds: raw.estimatedTimeSeconds || raw.tagging?.estimatedTimeSeconds || (itemType === "select_all_that_apply" ? 90 : 60),
     review: raw.review || { status: source === "demo" ? "demo_seed" : "reviewed_approved" },
+    source,
     createdAt: raw.createdAt || now,
     updatedAt: raw.updatedAt || now,
   };
@@ -88,15 +90,24 @@ async function loadApprovedFromReviewApi() {
 }
 
 function loadBundledApprovedQuestions() {
-  return [];
+  const artifact = servedArtifact;
+  if (!artifact || artifact.schemaVersion !== "served-questions.v1") return [];
+  return Array.isArray(artifact.questions) ? artifact.questions : [];
 }
 
 export async function loadQuestions() {
   const apiApproved = await loadApprovedFromReviewApi();
-  const approved = apiApproved.length > 0 ? apiApproved : loadBundledApprovedQuestions();
+  const bundled = loadBundledApprovedQuestions();
 
-  const source = approved.length > 0 ? "approved" : "demo";
-  const questions = (approved.length > 0 ? approved : demoSeedQuestions).map((item) => normalizeQuestion(item, source));
+  const approved = apiApproved.length > 0 ? apiApproved : bundled;
+  const source = apiApproved.length > 0 ? "approved-api" : bundled.length > 0 ? "approved-bundled" : "demo";
+
+  if (source === "demo") {
+    console.warn("[questionLoader] No approved content available; serving demo seed as last resort.");
+  }
+
+  const rawItems = source === "demo" ? demoSeedQuestions : approved;
+  const questions = rawItems.map((item) => normalizeQuestion(item, source === "demo" ? "demo" : "approved"));
   return {
     source,
     questions,

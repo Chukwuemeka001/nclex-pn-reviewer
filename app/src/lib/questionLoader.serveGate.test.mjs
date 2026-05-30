@@ -6,6 +6,7 @@ import { test } from "node:test";
 import { validateQuestionIntegrity } from "./questionIntegrity.js";
 import { assessDistractorPlausibility } from "./distractorQuality.js";
 import { assessLearnerFriendlyRationale } from "./learnerFriendlyRationale.js";
+import { loadQuestions } from "./questionLoader.js";
 
 // This test mirrors the gates that questionLoader.normalizeQuestion now enforces
 // on the serve path. It cannot import questionLoader.js directly because that file
@@ -78,4 +79,36 @@ test("an item missing per-option whyWrong is rejected by the serve gate", () => 
     rationale: "First keep the client safe and within reach so the nurse can help before a fall happens.",
   };
   assert.throws(() => serveGate(bad), /whyWrong/);
+});
+
+test("loadQuestions uses approved-bundled when API is unavailable", async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => {
+    throw new Error("offline");
+  };
+  try {
+    const result = await loadQuestions();
+    assert.equal(result.source, "approved-bundled");
+    assert.ok(result.questions.length >= 10);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("loadQuestions emits demo warning only when both API and bundled are unavailable", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalWarn = console.warn;
+
+  const warnings = [];
+  console.warn = (...args) => warnings.push(args.join(" "));
+  globalThis.fetch = async () => ({ ok: true, json: async () => ({ approved: [] }) });
+
+  try {
+    const result = await loadQuestions();
+    assert.equal(result.source, "approved-bundled");
+    assert.equal(warnings.length, 0);
+  } finally {
+    console.warn = originalWarn;
+    globalThis.fetch = originalFetch;
+  }
 });
