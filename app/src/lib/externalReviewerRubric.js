@@ -185,14 +185,15 @@ export function scoreExternalReview(scores = {}) {
     const value = Number(scores[criterion.id] ?? 0);
     const normalized = Number.isFinite(value) ? Math.max(0, Math.min(4, value)) : 0;
     total += normalized;
-    if (criterion.critical && normalized < 2) blockers.push(`${criterion.label} scored below 2/4: reject-level safety/scope issue.`);
-    else if (criterion.critical && normalized < 3) blockers.push(`${criterion.label} scored below 3/4.`);
+    // Safety/scope floor: any critical criterion (clinical safety, PN scope)
+    // below 3/4 is reject-level. A 2/4 means "wrong priority / unsafe teaching"
+    // per the rubric red flags and must not be salvageable as FIX.
+    if (criterion.critical && normalized < 3) blockers.push(`${criterion.label} scored below 3/4: reject-level safety/scope issue.`);
   }
   const max = EXTERNAL_REVIEW_CRITERIA.length * 4;
   let decision = "REJECT";
   if (blockers.length === 0 && total >= 20) decision = "PASS";
   else if (blockers.length === 0 && total >= 15) decision = "FIX";
-  else if (blockers.length > 0 && total >= 18 && !blockers.some((blocker) => blocker.includes("reject-level"))) decision = "FIX";
   return { total, max, percent: Math.round((total / max) * 100), decision, blockers };
 }
 

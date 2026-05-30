@@ -49,6 +49,23 @@ function testReviewerScoreCanPassStrongQuestion() {
   assert.deepEqual(result.blockers, []);
 }
 
+function testCriticalSafetyAtTwoIsRejectNotFix() {
+  // C4: clinical safety at 2/4 with otherwise strong scores must REJECT.
+  // Pre-C4 this was salvaged as FIX via the blockers>0 && total>=18 branch.
+  const result = scoreExternalReview({
+    stemRealism: 4,
+    distractors: 4,
+    rationaleTeaching: 4,
+    pnScope: 4,
+    clinicalSafety: 2,
+    studentExperience: 4,
+  });
+  assert.equal(result.total, 22);
+  assert.equal(result.decision, "REJECT");
+  assert.ok(result.blockers.some((blocker) => blocker.includes("reject-level")));
+  assert.ok(result.blockers.some((blocker) => blocker.includes("Clinical safety")));
+}
+
 function testTemplateIncludesExpectedStructureAndIds() {
   assert.equal(FIRST_TEN_REVIEW_IDS.length, 50);
   const template = buildReviewerNoteTemplate("assistive_devices_first20_q001_variant_a");
@@ -147,6 +164,7 @@ function run() {
   testRubricHasClearColdReviewerCriteria();
   testReviewerScoreRequiresCriticalSafetyPass();
   testReviewerScoreCanPassStrongQuestion();
+  testCriticalSafetyAtTwoIsRejectNotFix();
   testTemplateIncludesExpectedStructureAndIds();
   testSummaryExplainsDecisionBands();
   testGitHubIssueCaptureUrlIsPrefilledAndPrivateSafe();
