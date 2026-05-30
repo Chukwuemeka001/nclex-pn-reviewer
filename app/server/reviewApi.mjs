@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { normalizeQualityRubric, scoreQualityRubric, validateQualityRubric } from "../src/lib/nclexQualityRubric.js";
 import { validateQuestionIntegrity as libValidateQuestionIntegrity } from "../src/lib/questionIntegrity.js";
+import { mapReviewerScores, scoreExternalReview } from "../src/lib/externalReviewerRubric.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "../..");
@@ -305,10 +306,51 @@ function normalizeExternalSubmissionPayload(body = {}) {
     if (!submissions.length) throw new Error("Batch contains no review submissions.");
     return { batch: body, submissions };
   }
-  if (body.schemaVersion === "external-review-submission.v1" || body.questionId || body.response) {
+  if (body.schemaVersion === "external-review-submission.v1" || body.schemaVersion === "external-review-submission.v2" || body.questionId || body.response) {
     return { batch: null, submissions: [body] };
   }
   throw new Error("Unsupported external review payload.");
+}
+
+function normalizeSubmissionRecord(submission = {}) {
+  const response = submission.response || {};
+  const rawScores = response.scores || submission.scores || {};
+
+  let scoresCanonical = null;
+  let decisionComputed = null;
+  let computedScore = null;
+  let scoreMappingError = null;
+
+  if (rawScores && Object.keys(rawScores).length > 0) {
+    try {
+      scoresCanonical = mapReviewerScores(rawScores);
+      computedScore = scoreExternalReview(scoresCanonical);
+      decisionComputed = computedScore.decision;
+    } catch (error) {
+      scoreMappingError = error?.message || String(error);
+    }
+  }
+
+  const decisionManual = submission.decision || "";
+  const decision = decisionManual || decisionComputed || "";
+  const decisionMismatch = Boolean(decisionManual && decisionComputed && decisionManual !== decisionComputed);
+
+  return {
+    ...submission,
+    schemaVersion: "external-review-submission.v2",
+    response: {
+      ...response,
+      scores: scoresCanonical || rawScores,
+    },
+    scoresRaw: rawScores,
+    scoresCanonical,
+    computedScore,
+    decisionComputed,
+    decisionManual,
+    decisionMismatch,
+    decision,
+    scoreMappingError,
+  };
 }
 
 async function appendExternalSubmissionLog(record) {
@@ -322,18 +364,37 @@ async function saveExternalReviewSubmission(body = {}) {
   const saved = [];
   await fs.mkdir(dirs.externalSubmissions, { recursive: true });
   for (const submission of submissions) {
-    const reviewer = submission.reviewer || batch?.reviewer || {};
-    const questionId = submission.questionId || submission.itemSnapshot?.id || "unknown";
+    const normalizedSubmission = normalizeSubmissionRecord(submission);
+    const reviewer = normalizedSubmission.reviewer || batch?.reviewer || {};
+    const questionId = normalizedSubmission.questionId || normalizedSubmission.itemSnapshot?.id || "unknown";
     const record = {
-      ...submission,
+      ...normalizedSubmission,
       receivedAt: now,
       source: "external_reviewer_public_form",
     };
     const fileName = `${now.replace(/[:.]/g, "-")}_${safeFilePart(reviewer.key || reviewer.name)}_${safeFilePart(questionId)}.json`;
     const filePath = path.join(dirs.externalSubmissions, fileName);
     await writeJson(filePath, record);
-    await appendExternalSubmissionLog({ receivedAt: now, reviewer: reviewer.key || reviewer.name || "unknown", questionId, decision: submission.decision || "", file: filePath });
-    saved.push({ questionId, reviewer: reviewer.key || reviewer.name || "unknown", file: filePath });
+    await appendExternalSubmissionLog({
+      receivedAt: now,
+      reviewer: reviewer.key || reviewer.name || "unknown",
+      questionId,
+      decision: record.decision || "",
+      decisionComputed: record.decisionComputed || "",
+      decisionManual: record.decisionManual || "",
+      decisionMismatch: record.decisionMismatch || false,
+      scoreMappingError: record.scoreMappingError || "",
+      file: filePath,
+    });
+    saved.push({
+      questionId,
+      reviewer: reviewer.key || reviewer.name || "unknown",
+      file: filePath,
+      decision: record.decision || "",
+      decisionComputed: record.decisionComputed || "",
+      decisionManual: record.decisionManual || "",
+      decisionMismatch: record.decisionMismatch || false,
+    });
   }
   await appendEvent({ type: "external_review_submitted", count: saved.length, reviewer: batch?.reviewer?.key || saved[0]?.reviewer || "unknown", saved });
   return { ok: true, savedCount: saved.length, saved };
