@@ -27,3 +27,6 @@ jobs:
           cache-dependency-path: app/package-lock.json
       - run: npm ci
       - run: npm run test:ci
+      # Validate the committed GitHub Pages artifact (root index.html + assets/)
+      # is internally consistent, independent of the fresh build above.
+      - run: npm run verify:deploy
