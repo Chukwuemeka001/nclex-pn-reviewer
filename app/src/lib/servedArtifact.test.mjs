@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { validateQuestionIntegrity, assessSingleAnswerPositionBalance } from "./questionIntegrity.js";
 import { assessDistractorPlausibility } from "./distractorQuality.js";
 import { assessLearnerFriendlyRationale } from "./learnerFriendlyRationale.js";
+import { isKnownClientNeeds } from "./blueprint.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const artifact = JSON.parse(fs.readFileSync(path.join(here, "../data/served_questions.json"), "utf8"));
@@ -66,4 +67,25 @@ test("rebalance preserves key text + whyWrong blank at correct index", () => {
     assert.equal(item.answerChoices[idx], item.correctAnswerText[0], `${item.id}: keyed text mismatch`);
     assert.equal(String(item.whyWrong[idx] ?? "").trim(), "", `${item.id}: whyWrong at key index should be blank`);
   }
+});
+
+test("every served question carries a valid 2026-PN blueprintRef", () => {
+  for (const item of artifact.questions) {
+    assert.ok(item.blueprintRef, `${item.id}: missing blueprintRef`);
+    assert.equal(item.blueprintRef.planVersion, "2026-PN", `${item.id}: wrong planVersion`);
+    assert.equal(item.blueprintRef.valid, true, `${item.id}: blueprintRef not valid: ${item.blueprintRef.issues?.join("; ")}`);
+    assert.ok(isKnownClientNeeds(item.blueprintRef.clientNeeds), `${item.id}: unknown clientNeeds "${item.blueprintRef.clientNeeds}"`);
+  }
+});
+
+test("no served question uses the retired Safety/Infection label", () => {
+  for (const item of artifact.questions) {
+    assert.notEqual(item.blueprintRef?.subcategory, "Safety and Infection Control", `${item.id}: uses retired label`);
+  }
+});
+
+test("served artifact declares planVersion and coverage", () => {
+  assert.equal(artifact.planVersion, "2026-PN");
+  assert.ok(typeof artifact.coverage === "object" && artifact.coverage !== null);
+  assert.ok(Object.keys(artifact.coverage).length > 0, "coverage should be non-empty");
 });

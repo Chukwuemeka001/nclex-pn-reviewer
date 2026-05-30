@@ -6,6 +6,7 @@ import { validateQuestionIntegrity, assessSingleAnswerPositionBalance } from "..
 import { assessDistractorPlausibility } from "../src/lib/distractorQuality.js";
 import { assessLearnerFriendlyRationale } from "../src/lib/learnerFriendlyRationale.js";
 import { rebalanceAnswerKeys } from "../src/lib/answerKeyRebalance.js";
+import { buildBlueprintRef, PLAN_VERSION } from "../src/lib/blueprint.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const appRoot = path.resolve(here, "..");
@@ -76,6 +77,13 @@ for (const raw of eligible) {
     continue;
   }
 
+  const blueprintRef = buildBlueprintRef(item.tags || {});
+  if (!blueprintRef.valid) {
+    dropped.push({ id: item.id || "unknown", reason: `blueprint: ${blueprintRef.issues.join("; ")}` });
+    continue;
+  }
+  item.blueprintRef = blueprintRef;
+
   passed.push(item);
 }
 
@@ -88,8 +96,15 @@ if (passed.length) {
   }
 }
 
+const coverage = {};
+for (const q of rebalanced) {
+  const cn = q.blueprintRef?.clientNeeds || "(none)";
+  coverage[cn] = (coverage[cn] || 0) + 1;
+}
+
 const artifact = {
   schemaVersion: "served-questions.v1",
+  planVersion: PLAN_VERSION,
   compiledAt: new Date().toISOString(),
   sourceFile: "app/src/data/external_review_first10.json",
   gateVersions: {
@@ -102,6 +117,7 @@ const artifact = {
     passed: rebalanced.length,
     dropped: dropped.length,
   },
+  coverage,
   dropped,
   questions: rebalanced,
 };

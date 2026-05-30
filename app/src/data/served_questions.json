@@ -1,6 +1,7 @@
 {
   "schemaVersion": "served-questions.v1",
-  "compiledAt": "2026-05-30T17:09:42.575Z",
+  "planVersion": "2026-PN",
+  "compiledAt": "2026-05-30T17:59:50.347Z",
   "sourceFile": "app/src/data/external_review_first10.json",
   "gateVersions": {
     "integrity": "requireWhyWrong:true,strictItemType:false",
@@ -11,6 +12,10 @@
     "eligible": 10,
     "passed": 10,
     "dropped": 0
+  },
+  "coverage": {
+    "Safe and Effective Care Environment": 8,
+    "Physiological Integrity": 2
   },
   "dropped": [],
   "questions": [
@@ -51,7 +56,15 @@
       "revisionPriority": "P1_rewrite_generated",
       "revisionPlan": "Stage 3 critical rewrite: upgraded distractor plausibility and instruction framing; removed easy elimination cues; retained negative-stem safety-teaching target. Awaiting review.",
       "approvedBy": "emeka",
-      "approvedAt": "2026-05-28T12:45:00Z"
+      "approvedAt": "2026-05-28T12:45:00Z",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q001_variant_a",
@@ -88,7 +101,15 @@
       "alphaSlice": true,
       "quorumDecision": "approve_pool",
       "revisionPriority": "P3_approved_after_review",
-      "revisionPlan": "Emeka reviewed and approved. Metadata fix confirmed. Moved to alpha pool."
+      "revisionPlan": "Emeka reviewed and approved. Metadata fix confirmed. Moved to alpha pool.",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q001_variant_b",
@@ -127,7 +148,15 @@
       "revisionPriority": "P1_quarantine_replaced",
       "revisionPlan": "Stage 3 revise-once: replaced out-of-place distractor with clinically plausible unsafe techniques and increased requirement for true safe-use judgment. Awaiting review.",
       "approvedBy": "emeka",
-      "approvedAt": "2026-05-28T12:45:00Z"
+      "approvedAt": "2026-05-28T12:45:00Z",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q001_variant_c",
@@ -163,7 +192,15 @@
       "publicPilotNotice": "Candidate alpha item approved by Emeka + Ihechi quorum after rationale cleanup. Keep internal until final human approval.",
       "alphaSlice": true,
       "quorumDecision": "approve_pool",
-      "revisionPriority": "P3_specific_why_wrong_completed"
+      "revisionPriority": "P3_specific_why_wrong_completed",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Physiological Integrity",
+        "subcategory": "Basic Care and Comfort",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q002_variant_a",
@@ -202,7 +239,15 @@
       "revisionPriority": "P1_rewrite_generated",
       "revisionPlan": "Stage 3 critical rewrite: converted all distractors to realistic but unsafe client instruction statements; removed framing mismatch and strengthened discharge-teaching validity. Awaiting review.",
       "approvedBy": "emeka",
-      "approvedAt": "2026-05-28T12:45:00Z"
+      "approvedAt": "2026-05-28T12:45:00Z",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q002_variant_b",
@@ -239,7 +284,15 @@
       "alphaSlice": true,
       "quorumDecision": "approve_pool",
       "revisionPriority": "P3_approved_after_review",
-      "revisionPlan": "Emeka confirmed why-wrong explanations are clinical-specific. Concept passed. Moved to alpha pool."
+      "revisionPlan": "Emeka confirmed why-wrong explanations are clinical-specific. Concept passed. Moved to alpha pool.",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q002_variant_c",
@@ -276,7 +329,15 @@
       "alphaSlice": true,
       "quorumDecision": "approve_pool",
       "revisionPriority": "P3_specific_why_wrong_completed",
-      "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key."
+      "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key.",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q003_variant_a",
@@ -313,7 +374,15 @@
       "alphaSlice": true,
       "quorumDecision": "approve_pool",
       "revisionPriority": "P3_approved_after_review",
-      "revisionPlan": "Emeka confirmed distractors are plausible but wrong. Cartoonish distractor replaced. Moved to alpha pool."
+      "revisionPlan": "Emeka confirmed distractors are plausible but wrong. Cartoonish distractor replaced. Moved to alpha pool.",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Physiological Integrity",
+        "subcategory": "Reduction of Risk Potential",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q003_variant_b",
@@ -350,7 +419,15 @@
       "alphaSlice": true,
       "quorumDecision": "approve_pool",
       "revisionPriority": "P3_approved_after_review",
-      "revisionPlan": "Emeka confirmed stem clarity is improved. Moved to alpha pool."
+      "revisionPlan": "Emeka confirmed stem clarity is improved. Moved to alpha pool.",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     },
     {
       "id": "assistive_devices_first20_q003_variant_c",
@@ -387,7 +464,15 @@
       "alphaSlice": true,
       "quorumDecision": "approve_pool",
       "revisionPriority": "P3_specific_why_wrong_completed",
-      "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key."
+      "revisionPlan": "Approved alpha item; option order rotated so the correct answer is not always A while keeping the same clinical key.",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      }
     }
   ]
 }
