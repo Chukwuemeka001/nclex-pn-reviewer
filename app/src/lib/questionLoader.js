@@ -1,4 +1,7 @@
 import demoSeedQuestions from "../data/demo_seed_questions.json";
+import { validateQuestionIntegrity } from "./questionIntegrity.js";
+import { assessDistractorPlausibility } from "./distractorQuality.js";
+import { assessLearnerFriendlyRationale } from "./learnerFriendlyRationale.js";
 
 const REVIEW_API_BASE = import.meta.env.VITE_REVIEW_API_BASE || "/api/review";
 
@@ -23,8 +26,6 @@ function difficultyNumber(question) {
   return 3;
 }
 
-import { validateQuestionIntegrity } from "./questionIntegrity.js";
-
 function normalizeQuestion(raw, source = "approved") {
   const now = new Date().toISOString();
   const itemType = normalizeItemType(raw.itemType || raw.tagging?.questionType?.id);
@@ -32,10 +33,32 @@ function normalizeQuestion(raw, source = "approved") {
   const choices = integrity.normalized.choices;
   const correctAnswerIndexes = integrity.normalized.correctAnswerIndexes;
   const correctAnswerText = integrity.normalized.correctAnswerText;
+  const id = raw.id || raw.newQuestionId || "unknown";
 
   if (!integrity.passed) {
-    const id = raw.id || raw.newQuestionId || "unknown";
     throw new Error(`Question integrity failed for ${id}: ${integrity.errors.join("; ")}`);
+  }
+
+  const whyWrong = raw.whyWrong || [];
+
+  // Distractor plausibility is a hard floor for every served item, including the
+  // demo fallback: a cartoonishly-unsafe or stem-giveaway option must never ship.
+  const distractors = assessDistractorPlausibility({ stem: raw.stem || raw.newStem || "", choices, correctAnswerIndexes });
+  if (!distractors.passed) {
+    throw new Error(`Distractor quality failed for ${id}: ${distractors.issues.join("; ")}`);
+  }
+
+  // Learner-rationale + whyWrong are hard floors for reviewed/approved content.
+  // The demo seed is an explicit fallback pool and is exempted here; C6 makes
+  // whyWrong strict everywhere and backfills the demo items.
+  if (source !== "demo") {
+    if (!whyWrong.filter((why) => String(why || "").trim()).length) {
+      throw new Error(`whyWrong is required for served item ${id}`);
+    }
+    const rationaleCheck = assessLearnerFriendlyRationale({ rationale: raw.rationale || raw.newRationale || "", whyWrong });
+    if (!rationaleCheck.passed) {
+      throw new Error(`Rationale quality failed for ${id}: ${rationaleCheck.issues.join("; ")}`);
+    }
   }
 
   return {
@@ -48,7 +71,7 @@ function normalizeQuestion(raw, source = "approved") {
     correctAnswerIndexes,
     correctAnswerText,
     rationale: raw.rationale || raw.newRationale || "",
-    whyWrong: raw.whyWrong || [],
+    whyWrong,
     tagging: raw.tagging || {},
     difficulty: difficultyNumber(raw),
     estimatedTimeSeconds: raw.estimatedTimeSeconds || raw.tagging?.estimatedTimeSeconds || (itemType === "select_all_that_apply" ? 90 : 60),

@@ -1,0 +1,70 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+import { test } from "node:test";
+import { validateQuestionIntegrity } from "./questionIntegrity.js";
+import { assessDistractorPlausibility } from "./distractorQuality.js";
+import { assessLearnerFriendlyRationale } from "./learnerFriendlyRationale.js";
+
+// This test mirrors the gates that questionLoader.normalizeQuestion now enforces
+// on the serve path. It cannot import questionLoader.js directly because that file
+// uses import.meta.env (Vite-only), so we re-run the same assessments here against
+// the same canonical pools: the demo fallback and the approved-alpha slice.
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const demo = JSON.parse(readFileSync(join(__dirname, "../data/demo_seed_questions.json"), "utf8"));
+const first10 = JSON.parse(readFileSync(join(__dirname, "../data/external_review_first10.json"), "utf8"));
+
+const approvedAlpha = first10.filter(
+  (item) => (item.reviewStatus === "candidate_approved_alpha" || item.reviewStatus === "approved_alpha") && item.alphaSlice === true,
+);
+
+function choicesOf(item) {
+  return item.choices || item.answerChoices || [];
+}
+
+// Gate logic replicated from questionLoader.normalizeQuestion. Keep in sync.
+function serveGate(item, source) {
+  const choices = choicesOf(item);
+  const correctAnswerIndexes = item.correctAnswerIndexes || [];
+  const integrity = validateQuestionIntegrity({ ...item, answerChoices: choices }, { strictItemType: false });
+  assert.equal(integrity.passed, true, `${item.id} integrity: ${integrity.errors.join("; ")}`);
+
+  const distractors = assessDistractorPlausibility({ stem: item.stem, choices, correctAnswerIndexes });
+  assert.equal(distractors.passed, true, `${item.id} distractors: ${distractors.issues.join("; ")}`);
+
+  if (source !== "demo") {
+    const whyWrong = item.whyWrong || [];
+    assert.ok(whyWrong.filter((why) => String(why || "").trim()).length > 0, `${item.id} missing whyWrong on serve path`);
+    const rationale = assessLearnerFriendlyRationale({ rationale: item.rationale, whyWrong });
+    assert.equal(rationale.passed, true, `${item.id} rationale: ${rationale.issues.join("; ")}`);
+  }
+}
+
+test("demo fallback pool passes the serve-path distractor gate", () => {
+  for (const item of demo) serveGate(item, "demo");
+});
+
+test("approved-alpha pool passes the full serve-path gate (distractor + rationale + whyWrong)", () => {
+  assert.ok(approvedAlpha.length > 0, "Expected at least one approved-alpha item");
+  for (const item of approvedAlpha) serveGate(item, "approved");
+});
+
+test("a cartoonishly-unsafe distractor would be rejected by the serve gate", () => {
+  const bad = {
+    id: "synthetic_bad",
+    stem: "A client reports constipation after surgery. Which action should the PN take first?",
+    answerChoices: [
+      "Assess bowel sounds, pain, diet, fluids, mobility, and last bowel movement.",
+      "Give a laxative without a provider order.",
+      "Ask about the usual bowel routine.",
+      "Encourage ambulation as tolerated.",
+    ],
+    correctAnswerIndexes: [0],
+    correctAnswerText: ["Assess bowel sounds, pain, diet, fluids, mobility, and last bowel movement."],
+    whyWrong: ["", "x", "x", "x"],
+    rationale: "First the nurse should assess so the safest action fits what the client needs.",
+  };
+  assert.throws(() => serveGate(bad, "approved"), /distractors/);
+});
