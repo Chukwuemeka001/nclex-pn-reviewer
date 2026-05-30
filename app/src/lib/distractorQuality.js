@@ -1,10 +1,18 @@
 const CARTOON_UNSAFE_PATTERNS = [
-  /without (a |an )?(provider|physician|prescriber|doctor|order)/i,
-  /ignore (the )?(order|allergy|vital|symptom|pain|bleeding)/i,
-  /leave (the )?client (alone|on the floor)/i,
-  /force (fluids|food|ambulation|walking)/i,
+  /without (a |an )?(provider|physician|prescriber|doctor|order|prescription)/i,
+  /ignore (the )?(order|allergy|vital|symptom|pain|bleeding|complaint|call light|call bell|alarm|fall|wound|rash|fever|request)/i,
+  /leave (the )?client (alone|unattended|on the floor)/i,
+  /force (fluids|food|ambulation|walking|the client)/i,
   /restrain .* without/i,
-  /give .* despite .* allergy/i,
+  /(give|administer) .* despite .* allergy/i,
+  /(double|triple|increase) the (dose|dosage|rate)( of \w+)? (without|on your own|independently)/i,
+  /(stop|withhold|discontinue) the (prescribed |ordered )?(medication|antibiotic|insulin|oxygen) without/i,
+  /tell the client to stop taking/i,
+  /reuse (the |a |an )?(same |used |dirty )?(needle|syringe|glove)/i,
+  /recap (the |a )?(used )?needle/i,
+  /without (washing|cleaning) (your |the )?hands/i,
+  /without (performing )?hand (hygiene|washing)/i,
+  /skip(ping)? (the )?(assessment|vital signs|hand hygiene|verification|safety check|time-?out)/i,
 ];
 
 function normalizeChoices(choices = []) {

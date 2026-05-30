@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
+import { test } from "node:test";
 import { assessDistractorPlausibility } from "./distractorQuality.js";
 
-function testFlagsCartoonishlyUnsafeOrderViolationDistractor() {
+test("flags a cartoonishly-unsafe order-violation distractor", () => {
   const result = assessDistractorPlausibility({
     stem: "The client reports constipation after surgery. Which action should the PN take first?",
     choices: [
@@ -16,9 +17,9 @@ function testFlagsCartoonishlyUnsafeOrderViolationDistractor() {
   assert.equal(result.passed, false);
   assert.ok(result.flaggedChoices.some((choice) => choice.choice.includes("without a provider order")));
   assert.ok(result.issues.some((issue) => issue.includes("too obviously unsafe")));
-}
+});
 
-function testAcceptsPlausibleButIncorrectNursingDistractors() {
+test("accepts plausible-but-incorrect nursing distractors", () => {
   const result = assessDistractorPlausibility({
     stem: "The client reports constipation after surgery. Which action should the PN take first?",
     choices: [
@@ -32,9 +33,9 @@ function testAcceptsPlausibleButIncorrectNursingDistractors() {
 
   assert.equal(result.passed, true);
   assert.equal(result.flaggedChoices.length, 0);
-}
+});
 
-function testDoesNotFlagCorrectEmergencyActions() {
+test("does not flag correct emergency actions", () => {
   const result = assessDistractorPlausibility({
     stem: "The client is pulseless. What should the nurse do first?",
     choices: ["Start CPR.", "Give water.", "Document the finding.", "Call dietary."],
@@ -42,9 +43,9 @@ function testDoesNotFlagCorrectEmergencyActions() {
   });
 
   assert.equal(result.flaggedChoices.some((choice) => choice.choice === "Start CPR."), false);
-}
+});
 
-function testFlagsCorrectAnswerGiveawayFromStemWording() {
+test("flags correct-answer giveaway from stem wording", () => {
   const result = assessDistractorPlausibility({
     stem: "The PN notices repeated food left untouched on one side of the plate. Which finding should be reported?",
     choices: [
@@ -58,14 +59,43 @@ function testFlagsCorrectAnswerGiveawayFromStemWording() {
 
   assert.equal(result.passed, false);
   assert.ok(result.issues.some((issue) => issue.includes("guessed from wording")));
-}
+});
 
-function run() {
-  testFlagsCartoonishlyUnsafeOrderViolationDistractor();
-  testAcceptsPlausibleButIncorrectNursingDistractors();
-  testDoesNotFlagCorrectEmergencyActions();
-  testFlagsCorrectAnswerGiveawayFromStemWording();
-  console.log("distractorQuality tests passed");
-}
+// C7: expanded pattern coverage — these evasions previously slipped through.
+test("flags expanded cartoonish-unsafe evasions", () => {
+  const cases = [
+    "Reuse the same needle for the next injection.",
+    "Recap the used needle by hand.",
+    "Double the dose of insulin on your own.",
+    "Stop the prescribed antibiotic without telling the provider.",
+    "Tell the client to stop taking the medication.",
+    "Provide care without washing your hands.",
+    "Skip the assessment and document the task as done.",
+    "Leave the client unattended on the commode.",
+  ];
+  for (const unsafe of cases) {
+    const result = assessDistractorPlausibility({
+      stem: "Which action by the PN requires follow-up?",
+      choices: ["Perform hand hygiene and verify the order before giving care.", unsafe, "Reassess the client.", "Notify the charge nurse."],
+      correctAnswerIndexes: [0],
+    });
+    assert.ok(
+      result.flaggedChoices.some((choice) => choice.choice === unsafe),
+      `expected to flag: ${unsafe}`,
+    );
+  }
+});
 
-run();
+test("does not flag legitimate ordered/scope-appropriate actions", () => {
+  const result = assessDistractorPlausibility({
+    stem: "The PN is caring for a client with a new prescription. Which actions are appropriate?",
+    choices: [
+      "Administer the prescribed antibiotic after checking the order and allergies.",
+      "Apply restraints as ordered after less-restrictive measures fail.",
+      "Encourage fluids within the prescribed plan.",
+      "Reassess pain after the intervention.",
+    ],
+    correctAnswerIndexes: [0],
+  });
+  assert.equal(result.flaggedChoices.length, 0, `unexpected flags: ${JSON.stringify(result.flaggedChoices)}`);
+});
