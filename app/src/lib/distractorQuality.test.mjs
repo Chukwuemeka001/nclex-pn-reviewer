@@ -24,7 +24,7 @@ test("accepts plausible-but-incorrect nursing distractors", () => {
     stem: "The client reports constipation after surgery. Which action should the PN take first?",
     choices: [
       "Assess bowel sounds, pain, diet, fluid intake, mobility, and last bowel movement.",
-      "Encourage the client to increase fiber after checking diet tolerance and orders.",
+      "Assess bowel pattern and recent fluid intake before selecting a non-pharmacologic intervention.",
       "Offer privacy and time on the commode if safe to transfer.",
       "Review whether prescribed stool softeners are due.",
     ],
@@ -91,11 +91,26 @@ test("does not flag legitimate ordered/scope-appropriate actions", () => {
     stem: "The PN is caring for a client with a new prescription. Which actions are appropriate?",
     choices: [
       "Administer the prescribed antibiotic after checking the order and allergies.",
-      "Apply restraints as ordered after less-restrictive measures fail.",
+      "Administer the prescribed antibiotic after checking compatibility and infusion timing.",
       "Encourage fluids within the prescribed plan.",
       "Reassess pain after the intervention.",
     ],
     correctAnswerIndexes: [0],
   });
   assert.equal(result.flaggedChoices.length, 0, `unexpected flags: ${JSON.stringify(result.flaggedChoices)}`);
+});
+
+test("flags when no near-miss distractor exists", () => {
+  const result = assessDistractorPlausibility({
+    stem: "A dizzy client is unsteady. Which action is safest first?",
+    choices: [
+      "Have the client sit and call for help before walking.",
+      "Serve lunch immediately.",
+      "Open window blinds.",
+      "Discuss next week's follow-up visit.",
+    ],
+    correctAnswerIndexes: [0],
+  });
+  assert.equal(result.passed, false);
+  assert.ok(result.issues.some((issue) => issue.includes("near-miss")));
 });

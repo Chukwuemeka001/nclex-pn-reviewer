@@ -1,7 +1,7 @@
 {
   "schemaVersion": "served-questions.v1",
   "planVersion": "2026-PN",
-  "compiledAt": "2026-05-31T09:20:46.663Z",
+  "compiledAt": "2026-05-31T11:36:49.141Z",
   "sourceFile": "app/src/data/external_review_first10.json",
   "gateVersions": {
     "integrity": "requireWhyWrong:true,strictItemType:false",
@@ -259,10 +259,10 @@
       "itemType": "multiple_choice",
       "stem": "An adult with spinning dizziness reaches for the wall when standing. Which response by the practical nurse is safest?",
       "answerChoices": [
-        "Dim the lights and ask the client to walk slowly to the lobby.",
+        "Use a wheelchair to move the client to the lobby now, then reassess dizziness there.",
         "Have the client sit or lie down and call for help before walking.",
-        "Leave the client standing while looking for discharge papers.",
-        "Offer fluids and then allow unassisted ambulation."
+        "Assist the client to a nearby chair first, then finish discharge instructions before calling for help.",
+        "Offer oral fluids while seated, then reassess and decide whether assisted ambulation is needed."
       ],
       "correctAnswerIndexes": [
         1
@@ -272,10 +272,10 @@
       ],
       "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
       "whyWrong": [
-        "Dim lights may reduce stimulation, but asking a dizzy client to walk slowly still delays the priority safety action.",
+        "A wheelchair may seem safer than walking, but moving the client before first stabilizing and calling for help can still delay priority safety response.",
         "",
-        "Leaving the client standing during spinning dizziness keeps the fall risk active when the safest first step is to get the client seated or lying down.",
-        "Fluids may be appropriate later for some clients, but they do not solve the immediate risk of falling while dizzy."
+        "Getting the client seated is helpful, but delaying escalation to finish instructions misses the immediate safety priority of securing assistance before any movement.",
+        "Fluids and reassessment may be reasonable follow-up steps, but they come after immediate fall-risk stabilization and help activation."
       ],
       "tags": {
         "clientNeeds": "Safe and Effective Care Environment",
@@ -306,9 +306,9 @@
       "stem": "A practical nurse is caring for adult reporting spinning dizziness in the urgent care discharge area. Which action has the highest priority?",
       "answerChoices": [
         "Have the client sit or lie down and call for help before walking.",
-        "Offer fluids while the client remains standing at the counter.",
-        "Walk beside the client slowly to the lobby and reassess dizziness there.",
-        "Finish the discharge teaching first because the client is already leaving."
+        "Transfer the client to a wheelchair, then attempt supervised walking to the lobby before reassessing dizziness.",
+        "Seat the client in a chair, complete brief discharge paperwork, then arrange assistance.",
+        "Coach slow breathing at the counter and continue discharge teaching while monitoring symptoms."
       ],
       "correctAnswerIndexes": [
         0
@@ -319,9 +319,9 @@
       "rationale": "Vertigo increases fall risk; limiting ambulation and getting assistance are the safest immediate measures. The other options delay assessment, increase risk, or reduce safe independent use.",
       "whyWrong": [
         "",
-        "Offering fluids while the client remains standing does not remove the immediate fall risk from sudden spinning dizziness.",
-        "Walking the client to the lobby while dizziness is active still exposes the client to a fall before the nurse stabilizes the situation.",
-        "Finishing discharge teaching first delays the immediate safety action; fall prevention comes before routine discharge tasks."
+        "Wheelchair transfer may appear safer than walking, but moving the client away before immediate stabilization and help activation can delay urgent safety management.",
+        "Seating is appropriate, but completing discharge paperwork before arranging help delays the immediate safety escalation needed during active vertigo.",
+        "Monitoring and coaching may provide comfort, but continuing routine teaching before stabilization and assistance delays the priority fall-prevention action."
       ],
       "tags": {
         "clientNeeds": "Safe and Effective Care Environment",

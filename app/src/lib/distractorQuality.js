@@ -19,13 +19,28 @@ function normalizeChoices(choices = []) {
   return Array.isArray(choices) ? choices.map((choice) => String(choice || "").trim()).filter(Boolean) : [];
 }
 
+const STOP_TOKENS = new Set([
+  "client", "nurse", "which", "should", "first", "report", "finding", "action", "take", "what", "with", "that", "this", "care",
+  "after", "before", "because", "would", "could", "offer", "document", "review", "adult", "practical", "during", "when",
+]);
+
 function meaningfulTokens(text) {
   return String(text || "")
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
     .filter((token) => token.length >= 4)
-    .filter((token) => !new Set(["client", "nurse", "which", "should", "first", "report", "finding", "action", "take", "what", "with", "that", "this", "care", "after", "before", "because", "would", "could", "offer", "document", "review"]).has(token));
+    .filter((token) => !STOP_TOKENS.has(token));
+}
+
+function sharedTokenCount(a, b) {
+  const left = new Set(meaningfulTokens(a));
+  const right = new Set(meaningfulTokens(b));
+  let count = 0;
+  for (const token of left) {
+    if (right.has(token)) count += 1;
+  }
+  return count;
 }
 
 function answerGiveawayScore(stem, choice) {
@@ -70,6 +85,22 @@ export function assessDistractorPlausibility({ stem = "", choices = [], correctA
     }
   }
 
+  // Near-miss plausibility floor: at least one wrong option should feel clinically close
+  // to the key (same scenario lane), not cartoonishly far from consideration.
+  if (correct.size === 1 && normalizedChoices.length >= 4) {
+    const nearMissRequired = /\b(safest|highest priority|priority|first)\b/i.test(String(stem || ""))
+      && /\b(vertigo|dizz|spinning|unsteady|fall)\b/i.test(String(stem || ""));
+    if (nearMissRequired) {
+      const [correctIndex] = [...correct];
+      const correctChoice = normalizedChoices[correctIndex] || "";
+      const wrongChoices = normalizedChoices.filter((_, index) => !correct.has(index));
+      const hasNearMiss = wrongChoices.some((choice) => sharedTokenCount(choice, correctChoice) >= 1);
+      if (!hasNearMiss) {
+        issues.push("Distractors are too far from the correct option. Include at least one near-miss wrong answer that is clinically plausible but misses the priority/safety key.");
+      }
+    }
+  }
+
   return {
     passed: issues.length === 0,
     issues,
@@ -82,6 +113,7 @@ export function distractorRewriteGuidance() {
   return [
     "Avoid cartoonishly unsafe options such as giving medication without an order unless the item specifically tests that safety rule.",
     "Make wrong options plausible nursing actions that are less urgent, incomplete, or not the safest first step.",
+    "Include at least one near-miss distractor that looks clinically reasonable at first glance but misses the key priority/safety ingredient.",
     "Avoid repeating the exact stem wording only in the correct answer; otherwise learners can guess without nursing knowledge.",
     "For constipation, better distractors include checking diet/fluid restrictions, reviewing prescribed stool softeners, encouraging mobility as tolerated, or assessing bowel pattern before intervention.",
   ];
