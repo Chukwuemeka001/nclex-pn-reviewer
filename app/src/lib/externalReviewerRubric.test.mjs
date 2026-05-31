@@ -67,7 +67,7 @@ function testCriticalSafetyAtTwoIsRejectNotFix() {
 }
 
 function testTemplateIncludesExpectedStructureAndIds() {
-  assert.equal(FIRST_TEN_REVIEW_IDS.length, 50);
+  assert.equal(FIRST_TEN_REVIEW_IDS.length, 51);
   const template = buildReviewerNoteTemplate("assistive_devices_first20_q001_variant_a");
   assert.ok(template.includes("ID: assistive_devices_first20_q001_variant_a"));
   assert.ok(template.includes("Decision: PASS / FIX / REJECT"));

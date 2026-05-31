@@ -1,7 +1,7 @@
 {
   "schemaVersion": "served-questions.v1",
   "planVersion": "2026-PN",
-  "compiledAt": "2026-05-31T08:00:44.399Z",
+  "compiledAt": "2026-05-31T09:20:46.663Z",
   "sourceFile": "app/src/data/external_review_first10.json",
   "gateVersions": {
     "integrity": "requireWhyWrong:true,strictItemType:false",
@@ -9,13 +9,13 @@
     "rationale": "learnerFriendly>=3,issues<=1"
   },
   "counts": {
-    "eligible": 10,
-    "passed": 10,
+    "eligible": 14,
+    "passed": 14,
     "dropped": 0
   },
   "coverage": {
-    "Safe and Effective Care Environment": 8,
-    "Physiological Integrity": 2
+    "Safe and Effective Care Environment": 10,
+    "Physiological Integrity": 4
   },
   "dropped": [],
   "questions": [
@@ -24,23 +24,23 @@
       "itemType": "multiple_choice",
       "stem": "[RW] A practical nurse is teaching an adult client newly fitted with a rigid leg brace how to prevent skin breakdown. Which client statement indicates the need for further teaching?",
       "answerChoices": [
-        "I will report numbness, tingling, or persistent pressure points to the nurse right away.",
-        "I will remove the brace at scheduled times to inspect my skin for red areas or rubbing.",
         "I will tighten the brace straps as much as possible so the brace does not shift while I walk.",
-        "I will wear a clean, wrinkle-free sock under the brace unless told otherwise."
+        "I will wear a clean, wrinkle-free sock under the brace unless told otherwise.",
+        "I will report numbness, tingling, or persistent pressure points to the nurse right away.",
+        "I will remove the brace at scheduled times to inspect my skin for red areas or rubbing."
       ],
       "correctAnswerIndexes": [
-        2
+        0
       ],
       "correctAnswerText": [
         "I will tighten the brace straps as much as possible so the brace does not shift while I walk."
       ],
       "rationale": "Straps should be secure but not maximally tight. Over-tightening increases focal pressure, impairs circulation, and raises risk of skin injury. Routine skin checks, protective sock use, and early reporting of neurovascular warning signs are appropriate safety behaviors.",
       "whyWrong": [
-        "Numbness, tingling, or persistent pressure can indicate neurovascular compromise or poor brace fit and should be reported promptly.",
-        "Scheduled brace removal with skin inspection is a correct prevention strategy because early redness or rubbing can be addressed before breakdown occurs.",
         "",
-        "A thin, clean, wrinkle-free sock helps reduce friction and shear under a rigid brace and supports skin protection."
+        "A thin, clean, wrinkle-free sock helps reduce friction and shear under a rigid brace and supports skin protection.",
+        "Numbness, tingling, or persistent pressure can indicate neurovascular compromise or poor brace fit and should be reported promptly.",
+        "Scheduled brace removal with skin inspection is a correct prevention strategy because early redness or rubbing can be addressed before breakdown occurs."
       ],
       "tags": {
         "clientNeeds": "Safe and Effective Care Environment",
@@ -483,6 +483,190 @@
         "issues": []
       },
       "familyKey": "assistive_devices_first20_q003"
+    },
+    {
+      "id": "assistive_devices_batch2_q016_rw",
+      "sourceId": "orig_assistive_devices_q16",
+      "itemType": "multiple_choice",
+      "stem": "[RW] During bowel training, a client says, \"I can feel the urge and hold it for a short time until I reach the bathroom.\" Which structure allows this voluntary control?",
+      "answerChoices": [
+        "Internal anal sphincter",
+        "Rectal stretch receptors",
+        "Sigmoid-colon enteric plexus",
+        "External anal sphincter"
+      ],
+      "correctAnswerIndexes": [
+        3
+      ],
+      "correctAnswerText": [
+        "External anal sphincter"
+      ],
+      "rationale": "The external anal sphincter is skeletal muscle under voluntary control and allows intentional delay of defecation. The internal anal sphincter is involuntary smooth muscle, and the bowel segments listed do not provide conscious continence control.",
+      "whyWrong": [
+        "The internal anal sphincter functions involuntarily and cannot be consciously controlled.",
+        "The ascending colon transports/stores stool but does not provide voluntary continence control.",
+        "The duodenum is part of upper GI digestion, not defecation control.",
+        ""
+      ],
+      "tags": {
+        "clientNeeds": "Physiological Integrity",
+        "subcategory": "Basic Care and Comfort",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Recognize Cues",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_approved_after_review",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Physiological Integrity",
+        "subcategory": "Basic Care and Comfort",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      },
+      "familyKey": "tag:Physiological Integrity|Basic Care and Comfort|Recognize Cues"
+    },
+    {
+      "id": "assistive_devices_batch2_q020_rw",
+      "sourceId": "orig_assistive_devices_q20",
+      "itemType": "multiple_choice",
+      "stem": "[RW] A practical nurse is preparing a client for provider-ordered eye irrigation after dust exposure. Which item should the nurse gather to hold solution against the eye?",
+      "answerChoices": [
+        "Eye shield",
+        "Eye cup",
+        "Sterile eyewash bottle",
+        "Ocular medication dropper"
+      ],
+      "correctAnswerIndexes": [
+        1
+      ],
+      "correctAnswerText": [
+        "Eye cup"
+      ],
+      "rationale": "An eye cup is shaped to fit around the orbit and retain irrigation solution briefly against the eye. The other items are not designed for safe ocular irrigation setup.",
+      "whyWrong": [
+        "An eye shield protects the eye but does not hold irrigation solution against the orbit.",
+        "",
+        "A sterile eyewash bottle can deliver fluid, but the eye cup is the item designed to retain solution against the eye.",
+        "An ocular medication dropper delivers drops and is not used as an irrigation reservoir."
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Take Action",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_approved_after_review",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      },
+      "familyKey": "tag:Safe and Effective Care Environment|Safety and Infection Control|Take Action"
+    },
+    {
+      "id": "assistive_devices_batch2_q015_rw",
+      "sourceId": "orig_assistive_devices_q15",
+      "itemType": "multiple_choice",
+      "stem": "[RW] A client with weak hand grip from osteoarthritis keeps dropping a regular toothbrush. Which adaptation should the practical nurse recommend first to support independent oral care?",
+      "answerChoices": [
+        "Hold two toothbrushes together to make brushing faster",
+        "Stop brushing and use mouthwash only",
+        "Use a built-up foam handle on the toothbrush",
+        "Switch to a child-size toothbrush with a thinner handle"
+      ],
+      "correctAnswerIndexes": [
+        2
+      ],
+      "correctAnswerText": [
+        "Use a built-up foam handle on the toothbrush"
+      ],
+      "rationale": "A built-up handle increases grasp surface and reduces required finger strength, improving independent use for clients with limited hand function. The other options either worsen grip demands or provide unsafe/inadequate oral care.",
+      "whyWrong": [
+        "Combining two toothbrushes is unstable and not a recognized adaptive strategy.",
+        "Mouthwash alone does not replace mechanical plaque removal by brushing.",
+        "",
+        "A thinner handle usually requires more pinch strength and is harder to control with weak grip."
+      ],
+      "tags": {
+        "clientNeeds": "Physiological Integrity",
+        "subcategory": "Basic Care and Comfort",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Take Action",
+        "difficulty": "Medium"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_approved_after_review",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Physiological Integrity",
+        "subcategory": "Basic Care and Comfort",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      },
+      "familyKey": "tag:Physiological Integrity|Basic Care and Comfort|Take Action"
+    },
+    {
+      "id": "assistive_devices_batch2_q017_rw",
+      "sourceId": "orig_assistive_devices_q17",
+      "itemType": "multiple_response",
+      "stem": "[RW] A client is being taught safe cane use after discharge. Which statements by the client indicate correct understanding? Select all that apply.",
+      "answerChoices": [
+        "I will hold the cane on my stronger side.",
+        "I should move my weak leg and cane forward together.",
+        "I should set cane height so the top aligns near my wrist crease with my elbow locked straight.",
+        "I will wear non-skid shoes when using the cane.",
+        "If stairs are difficult, I can ask for help and use handrails."
+      ],
+      "correctAnswerIndexes": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "correctAnswerText": [
+        "I will hold the cane on my stronger side.",
+        "I should move my weak leg and cane forward together.",
+        "I will wear non-skid shoes when using the cane.",
+        "If stairs are difficult, I can ask for help and use handrails."
+      ],
+      "rationale": "Safe cane technique includes holding the cane on the stronger side, advancing the cane with the weaker leg, using stable footwear, and using help/handrails on stairs as needed. Cane height should be fitted at wrist crease (with slight elbow flexion), not shoulder height.",
+      "whyWrong": [
+        "",
+        "",
+        "Locking the elbow reduces control and shock absorption; proper fit keeps a slight elbow flexion.",
+        "",
+        ""
+      ],
+      "tags": {
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Control",
+        "integratedProcess": "Teaching/Learning",
+        "clinicalJudgment": "Evaluate Outcomes",
+        "difficulty": "Medium-High"
+      },
+      "reviewStatus": "candidate_approved_alpha",
+      "quorumDecision": "approve_pool",
+      "revisionPriority": "P3_approved_after_review",
+      "blueprintRef": {
+        "planVersion": "2026-PN",
+        "clientNeeds": "Safe and Effective Care Environment",
+        "subcategory": "Safety and Infection Prevention and Control",
+        "objectiveText": "",
+        "valid": true,
+        "issues": []
+      },
+      "familyKey": "tag:Safe and Effective Care Environment|Safety and Infection Control|Evaluate Outcomes"
     }
   ]
 }
