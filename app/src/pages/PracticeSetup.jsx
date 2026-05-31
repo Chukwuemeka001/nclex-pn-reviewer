@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import { Play } from "lucide-react";
 import { filterQuestions, getTagOptions } from "../lib/questionLoader";
 import { selectAdaptiveQuestion } from "../lib/adaptiveEngine";
+import { selectSessionQuestionsWithDiversity, evaluateDiversityFeasibility } from "../lib/sessionDiversity";
 
 const modes = [
   "Tutor Practice",
@@ -36,8 +38,12 @@ function MultiSelect({ label, values, onChange, options }) {
 }
 
 export default function PracticeSetup({ questions, setup, setSetup, onStart }) {
-  const filtered = filterQuestions(questions, setup);
-  const selected = filtered.slice(0, Number(setup.numberOfQuestions || 10));
+  const filtered = useMemo(() => filterQuestions(questions, setup), [questions, setup]);
+  const selected = useMemo(
+    () => selectSessionQuestionsWithDiversity(filtered, Number(setup.numberOfQuestions || 10)),
+    [filtered, setup.numberOfQuestions],
+  );
+  const feasibility = useMemo(() => evaluateDiversityFeasibility(filtered), [filtered]);
 
   const tagOptions = {
     clientNeedsCategory: getTagOptions(questions, "clientNeedsCategory"),
@@ -101,6 +107,9 @@ export default function PracticeSetup({ questions, setup, setSetup, onStart }) {
 
       <div className="setup-footer">
         <strong>{filtered.length}</strong> matching questions available
+        {!feasibility.noAdjacentAchievable && filtered.length > 0 && (
+          <p className="help-text">Narrow filter — some related questions may appear close together.</p>
+        )}
       </div>
     </section>
   );
