@@ -7,6 +7,7 @@ import { assessDistractorPlausibility } from "../src/lib/distractorQuality.js";
 import { assessLearnerFriendlyRationale } from "../src/lib/learnerFriendlyRationale.js";
 import { rebalanceAnswerKeys } from "../src/lib/answerKeyRebalance.js";
 import { buildBlueprintRef, PLAN_VERSION } from "../src/lib/blueprint.js";
+import { deriveQuestionFamilyKey } from "../src/lib/familyKey.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const appRoot = path.resolve(here, "..");
@@ -83,6 +84,7 @@ for (const raw of eligible) {
     continue;
   }
   item.blueprintRef = blueprintRef;
+  item.familyKey = deriveQuestionFamilyKey(item);
 
   passed.push(item);
 }
