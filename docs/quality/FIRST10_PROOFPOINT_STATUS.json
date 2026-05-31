@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "hold",
-  "last_updated": "2026-05-30",
+  "last_updated": "2026-05-31",
   "owner": "Emeka",
   "policy": {
     "description": "Scaling NCLEX content is blocked until first-10 feedback comparison evidence is refreshed and approved.",
@@ -14,5 +14,5 @@
     "approved_by": "",
     "approved_at": ""
   },
-  "notes": "Initial governance artifact from Opus Stage 1 hardening. Keep status=hold until comparison evidence is complete."
+  "notes": "Initial governance artifact from Opus Stage 1 hardening. Keep status=hold until comparison evidence is complete. 2026-05-31: Founder learner session captured (10/10) with repeat-exposure bias and same-derivative clustering concerns; see qbank_pipeline/review_logs/first10_learner_loop_log.jsonl."
 }

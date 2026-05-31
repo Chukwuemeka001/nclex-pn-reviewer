@@ -1,7 +1,7 @@
 {
   "schemaVersion": "served-questions.v1",
   "planVersion": "2026-PN",
-  "compiledAt": "2026-05-30T17:59:50.347Z",
+  "compiledAt": "2026-05-31T08:00:44.399Z",
   "sourceFile": "app/src/data/external_review_first10.json",
   "gateVersions": {
     "integrity": "requireWhyWrong:true,strictItemType:false",
@@ -64,7 +64,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q008"
     },
     {
       "id": "assistive_devices_first20_q001_variant_a",
@@ -109,7 +110,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q001"
     },
     {
       "id": "assistive_devices_first20_q001_variant_b",
@@ -156,7 +158,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q001"
     },
     {
       "id": "assistive_devices_first20_q001_variant_c",
@@ -200,7 +203,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q001"
     },
     {
       "id": "assistive_devices_first20_q002_variant_a",
@@ -247,7 +251,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q002"
     },
     {
       "id": "assistive_devices_first20_q002_variant_b",
@@ -292,7 +297,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q002"
     },
     {
       "id": "assistive_devices_first20_q002_variant_c",
@@ -337,7 +343,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q002"
     },
     {
       "id": "assistive_devices_first20_q003_variant_a",
@@ -382,7 +389,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q003"
     },
     {
       "id": "assistive_devices_first20_q003_variant_b",
@@ -427,7 +435,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q003"
     },
     {
       "id": "assistive_devices_first20_q003_variant_c",
@@ -472,7 +481,8 @@
         "objectiveText": "",
         "valid": true,
         "issues": []
-      }
+      },
+      "familyKey": "assistive_devices_first20_q003"
     }
   ]
 }

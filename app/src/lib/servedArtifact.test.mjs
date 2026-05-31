@@ -89,3 +89,9 @@ test("served artifact declares planVersion and coverage", () => {
   assert.ok(typeof artifact.coverage === "object" && artifact.coverage !== null);
   assert.ok(Object.keys(artifact.coverage).length > 0, "coverage should be non-empty");
 });
+
+test("every served question includes explicit familyKey", () => {
+  for (const item of artifact.questions) {
+    assert.ok(typeof item.familyKey === "string" && item.familyKey.length > 0, `${item.id}: missing familyKey`);
+  }
+});
